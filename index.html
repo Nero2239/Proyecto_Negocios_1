@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>titulos por decidir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bosque: '#2d5a27',
+                        naranja: '#e67e22',
+                        crema: '#fdfbf7'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-crema text-gray-800 font-sans">
+
+    <nav class="flex justify-between items-center py-6 px-10 bg-white shadow-sm">
+        <h1 class="text-2xl font-bold text-bosque">Titulo por decidir</h1>
+        <div class="space-x-6 font-semibold">
+            <a href="#" class="hover:text-naranja">Guías</a>
+            <a href="#" class="hover:text-naranja">Tienda</a>
+            <a href="#" class="bg-naranja text-white px-5 py-2 rounded-full">Planifica tu viaje</a>
+        </div>
+    </nav>
+
+    <header class="h-[500px] flex flex-col justify-center items-center bg-bosque text-white text-center px-4">
+        <h2 class="text-5xl font-bold mb-4">Tu próxima aventura comienza aquí</h2>
+        <p class="text-xl mb-8 max-w-2xl">Encuentra la guía experta y el equipo esencial para explorar el mundo bajo las estrellas.</p>
+        <button class="bg-naranja hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-bold text-lg transition">Ver Equipos</button>
+    </header>
+
+    <section class="py-16 px-10">
+        <h3 class="text-3xl font-bold text-center mb-12">El Rincón del Campista</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2">
+                <h4 class="text-xl font-bold text-bosque mb-2">Checklist de inicio</h4>
+                <p>Todo lo que necesitas para tu primera noche bajo las estrellas.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2">
+                <h4 class="text-xl font-bold text-bosque mb-2">Tips de Seguridad</h4>
+                <p>Cómo elegir el lugar ideal para instalar tu tienda de campaña.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2">
+                <h4 class="text-xl font-bold text-bosque mb-2">Cocina al aire libre</h4>
+                <p>Recetas fáciles y nutritivas para tu fogata de campamento.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-10 bg-white">
+        <h3 class="text-3xl font-bold text-center mb-12">Equipo Destacado</h3>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="border p-4 rounded-lg">
+                <div class="bg-gray-200 h-40 mb-4 rounded"></div>
+                <h5 class="font-bold">Tienda Pro-Series</h5>
+                <p class="text-bosque font-bold">$120.00</p>
+                <span class="text-xs bg-orange-100 text-naranja p-1 rounded">Recomendado por expertos</span>
+            </div>
+            <div class="border p-4 rounded-lg"><div class="bg-gray-200 h-40 mb-4 rounded"></div><h5 class="font-bold">Saco Térmico</h5><p class="text-bosque font-bold">$85.00</p></div>
+            <div class="border p-4 rounded-lg"><div class="bg-gray-200 h-40 mb-4 rounded"></div><h5 class="font-bold">Linterna Solar</h5><p class="text-bosque font-bold">$30.00</p></div>
+            <div class="border p-4 rounded-lg"><div class="bg-gray-200 h-40 mb-4 rounded"></div><h5 class="font-bold">Mochila 50L</h5><p class="text-bosque font-bold">$95.00</p></div>
+        </div>
+    </section>
+
+</body>
+</html>
