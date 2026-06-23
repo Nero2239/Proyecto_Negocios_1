@@ -1,0 +1,260 @@
+/* ==================== ESTILOS ESPECÍFICOS PARA PÁGINA CONTACTO ==================== */
+
+/* Contenedor de Contacto */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Formulario de Contacto */
+.contact-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-soft);
+    animation: slideInForm 0.6s ease;
+}
+
+.contact-form h3 {
+    color: var(--color-bosque);
+    font-family: 'Georgia', 'Garamond', serif;
+    font-weight: bold;
+}
+
+/* Información de Contacto */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-info-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+    animation: slideInInfo 0.6s ease forwards;
+}
+
+.contact-info-item:nth-child(1) { animation-delay: 0.1s; }
+.contact-info-item:nth-child(2) { animation-delay: 0.2s; }
+.contact-info-item:nth-child(3) { animation-delay: 0.3s; }
+.contact-info-item:nth-child(4) { animation-delay: 0.4s; }
+
+.contact-info-item:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.contact-info-item h4 {
+    margin-bottom: 1rem;
+    color: var(--color-naranja);
+    font-size: 1.1rem;
+    font-family: 'Georgia', 'Garamond', serif;
+    font-weight: bold;
+}
+
+.contact-info-item p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.contact-info-item a {
+    color: var(--color-naranja);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.contact-info-item a:hover {
+    text-decoration: underline;
+    color: var(--color-bosque);
+}
+
+/* Enlaces de Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-bosque);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-soft);
+}
+
+.social-link:hover {
+    background-color: var(--color-naranja);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: var(--shadow-medium);
+}
+
+.social-link:active {
+    transform: translateY(-1px) scale(1.05);
+}
+
+/* Animaciones específicas para contacto.html */
+@keyframes slideInForm {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInInfo {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Estilos adicionales para el formulario */
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-bosque);
+    font-size: 0.95rem;
+}
+
+.contact-form .form-input,
+.contact-form .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition-smooth);
+}
+
+.contact-form .form-input:focus,
+.contact-form .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-naranja);
+    box-shadow: 0 0 0 3px rgba(224, 120, 86, 0.1);
+    background-color: rgba(250, 248, 243, 0.5);
+}
+
+.contact-form .form-textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+/* Botón de envío */
+.contact-form .btn {
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1rem;
+}
+
+/* Mensaje de éxito/error */
+#formMessage {
+    margin-bottom: 1.5rem;
+}
+
+.message-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #10b981;
+    animation: slideInMessage 0.3s ease;
+    font-weight: 500;
+}
+
+.message-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #ef4444;
+    animation: slideInMessage 0.3s ease;
+    font-weight: 500;
+}
+
+@keyframes slideInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .contact-info-item {
+        padding: 1.25rem;
+    }
+
+    .contact-form .form-input,
+    .contact-form .form-textarea {
+        font-size: 16px; /* Evita zoom en móviles */
+    }
+
+    .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-container {
+        gap: 1.5rem;
+    }
+
+    .social-links {
+        gap: 0.75rem;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}

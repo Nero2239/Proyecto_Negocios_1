@@ -3,71 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>titulos por decidir</title>
+    <title>Ruta Salvaje - Tu próxima aventura de camping comienza aquí</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bosque: '#2d5a27',
-                        naranja: '#e67e22',
-                        crema: '#fdfbf7'
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="styles/tailwind-config.js"></script>
 </head>
-<body class="bg-crema text-gray-800 font-sans">
+<body class="bg-crema text-gray-800">
 
-    <nav class="flex justify-between items-center py-6 px-10 bg-white shadow-sm">
-        <h1 class="text-2xl font-bold text-bosque">Titulo por decidir</h1>
-        <div class="space-x-6 font-semibold">
-            <a href="#" class="hover:text-naranja">Guías</a>
-            <a href="#" class="hover:text-naranja">Tienda</a>
-            <a href="#" class="bg-naranja text-white px-5 py-2 rounded-full">Planifica tu viaje</a>
+    <!-- ==================== HEADER / NAVEGACIÓN ==================== -->
+    <nav class="sticky top-0 z-50 flex justify-between items-center py-6 px-10 bg-white shadow-md">
+        <h1 class="text-3xl font-bold text-bosque font-serif">Ruta Salvaje</h1>
+        <div class="hidden md:flex space-x-8 font-semibold">
+            <a href="index.html" class="text-bosque hover:text-naranja transition">Inicio</a>
+            <a href="#guias" class="text-bosque hover:text-naranja transition">Guías de Aventura</a>
+            <a href="#equipo" class="text-bosque hover:text-naranja transition">Equipo</a>
+            <a href="nosotros.html" class="text-bosque hover:text-naranja transition">Nosotros</a>
+            <a href="contacto.html" class="text-bosque hover:text-naranja transition">Contacto</a>
         </div>
+        <button class="bg-naranja hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold transition shadow-lg">Planifica tu viaje</button>
     </nav>
 
-    <header class="h-[500px] flex flex-col justify-center items-center bg-bosque text-white text-center px-4">
-        <h2 class="text-5xl font-bold mb-4">Tu próxima aventura comienza aquí</h2>
-        <p class="text-xl mb-8 max-w-2xl">Encuentra la guía experta y el equipo esencial para explorar el mundo bajo las estrellas.</p>
-        <button class="bg-naranja hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-bold text-lg transition">Ver Equipos</button>
+    <!-- ==================== HERO SECTION ==================== -->
+    <header id="inicio" class="relative h-[600px] flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
+        <!-- Fondo con overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-bosque/90 to-green-900/90 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1200&h=600&fit=crop'); z-index: 5;"></div>
+        
+        <!-- Contenido del Hero -->
+        <div class="relative z-20 max-w-3xl">
+            <h2 class="text-6xl font-bold mb-6 font-serif drop-shadow-lg">Tu próxima aventura comienza aquí</h2>
+            <p class="text-2xl mb-8 drop-shadow-md max-w-2xl mx-auto">Encuentra la guía experta y el equipo esencial para explorar el mundo bajo las estrellas.</p>
+            <button class="bg-naranja hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-bold text-lg transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">Ver colecciones para principiantes</button>
+        </div>
     </header>
 
-    <section class="py-16 px-10">
-        <h3 class="text-3xl font-bold text-center mb-12">El Rincón del Campista</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2">
-                <h4 class="text-xl font-bold text-bosque mb-2">Checklist de inicio</h4>
-                <p>Todo lo que necesitas para tu primera noche bajo las estrellas.</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2">
-                <h4 class="text-xl font-bold text-bosque mb-2">Tips de Seguridad</h4>
-                <p>Cómo elegir el lugar ideal para instalar tu tienda de campaña.</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-transform hover:-translate-y-2">
-                <h4 class="text-xl font-bold text-bosque mb-2">Cocina al aire libre</h4>
-                <p>Recetas fáciles y nutritivas para tu fogata de campamento.</p>
+    <!-- ==================== SECCIÓN: EL RINCÓN DEL CAMPISTA ==================== -->
+    <section id="guias" class="py-20 px-10 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-5xl font-bold text-center mb-4 text-bosque font-serif">El Rincón del Campista</h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Consejos esenciales y guías prácticas para que tu experiencia de camping sea inolvidable.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group bg-gradient-to-br from-crema to-white p-8 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-200">
+                    <div class="text-5xl mb-4">✓</div>
+                    <h4 class="text-2xl font-bold text-bosque mb-3 font-serif group-hover:text-naranja transition">Checklist: Tu Primera Noche</h4>
+                    <p class="text-gray-700">Todo lo que necesitas para tu primera noche bajo las estrellas. Desde la tienda hasta los sacos de dormir, no te pierdas nada.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group bg-gradient-to-br from-crema to-white p-8 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-200">
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h4 class="text-2xl font-bold text-bosque mb-3 font-serif group-hover:text-naranja transition">Tips de Seguridad</h4>
+                    <p class="text-gray-700">Cómo elegir el lugar ideal para instalar tu tienda de campaña. Consejos sobre seguridad y precauciones esenciales.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group bg-gradient-to-br from-crema to-white p-8 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-200">
+                    <div class="text-5xl mb-4">🔥</div>
+                    <h4 class="text-2xl font-bold text-bosque mb-3 font-serif group-hover:text-naranja transition">Cocina al Aire Libre</h4>
+                    <p class="text-gray-700">Recetas fáciles y nutritivas para tu fogata de campamento. Deliciosas comidas con ingredientes simples.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 px-10 bg-white">
-        <h3 class="text-3xl font-bold text-center mb-12">Equipo Destacado</h3>
-        <div class="grid md:grid-cols-4 gap-6">
-            <div class="border p-4 rounded-lg">
-                <div class="bg-gray-200 h-40 mb-4 rounded"></div>
-                <h5 class="font-bold">Tienda Pro-Series</h5>
-                <p class="text-bosque font-bold">$120.00</p>
-                <span class="text-xs bg-orange-100 text-naranja p-1 rounded">Recomendado por expertos</span>
+    <!-- ==================== SECCIÓN: EQUIPO DESTACADO ==================== -->
+    <section id="equipo" class="py-20 px-10 bg-crema">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-5xl font-bold text-center mb-4 text-bosque font-serif">Equipo Destacado</h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Selecciona los mejores productos recomendados por expertos en camping.</p>
+            
+            <!-- Contenedor dinámico para productos -->
+            <div id="contenedor-productos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Las tarjetas se inyectarán dinámicamente aquí -->
             </div>
-            <div class="border p-4 rounded-lg"><div class="bg-gray-200 h-40 mb-4 rounded"></div><h5 class="font-bold">Saco Térmico</h5><p class="text-bosque font-bold">$85.00</p></div>
-            <div class="border p-4 rounded-lg"><div class="bg-gray-200 h-40 mb-4 rounded"></div><h5 class="font-bold">Linterna Solar</h5><p class="text-bosque font-bold">$30.00</p></div>
-            <div class="border p-4 rounded-lg"><div class="bg-gray-200 h-40 mb-4 rounded"></div><h5 class="font-bold">Mochila 50L</h5><p class="text-bosque font-bold">$95.00</p></div>
         </div>
     </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-bosque text-white py-16 px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Recibe Guías Mensuales</h4>
+                    <p class="text-sm text-gray-200 mb-6">Suscríbete para recibir rutas exclusivas y tips de camping directamente en tu correo.</p>
+                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirse!');">
+                        <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-4 py-3 rounded-lg text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-naranja" required>
+                        <button type="submit" class="bg-naranja hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition shadow-lg">Suscribirse</button>
+                    </form>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Enlaces Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-naranja transition">Inicio</a></li>
+                        <li><a href="index.html#guias" class="hover:text-naranja transition">Guías de Aventura</a></li>
+                        <li><a href="index.html#equipo" class="hover:text-naranja transition">Nuestra Tienda</a></li>
+                        <li><a href="nosotros.html" class="hover:text-naranja transition">Nosotros</a></li>
+                        <li><a href="contacto.html" class="hover:text-naranja transition">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Síguenos en Redes</h4>
+                    <div class="flex gap-4">
+                        <a href="#" title="Facebook" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-xl">f</a>
+                        <a href="#" title="Twitter" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-xl">𝕏</a>
+                        <a href="#" title="Instagram" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-lg">📷</a>
+                        <a href="#" title="YouTube" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-lg">▶</a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-600 mb-8">
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-300">
+                <p>&copy; 2026 Ruta Salvaje. Todos los derechos reservados. | <a href="#" class="hover:text-naranja">Política de Privacidad</a> | <a href="#" class="hover:text-naranja">Términos de Servicio</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT: RENDERIZADO DINÁMICO ==================== -->
+    <script>
+        // 1. SEPARACIÓN DE DATOS: Array de productos
+        const productos = [
+            {
+                nombre: 'Tienda Pro-Series',
+                precio: '$120.00',
+                descripcion: 'Resistente al agua y viento, para 2 personas.',
+                esRecomendado: true,
+            },
+            {
+                nombre: 'Saco Térmico -5°C',
+                precio: '$85.00',
+                descripcion: 'Máximo confort en noches frías de montaña.',
+                esRecomendado: false,
+            },
+            {
+                nombre: 'Linterna Solar LED',
+                precio: '$30.00',
+                descripcion: 'Recargable y duradera. Nunca te quedes a oscuras.',
+                esRecomendado: true,
+            },
+            {
+                nombre: 'Mochila Ergonómica 50L',
+                precio: '$95.00',
+                descripcion: 'Espacio y comodidad para travesías largas.',
+                esRecomendado: false,
+            }
+        ];
+
+        // 2. RENDERIZADO DINÁMICO: Función para generar tarjetas
+        const contenedor = document.getElementById('contenedor-productos');
+
+        productos.forEach(producto => {
+            // Etiqueta condicional de "Recomendado"
+            const etiquetaRecomendado = producto.esRecomendado 
+                ? `<span class="absolute top-3 right-3 bg-naranja text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">⭐ Recomendado</span>` 
+                : '';
+
+            // Template HTML de la tarjeta
+            const tarjetaHTML = `
+                <div class="relative group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1">
+                    <!-- Imagen Placeholder -->
+                    <div class="bg-gradient-to-br from-gray-300 to-gray-400 h-48 w-full flex items-center justify-center text-gray-600 font-serif text-3xl group-hover:from-gray-400 group-hover:to-gray-500 transition">
+                        🏕️
+                    </div>
+                    
+                    <!-- Contenido -->
+                    <div class="p-6">
+                        <h5 class="text-lg font-bold text-bosque font-serif mb-2 group-hover:text-naranja transition">${producto.nombre}</h5>
+                        <p class="text-sm text-gray-600 mb-4">${producto.descripcion}</p>
+                        <p class="text-2xl font-extrabold text-naranja mb-4">${producto.precio}</p>
+                        <button class="w-full bg-bosque hover:bg-green-900 text-white font-bold py-2 rounded-lg transition shadow-md">Agregar al carrito</button>
+                    </div>
+                    
+                    <!-- Etiqueta -->
+                    ${etiquetaRecomendado}
+                </div>
+            `;
+
+            // Inyectar tarjeta en el DOM
+            contenedor.innerHTML += tarjetaHTML;
+        });
+    </script>
 
 </body>
 </html>

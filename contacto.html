@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Ruta Salvaje</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/contacto.css">
+    <script src="styles/tailwind-config.js"></script>
+</head>
+<body class="bg-crema text-gray-800">
+
+    <!-- ==================== HEADER / NAVEGACIÓN ==================== -->
+    <nav class="sticky top-0 z-50 flex justify-between items-center py-6 px-10 bg-white shadow-md">
+        <a href="index.html" class="text-3xl font-bold text-bosque font-serif hover:text-naranja transition">Ruta Salvaje</a>
+        <div class="hidden md:flex space-x-8 font-semibold">
+            <a href="index.html" class="text-bosque hover:text-naranja transition">Inicio</a>
+            <a href="index.html#guias" class="text-bosque hover:text-naranja transition">Guías de Aventura</a>
+            <a href="index.html#equipo" class="text-bosque hover:text-naranja transition">Equipo</a>
+            <a href="nosotros.html" class="text-bosque hover:text-naranja transition">Nosotros</a>
+            <a href="contacto.html" class="text-bosque hover:text-naranja transition font-bold text-naranja">Contacto</a>
+        </div>
+        <a href="index.html" class="bg-naranja hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold transition shadow-lg">Planifica tu viaje</a>
+    </nav>
+
+    <!-- ==================== HERO SECTION (Mini) ==================== -->
+    <header class="relative h-64 flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
+        <!-- Fondo con overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-bosque/90 to-green-900/90 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1200&h=400&fit=crop'); z-index: 5;"></div>
+        
+        <!-- Contenido del Hero -->
+        <div class="relative z-20">
+            <h1 class="text-5xl font-bold font-serif drop-shadow-lg">Contáctanos</h1>
+            <p class="text-xl mt-2 drop-shadow-md">¿Preguntas o sugerencias? Nos encantaría escucharte</p>
+        </div>
+    </header>
+
+    <!-- ==================== SECCIÓN: CONTACTO ==================== -->
+    <section class="py-20 px-10 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="contact-container">
+                <!-- Formulario -->
+                <div class="contact-form">
+                    <h3 class="text-2xl font-bold text-bosque font-serif mb-6">Envíanos tu Mensaje</h3>
+                    <form id="contactForm">
+                        <div id="formMessage"></div>
+
+                        <div class="form-group">
+                            <label for="nombre" class="form-label">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correo" class="form-label">Correo Electrónico</label>
+                            <input type="email" id="correo" name="correo" class="form-input" placeholder="tu@correo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" class="form-textarea" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-full font-bold py-3">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contact-info">
+                    <!-- Información -->
+                    <div class="contact-info-item">
+                        <h4>📧 Email</h4>
+                        <p><a href="mailto:info@rutasalvaje.com" class="text-naranja hover:underline">info@rutasalvaje.com</a></p>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <h4>📍 Ubicación</h4>
+                        <p>Calle Principal 123<br>Ciudad Aventura, PA 12345<br>Latinoamérica</p>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <h4>☎️ Teléfono</h4>
+                        <p><a href="tel:+1234567890" class="text-naranja hover:underline">+1 (234) 567-890</a></p>
+                    </div>
+
+                    <!-- Redes Sociales -->
+                    <div class="contact-info-item">
+                        <h4>🌐 Síguenos en Redes</h4>
+                        <div class="social-links">
+                            <a href="#" title="Facebook" class="social-link">f</a>
+                            <a href="#" title="Twitter" class="social-link">𝕏</a>
+                            <a href="#" title="Instagram" class="social-link">📷</a>
+                            <a href="#" title="YouTube" class="social-link">▶</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-bosque text-white py-16 px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Recibe Guías Mensuales</h4>
+                    <p class="text-sm text-gray-200 mb-6">Suscríbete para recibir rutas exclusivas y tips de camping directamente en tu correo.</p>
+                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirse!');">
+                        <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-4 py-3 rounded-lg text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-naranja" required>
+                        <button type="submit" class="bg-naranja hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition shadow-lg">Suscribirse</button>
+                    </form>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Enlaces Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-naranja transition">Inicio</a></li>
+                        <li><a href="index.html#guias" class="hover:text-naranja transition">Guías de Aventura</a></li>
+                        <li><a href="index.html#equipo" class="hover:text-naranja transition">Nuestra Tienda</a></li>
+                        <li><a href="nosotros.html" class="hover:text-naranja transition">Nosotros</a></li>
+                        <li><a href="contacto.html" class="hover:text-naranja transition">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Síguenos en Redes</h4>
+                    <div class="flex gap-4">
+                        <a href="#" title="Facebook" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-xl">f</a>
+                        <a href="#" title="Twitter" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-xl">𝕏</a>
+                        <a href="#" title="Instagram" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-lg">📷</a>
+                        <a href="#" title="YouTube" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-lg">▶</a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-600 mb-8">
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-300">
+                <p>&copy; 2026 Ruta Salvaje. Todos los derechos reservados. | <a href="#" class="hover:text-naranja">Política de Privacidad</a> | <a href="#" class="hover:text-naranja">Términos de Servicio</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT: MANEJADOR DEL FORMULARIO ==================== -->
+    <script>
+        // FORMULARIO DE CONTACTO: Manejador del envío
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Obtener valores del formulario
+                const nombre = document.getElementById('nombre').value;
+                const correo = document.getElementById('correo').value;
+                const mensaje = document.getElementById('mensaje').value;
+
+                // Simulación: Mostrar mensaje de éxito
+                formMessage.innerHTML = `
+                    <div class="message-success">
+                        ✅ <strong>¡Mensaje enviado exitosamente!</strong><br>
+                        Gracias ${nombre}, pronto nos pondremos en contacto a través de ${correo}.
+                    </div>
+                `;
+
+                // Limpiar formulario
+                contactForm.reset();
+
+                // Ocultar el mensaje después de 5 segundos
+                setTimeout(() => {
+                    formMessage.innerHTML = '';
+                }, 5000);
+
+                // Log para demostración
+                console.log('Mensaje simulado:', { nombre, correo, mensaje });
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Ruta Salvaje</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/nosotros.css">
+    <script src="styles/tailwind-config.js"></script>
+</head>
+<body class="bg-crema text-gray-800">
+
+    <!-- ==================== HEADER / NAVEGACIÓN ==================== -->
+    <nav class="sticky top-0 z-50 flex justify-between items-center py-6 px-10 bg-white shadow-md">
+        <a href="index.html" class="text-3xl font-bold text-bosque font-serif hover:text-naranja transition">Ruta Salvaje</a>
+        <div class="hidden md:flex space-x-8 font-semibold">
+            <a href="index.html" class="text-bosque hover:text-naranja transition">Inicio</a>
+            <a href="index.html#guias" class="text-bosque hover:text-naranja transition">Guías de Aventura</a>
+            <a href="index.html#equipo" class="text-bosque hover:text-naranja transition">Equipo</a>
+            <a href="nosotros.html" class="text-bosque hover:text-naranja transition font-bold text-naranja">Nosotros</a>
+            <a href="contacto.html" class="text-bosque hover:text-naranja transition">Contacto</a>
+        </div>
+        <a href="index.html" class="bg-naranja hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold transition shadow-lg">Planifica tu viaje</a>
+    </nav>
+
+    <!-- ==================== HERO SECTION (Mini) ==================== -->
+    <header class="relative h-64 flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
+        <!-- Fondo con overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-bosque/90 to-green-900/90 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1200&h=400&fit=crop'); z-index: 5;"></div>
+        
+        <!-- Contenido del Hero -->
+        <div class="relative z-20">
+            <h1 class="text-5xl font-bold font-serif drop-shadow-lg">Sobre Nosotros</h1>
+            <p class="text-xl mt-2 drop-shadow-md">Conoce la historia detrás de Ruta Salvaje</p>
+        </div>
+    </header>
+
+    <!-- ==================== SECCIÓN: NOSOTROS ==================== -->
+    <section class="py-20 px-10 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="about-grid">
+                <!-- Historia -->
+                <div class="about-card">
+                    <h4>📖 Nuestra Historia</h4>
+                    <p>Fundada en 2020 por aventureros apasionados, Ruta Salvaje nació de la idea de democratizar el acceso al camping de calidad. Comenzamos desde nuestro garaje con apenas 5 productos, y hoy somos líderes en equipamiento para campistas en toda América Latina. Cada producto que vendemos ha sido probado en terreno por nuestro equipo de expertos.</p>
+                </div>
+
+                <!-- Misión -->
+                <div class="about-card">
+                    <h4>🎯 Nuestra Misión</h4>
+                    <p>Vendemos equipo camping premium, guides de aventura y experiencias que inspiran a las personas a reconectar con la naturaleza. Nuestro compromiso es ofrecer productos de la más alta calidad a precios justos, acompañados de consejos expertos que transforman a principiantes en aventureros confiados.</p>
+                </div>
+
+                <!-- Datos Básicos -->
+                <div class="about-card">
+                    <h4>📊 Datos Básicos</h4>
+                    <ul class="space-y-2">
+                        <li><strong>Fundación:</strong> 2020</li>
+                        <li><strong>Clientes Activos:</strong> +50,000</li>
+                        <li><strong>Productos:</strong> +200 referencias</li>
+                        <li><strong>Paises:</strong> 8 países en Latinoamérica</li>
+                        <li><strong>Equipo:</strong> 120+ profesionales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sección adicional: Valores -->
+            <div class="mt-16 bg-gradient-to-r from-bosque/10 to-naranja/10 p-12 rounded-xl border-l-4 border-naranja">
+                <h3 class="text-3xl font-bold text-bosque font-serif mb-8">Nuestros Valores</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold text-naranja mb-3">🌍 Sostenibilidad</h4>
+                        <p class="text-gray-700">Nos comprometemos con prácticas ecológicas y productos que respetan el medio ambiente.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-naranja mb-3">💪 Calidad</h4>
+                        <p class="text-gray-700">Cada producto es seleccionado y probado por expertos para garantizar durabilidad.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-naranja mb-3">🤝 Comunidad</h4>
+                        <p class="text-gray-700">Construimos una comunidad de aventureros que comparten experiencias y conocimiento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-bosque text-white py-16 px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Recibe Guías Mensuales</h4>
+                    <p class="text-sm text-gray-200 mb-6">Suscríbete para recibir rutas exclusivas y tips de camping directamente en tu correo.</p>
+                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirse!');">
+                        <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-4 py-3 rounded-lg text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-naranja" required>
+                        <button type="submit" class="bg-naranja hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition shadow-lg">Suscribirse</button>
+                    </form>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Enlaces Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-naranja transition">Inicio</a></li>
+                        <li><a href="index.html#guias" class="hover:text-naranja transition">Guías de Aventura</a></li>
+                        <li><a href="index.html#equipo" class="hover:text-naranja transition">Nuestra Tienda</a></li>
+                        <li><a href="nosotros.html" class="hover:text-naranja transition">Nosotros</a></li>
+                        <li><a href="contacto.html" class="hover:text-naranja transition">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Síguenos en Redes</h4>
+                    <div class="flex gap-4">
+                        <a href="#" title="Facebook" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-xl">f</a>
+                        <a href="#" title="Twitter" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-xl">𝕏</a>
+                        <a href="#" title="Instagram" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-lg">📷</a>
+                        <a href="#" title="YouTube" class="w-12 h-12 bg-white bg-opacity-20 hover:bg-naranja rounded-full flex items-center justify-center transition font-bold text-lg">▶</a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-600 mb-8">
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-300">
+                <p>&copy; 2026 Ruta Salvaje. Todos los derechos reservados. | <a href="#" class="hover:text-naranja">Política de Privacidad</a> | <a href="#" class="hover:text-naranja">Términos de Servicio</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
