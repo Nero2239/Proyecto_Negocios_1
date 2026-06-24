@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # Ruta Salvaje - Sitio Web de Camping
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 Proyecto/
@@ -12,7 +12,7 @@ Proyecto/
 └── README.md                    # Este archivo
 ```
 
-## 🎨 Características del Diseño
+## Características del Diseño
 
 ### Paleta de Colores
 - **Verde Bosque** (`#2d5016`): Títulos y textos principales
@@ -63,40 +63,33 @@ Proyecto/
 - Redes sociales
 - Copyright
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 ### JavaScript
-- ✅ Renderizado dinámico de productos
-- ✅ Manejador de formulario de contacto
-- ✅ Validación básica de formularios
-- ✅ Mensajes de éxito/error animados
+- Renderizado dinámico de productos
+- Manejador de formulario de contacto
+- Validación básica de formularios
+- Mensajes de éxito/error animados
 
 ### CSS
-- ✅ Variables CSS personalizadas
-- ✅ Efectos hover suave
-- ✅ Animaciones (slideIn, spin)
-- ✅ Responsividad completa
+- Variables CSS personalizadas
+- Efectos hover suave
+- Animaciones (slideIn, spin)
+- Responsividad completa
 
 ### Tailwind CSS
-- ✅ Utilidades personalizadas
-- ✅ Colores extendidos
-- ✅ Grid y flexbox responsivos
+- Utilidades personalizadas
+- Colores extendidos
+- Grid y flexbox responsivos
 
-## 📱 Responsividad
+## Responsividad
 
 La página está optimizada para:
-- 📱 Móvil (320px+)
-- 📱 Tablet (768px+)
-- 💻 Desktop (1024px+)
+- Móvil (320px+)
+- Tablet (768px+)
+- Desktop (1024px+)
 
-## 🎯 Instrucciones de Uso
-
-1. Abre `index.html` en tu navegador
-2. Navega por las secciones usando el menú sticky
-3. Prueba el formulario de contacto para ver la animación
-4. Los productos se cargan dinámicamente desde el array de JavaScript
-
-## 🔧 Personalización
+## Personalización
 
 ### Modificar Productos
 Edita el array `productos` en el script de `index.html`:
@@ -131,20 +124,20 @@ colors: {
 }
 ```
 
-## 📋 Checklist de Cumplimiento
+## Checklist de Cumplimiento
 
-- ✅ HTML limpio y semántico
-- ✅ Estilos en carpeta aparte (`styles/`)
-- ✅ JavaScript para renderizado dinámico
-- ✅ Tailwind CSS para utilidades
-- ✅ Formulario de contacto funcional (simulado)
-- ✅ Sección "Nosotros" con Historia/Misión/Datos
-- ✅ Sección "Contacto" con formulario y redes
-- ✅ Diseño responsivo
-- ✅ Micro-interacciones (hover effects)
-- ✅ Paleta de colores tema camping
+-  HTML limpio y semántico
+-  Estilos en carpeta aparte (`styles/`)
+-  JavaScript para renderizado dinámico
+-  Tailwind CSS para utilidades
+-  Formulario de contacto funcional (simulado)
+-  Sección "Nosotros" con Historia/Misión/Datos
+-  Sección "Contacto" con formulario y redes
+-  Diseño responsivo
+-  Micro-interacciones (hover effects)
+-  Paleta de colores tema camping
 
-## 🌐 Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 - HTML5
 - CSS3 (con variables personalizadas)
@@ -153,8 +146,8 @@ colors: {
 
 ---
 
-**Creado para:** Negocio de Camping - Verano 2026
-**Autor:** Frontend Developer
+**Materia:** Negocios Electronicos I
+**Autor:** RUiz Diaz Miguel Angel
 =======
 Requerimientos Funcionales
 

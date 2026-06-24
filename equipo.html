@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo - Ruta Salvaje</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles/equipo.css">
+    <script src="styles/tailwind-config.js"></script>
+</head>
+<body class="bg-crema text-gray-800">
+
+    <!-- ==================== HEADER / NAVEGACIÓN ==================== -->
+    <nav class="sticky top-0 z-50 flex justify-between items-center py-6 px-10 bg-white shadow-md">
+        <a href="index.html" class="text-3xl font-bold text-bosque font-serif hover:text-naranja transition">Ruta Salvaje</a>
+        <div class="hidden md:flex space-x-8 font-semibold">
+            <a href="index.html" class="text-bosque hover:text-naranja transition">Inicio</a>
+            <a href="index.html#guias" class="text-bosque hover:text-naranja transition">Guías de Aventura</a>
+            <a href="equipo.html" class="text-bosque hover:text-naranja transition font-bold text-naranja">Equipo</a>
+            <a href="nosotros.html" class="text-bosque hover:text-naranja transition">Nosotros</a>
+            <a href="contacto.html" class="text-bosque hover:text-naranja transition">Contacto</a>
+        </div>
+                <div class="flex items-center gap-3">
+            <a href="login.html"
+                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Iniciar sesión</span>
+            </a>
+
+            <button
+                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
+                Planifica tu viaje
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <header class="relative h-64 flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-bosque/90 to-green-900/80 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=600&fit=crop'); z-index: 5;"></div>
+        <div class="relative z-20">
+            <h1 class="text-5xl font-bold font-serif drop-shadow-lg">Equipo Destacado</h1>
+            <p class="text-xl mt-2 drop-shadow-md max-w-2xl mx-auto">Explora nuestra selección de productos recomendados para tu próxima aventura.</p>
+        </div>
+    </header>
+
+    <!-- ==================== LISTA DE PRODUCTOS ==================== -->
+    <section class="py-20 px-10 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div id="productGrid" class="equipo-grid"></div>
+            <div id="productDetail" class="product-detail hidden"></div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-bosque text-white py-16 px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Recibe Guías Mensuales</h4>
+                    <p class="text-sm text-gray-200 mb-6">Suscríbete para recibir rutas exclusivas y tips de camping directamente en tu correo.</p>
+                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+                        <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-4 py-3 rounded-lg text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-naranja" required>
+                        <button type="submit" class="bg-naranja hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition shadow-lg">Suscribirse</button>
+                    </form>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 font-serif">Enlaces Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-naranja transition">Inicio</a></li>
+                        <li><a href="index.html#guias" class="hover:text-naranja transition">Guías de Aventura</a></li>
+                        <li><a href="equipo.html" class="hover:text-naranja transition">Equipo</a></li>
+                        <li><a href="nosotros.html" class="hover:text-naranja transition">Nosotros</a></li>
+                        <li><a href="contacto.html" class="hover:text-naranja transition">Contacto</a></li>
+                    </ul>
+                </div>
+                <!-- Redes Sociales removed from footer (floating remains) -->
+            </div>
+            <hr class="border-gray-600 mb-8">
+            <div class="text-center text-sm text-gray-300">
+                <p>&copy; 2026 Ruta Salvaje. Todos los derechos reservados. | <a href="#" class="hover:text-naranja">Política de Privacidad</a> | <a href="#" class="hover:text-naranja">Términos de Servicio</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== REDES SOCIALES FLOTANTES ==================== -->
+    <div class="redes-flotantes">
+        <a href="https://facebook.com" target="_blank" title="Facebook">
+            <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">
+            <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" title="Twitter">
+            <i class="bi bi-twitter"></i>
+        </a>
+    </div>
+
+    <script>
+        const productos = [
+            {
+                id: 1,
+                nombre: 'Tienda Pro-Series',
+                precio: '$120.00',
+                descripcion: 'Resistente al agua y viento, para 2 personas.',
+                detalle: 'Ideal para acampadas rápidas y lluvia ligera. Material reforzado y costuras selladas.',
+                esRecomendado: true,
+            },
+            {
+                id: 2,
+                nombre: 'Saco Térmico -5°C',
+                precio: '$85.00',
+                descripcion: 'Máximo confort en noches frías de montaña.',
+                detalle: 'Aislamiento térmico premium para mantener el calor sin sacrificar peso.',
+                esRecomendado: false,
+            },
+            {
+                id: 3,
+                nombre: 'Linterna Solar LED',
+                precio: '$30.00',
+                descripcion: 'Recargable y duradera. Nunca te quedes a oscuras.',
+                detalle: 'Tres modos de iluminación, resistente al agua y carga solar integrada.',
+                esRecomendado: true,
+            },
+            {
+                id: 4,
+                nombre: 'Mochila Ergonómica 50L',
+                precio: '$95.00',
+                descripcion: 'Espacio y comodidad para travesías largas.',
+                detalle: 'Diseño ergonómico con soporte lumbar y múltiples compartimentos organizativos.',
+                esRecomendado: false,
+            }
+        ];
+
+        const productGrid = document.getElementById('productGrid');
+        const productDetail = document.getElementById('productDetail');
+
+        function renderProducts() {
+            productGrid.innerHTML = productos.map(producto => {
+                const recomendado = producto.esRecomendado ? '<span class="product-recommendation">Recomendado</span>' : '';
+                return `
+                    <article class="product-card">
+                        ${recomendado}
+                        <div class="product-image">📸</div>
+                        <div class="product-body">
+                            <h2 class="product-title">${producto.nombre}</h2>
+                            <p class="product-description">${producto.descripcion}</p>
+                            <p class="product-price">${producto.precio}</p>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary" onclick="showProductDetail(${producto.id})">Ver Detalle</button>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function showProductDetail(id) {
+            const producto = productos.find(item => item.id === id);
+            if (!producto) return;
+            productDetail.innerHTML = `
+                <div>
+                    <button class="btn btn-secondary mb-6" onclick="backToList()">← Regresar</button>
+                    <div class="detalle-imagen">📸</div>
+                    <h3>${producto.nombre}</h3>
+                    <p class="detalle-text">${producto.detalle}</p>
+                    <p class="product-price mb-6">${producto.precio}</p>
+                    <div class="detalle-actions">
+                        <button class="btn btn-secondary">Agregar al carrito - Próximamente</button>
+                        <button class="btn btn-primary" onclick="backToList()">Volver a productos</button>
+                    </div>
+                </div>
+            `;
+            productGrid.classList.add('hidden');
+            productDetail.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToList() {
+            productDetail.classList.add('hidden');
+            productGrid.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>

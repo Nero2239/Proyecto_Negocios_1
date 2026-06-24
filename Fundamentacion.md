@@ -14,9 +14,11 @@ El sistema cubrirá el diseño de una interfaz front-end profesional que permita
   >>Interactuar con elementos visuales de navegación intuitiva.
 
 4. Requerimientos
-Funcionales: (Ya los tienes definidos: Visualización de contenido, Catálogo de productos, Navegación, Acción de compra y Suscripción).
+Funcionales: 
+  >>Visualización de contenido, Catálogo de productos, Navegación, Acción de compra y Suscripción.
 
-No funcionales: * Usabilidad: La interfaz debe ser intuitiva y fácil de usar para cualquier tipo de usuario.
+No funcionales:
+  >>Usabilidad: La interfaz debe ser intuitiva y fácil de usar para cualquier tipo de usuario.
   >>Diseño Responsivo: La página debe adaptarse correctamente a pantallas de computadoras, tabletas y celulares.
   >>Rendimiento: El sitio debe cargar de manera rápida para retener la atención del usuario.
   >>Estética: Uso de una paleta de colores coherente con el nicho (verde bosque, naranja, crema) para transmitir la esencia de la aventura (los colores pueden cambiar a unos mas claros o con sombreado).

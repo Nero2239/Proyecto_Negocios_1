@@ -1,7 +1,7 @@
 /* ==================== VARIABLES Y ESTILOS GLOBALES ==================== */
 
 :root {
-    --color-bosque: #2d5016;
+    --color-bosque: #e0a122;
     --color-naranja: #e07856;
     --color-crema: #faf8f3;
     --color-gris-claro: #f3f4f6;
@@ -22,7 +22,8 @@ body {
     font-family: 'Segoe UI', Roboto, sans-serif;
     color: var(--color-gris-oscuro);
     background-color: var(--color-crema);
-    line-height: 1.6;
+    background-image: radial-gradient(circle at top left, rgba(224, 120, 86, 0.16), transparent 35%), radial-gradient(circle at bottom right, rgba(45, 80, 22, 0.16), transparent 25%);
+    line-height: 1.7;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -90,39 +91,46 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-2px);
 }
 
-.btn-rounded {
-    border-radius: 9999px;
-    padding: 0.75rem 1.5rem;
+html {
+    scroll-behavior: smooth;
 }
 
-/* ==================== TARJETAS ==================== */
-
-.card {
-    background: white;
-    border-radius: 0.75rem;
-    box-shadow: var(--shadow-soft);
-    transition: var(--transition-smooth);
-    border: 1px solid #e5e7eb;
+.redes-flotantes {
+    position: fixed;
+    /* Cambiamos para moverlo a la esquina inferior derecha */
+    bottom: 20px; 
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column; /* Cambia a 'row' si quieres que estén uno al lado del otro */
+    gap: 1rem;
+    padding: 0.5rem;
 }
 
-.card:hover {
-    box-shadow: var(--shadow-medium);
-    transform: translateY(-4px);
+.redes-flotantes a {
+    background-color: rgba(45, 80, 22, 0.95);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+    /* Centrado del icono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Tamaño del icono */
+    font-size: 1.5rem; 
+    
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.card-body {
-    padding: 1.5rem;
+.redes-flotantes a:hover {
+    transform: scale(1.1);
+    background-color: rgba(45, 80, 22, 1);
 }
-
-/* ==================== FORMULARIOS ==================== */
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 0.5rem;
     font-weight: 600;
     color: var(--color-bosque);
 }
@@ -256,6 +264,41 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
     scroll-behavior: smooth;
+}
+.redes-flotantes {
+    position: fixed;
+    /* Cambiamos para moverlo a la esquina inferior derecha */
+    bottom: 20px; 
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column; /* Cambia a 'row' si quieres que estén uno al lado del otro */
+    gap: 1rem;
+    padding: 0.5rem;
+}
+.redes-flotantes a {
+    background-color: rgba(45, 80, 22, 0.95);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+    /* Centrado del icono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Tamaño del icono */
+    font-size: 1.5rem; 
+    
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.redes-flotantes a:hover {
+    transform: scale(1.1);
+    background-color: rgba(45, 80, 22, 1);
 }
 
 /* ==================== ANIMACIONES PERSONALIZADAS ==================== */

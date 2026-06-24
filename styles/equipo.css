@@ -1,0 +1,148 @@
+/* ==================== ESTILOS ESPECÍFICOS PARA PÁGINA EQUIPO ==================== */
+
+.equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    position: relative;
+    background: linear-gradient(180deg, #ffffff, #f7f3ec);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(217, 217, 217, 0.7);
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
+}
+
+.product-image {
+    height: 240px;
+    width: 100%;
+    background: linear-gradient(135deg, #d1d5db, #9ca3af);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5563;
+    font-size: 3rem;
+}
+
+.product-body {
+    padding: 1.5rem;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--color-bosque);
+}
+
+.product-description {
+    color: #4b5563;
+    margin-bottom: 1rem;
+    min-height: 3rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-naranja);
+    margin-bottom: 1rem;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.product-actions button,
+.product-actions a {
+    flex: 1;
+    min-width: 150px;
+}
+
+.product-detail {
+    background: linear-gradient(180deg, #fffdf6, #f5f2e8);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-large);
+    padding: 2rem;
+    border: 1px solid rgba(217, 217, 217, 0.7);
+    animation: slideInDetail 0.5s ease;
+}
+
+.product-detail h3 {
+    margin-bottom: 1rem;
+    color: var(--color-bosque);
+}
+
+.product-detail .detalle-imagen {
+    height: 300px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #d1d5db, #9ca3af);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5563;
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-detail .detalle-text {
+    margin-bottom: 1.5rem;
+    color: #4b5563;
+}
+
+.product-detail .detalle-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.product-detail .detalle-actions button,
+.product-detail .detalle-actions a {
+    flex: 1;
+    min-width: 150px;
+}
+
+.product-recommendation {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(224, 120, 86, 0.95);
+    color: white;
+    padding: 0.5rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+@keyframes slideInDetail {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        border-radius: 1rem;
+    }
+
+    .product-detail {
+        padding: 1.5rem;
+    }
+}

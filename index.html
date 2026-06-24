@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruta Salvaje - Tu próxima aventura de camping comienza aquí</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <script src="styles/tailwind-config.js"></script>
 </head>
 <body class="bg-crema text-gray-800">
@@ -16,11 +17,22 @@
         <div class="hidden md:flex space-x-8 font-semibold">
             <a href="index.html" class="text-bosque hover:text-naranja transition">Inicio</a>
             <a href="#guias" class="text-bosque hover:text-naranja transition">Guías de Aventura</a>
-            <a href="#equipo" class="text-bosque hover:text-naranja transition">Equipo</a>
+            <a href="equipo.html" class="text-bosque hover:text-naranja transition">Equipo</a>
             <a href="nosotros.html" class="text-bosque hover:text-naranja transition">Nosotros</a>
             <a href="contacto.html" class="text-bosque hover:text-naranja transition">Contacto</a>
         </div>
-        <button class="bg-naranja hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold transition shadow-lg">Planifica tu viaje</button>
+        <div class="flex items-center gap-3">
+            <a href="login.html"
+                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Iniciar sesión</span>
+            </a>
+
+            <button
+                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
+                Planifica tu viaje
+            </button>
+        </div>
     </nav>
 
     <!-- ==================== HERO SECTION ==================== -->
@@ -33,7 +45,7 @@
         <div class="relative z-20 max-w-3xl">
             <h2 class="text-6xl font-bold mb-6 font-serif drop-shadow-lg">Tu próxima aventura comienza aquí</h2>
             <p class="text-2xl mb-8 drop-shadow-md max-w-2xl mx-auto">Encuentra la guía experta y el equipo esencial para explorar el mundo bajo las estrellas.</p>
-            <button class="bg-naranja hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-bold text-lg transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">Ver colecciones para principiantes</button>
+            <a href="equipo.html" class="bg-naranja hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-bold text-lg transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">Ver colecciones para principiantes</a>
         </div>
     </header>
 
@@ -69,14 +81,14 @@
     </section>
 
     <!-- ==================== SECCIÓN: EQUIPO DESTACADO ==================== -->
-    <section id="equipo" class="py-20 px-10 bg-crema">
+    <section class="py-20 px-10 bg-[#f7f1e4]">
         <div class="max-w-7xl mx-auto">
-            <h3 class="text-5xl font-bold text-center mb-4 text-bosque font-serif">Equipo Destacado</h3>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Selecciona los mejores productos recomendados por expertos en camping.</p>
-            
-            <!-- Contenedor dinámico para productos -->
-            <div id="contenedor-productos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Las tarjetas se inyectarán dinámicamente aquí -->
+            <div class="bg-gradient-to-r from-bosque/10 via-white/70 to-naranja/10 p-12 rounded-[2rem] shadow-xl border border-white border-opacity-60">
+                <h3 class="text-5xl font-bold text-center mb-4 text-bosque font-serif">Explora nuestro equipo destacado</h3>
+                <p class="text-center text-gray-700 mb-8 max-w-2xl mx-auto">Descubre productos seleccionados para tu aventura, probados por expertos y listos para tu próxima salida al campamento.</p>
+                <div class="text-center">
+                    <a href="equipo.html" class="btn btn-primary btn-rounded text-lg">Ver equipo destacado</a>
+                </div>
             </div>
         </div>
     </section>
@@ -101,7 +113,7 @@
                     <ul class="space-y-3 text-sm">
                         <li><a href="index.html" class="hover:text-naranja transition">Inicio</a></li>
                         <li><a href="index.html#guias" class="hover:text-naranja transition">Guías de Aventura</a></li>
-                        <li><a href="index.html#equipo" class="hover:text-naranja transition">Nuestra Tienda</a></li>
+                        <li><a href="equipo.html" class="hover:text-naranja transition">Nuestra Tienda</a></li>
                         <li><a href="nosotros.html" class="hover:text-naranja transition">Nosotros</a></li>
                         <li><a href="contacto.html" class="hover:text-naranja transition">Contacto</a></li>
                     </ul>
@@ -128,70 +140,18 @@
         </div>
     </footer>
 
-    <!-- ==================== JAVASCRIPT: RENDERIZADO DINÁMICO ==================== -->
-    <script>
-        // 1. SEPARACIÓN DE DATOS: Array de productos
-        const productos = [
-            {
-                nombre: 'Tienda Pro-Series',
-                precio: '$120.00',
-                descripcion: 'Resistente al agua y viento, para 2 personas.',
-                esRecomendado: true,
-            },
-            {
-                nombre: 'Saco Térmico -5°C',
-                precio: '$85.00',
-                descripcion: 'Máximo confort en noches frías de montaña.',
-                esRecomendado: false,
-            },
-            {
-                nombre: 'Linterna Solar LED',
-                precio: '$30.00',
-                descripcion: 'Recargable y duradera. Nunca te quedes a oscuras.',
-                esRecomendado: true,
-            },
-            {
-                nombre: 'Mochila Ergonómica 50L',
-                precio: '$95.00',
-                descripcion: 'Espacio y comodidad para travesías largas.',
-                esRecomendado: false,
-            }
-        ];
-
-        // 2. RENDERIZADO DINÁMICO: Función para generar tarjetas
-        const contenedor = document.getElementById('contenedor-productos');
-
-        productos.forEach(producto => {
-            // Etiqueta condicional de "Recomendado"
-            const etiquetaRecomendado = producto.esRecomendado 
-                ? `<span class="absolute top-3 right-3 bg-naranja text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">⭐ Recomendado</span>` 
-                : '';
-
-            // Template HTML de la tarjeta
-            const tarjetaHTML = `
-                <div class="relative group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1">
-                    <!-- Imagen Placeholder -->
-                    <div class="bg-gradient-to-br from-gray-300 to-gray-400 h-48 w-full flex items-center justify-center text-gray-600 font-serif text-3xl group-hover:from-gray-400 group-hover:to-gray-500 transition">
-                        🏕️
-                    </div>
-                    
-                    <!-- Contenido -->
-                    <div class="p-6">
-                        <h5 class="text-lg font-bold text-bosque font-serif mb-2 group-hover:text-naranja transition">${producto.nombre}</h5>
-                        <p class="text-sm text-gray-600 mb-4">${producto.descripcion}</p>
-                        <p class="text-2xl font-extrabold text-naranja mb-4">${producto.precio}</p>
-                        <button class="w-full bg-bosque hover:bg-green-900 text-white font-bold py-2 rounded-lg transition shadow-md">Agregar al carrito</button>
-                    </div>
-                    
-                    <!-- Etiqueta -->
-                    ${etiquetaRecomendado}
-                </div>
-            `;
-
-            // Inyectar tarjeta en el DOM
-            contenedor.innerHTML += tarjetaHTML;
-        });
-    </script>
+    <!-- ==================== REDES SOCIALES FLOTANTES ==================== -->
+<div class="redes-flotantes">
+    <a href="https://facebook.com" target="_blank" title="Facebook">
+        <i class="bi bi-facebook"></i>
+    </a>
+    <a href="https://instagram.com" target="_blank" title="Instagram">
+        <i class="bi bi-instagram"></i>
+    </a>
+    <a href="https://twitter.com" target="_blank" title="Twitter">
+        <i class="bi bi-twitter-x"></i>
+    </a>
+</div>
 
 </body>
 </html>
