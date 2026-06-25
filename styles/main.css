@@ -91,6 +91,34 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-2px);
 }
 
+.auth-panel {
+    max-width: 42rem;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-large);
+}
+
+.auth-header {
+    margin-bottom: 1.5rem;
+}
+
+.auth-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.auth-switch {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.auth-message {
+    margin-bottom: 1.5rem;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -131,9 +159,6 @@ html {
     transform: scale(1.1);
     background-color: rgba(45, 80, 22, 1);
 }
-    font-weight: 600;
-    color: var(--color-bosque);
-}
 
 .form-input,
 .form-textarea {
@@ -161,6 +186,10 @@ html {
 /* ==================== MENSAJES ==================== */
 
 .message-success {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     background-color: #d1fae5;
     color: #065f46;
     padding: 1rem;
@@ -171,6 +200,10 @@ html {
 }
 
 .message-error {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     background-color: #fee2e2;
     color: #991b1b;
     padding: 1rem;
@@ -264,41 +297,6 @@ html {
 
 html {
     scroll-behavior: smooth;
-}
-.redes-flotantes {
-    position: fixed;
-    /* Cambiamos para moverlo a la esquina inferior derecha */
-    bottom: 20px; 
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column; /* Cambia a 'row' si quieres que estén uno al lado del otro */
-    gap: 1rem;
-    padding: 0.5rem;
-}
-.redes-flotantes a {
-    background-color: rgba(45, 80, 22, 0.95);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    
-    /* Centrado del icono */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Tamaño del icono */
-    font-size: 1.5rem; 
-    
-    text-decoration: none;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.redes-flotantes a:hover {
-    transform: scale(1.1);
-    background-color: rgba(45, 80, 22, 1);
 }
 
 /* ==================== ANIMACIONES PERSONALIZADAS ==================== */
