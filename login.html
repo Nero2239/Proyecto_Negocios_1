@@ -24,7 +24,11 @@
                 <i class="bi bi-box-arrow-in-right"></i>
                 Iniciar sesión
             </a>
-            <a href="index.html" class="bg-naranja hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold transition shadow-lg">Planifica tu viaje</a>
+            <button
+                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
+                Planifica tu viaje  <i class="bi bi-calendar-event-fill"></i>
+            </button>
+
         </div>
     </nav>
 
@@ -47,6 +51,10 @@
                     <div>
                         <label for="loginPassword" class="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
                         <input id="loginPassword" type="password" class="form-input" placeholder="********" required>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="rememberCheck" type="checkbox" class="h-4 w-4" />
+                        <label for="rememberCheck" class="text-sm text-gray-700">Recuérdame</label>
                     </div>
                     <button type="submit" class="btn btn-primary w-full">Entrar</button>
                 </form>
@@ -168,11 +176,20 @@
         }
 
         if (loginForm) {
-            loginForm.addEventListener('submit', function (event) {
+                loginForm.addEventListener('submit', function (event) {
                 event.preventDefault();
                 const email = document.getElementById('loginEmail').value.trim();
 
-                localStorage.setItem('userEmail', email);
+                const remember = document.getElementById('rememberCheck').checked;
+                // always set last used email in session, and optionally persist
+                sessionStorage.setItem('lastEmail', email);
+                if(remember){
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('rememberUser','1');
+                } else {
+                    localStorage.removeItem('userEmail');
+                    localStorage.removeItem('rememberUser');
+                }
 
                 showMessage('Redirigiendo a tu perfil...');
                 setTimeout(() => {
@@ -204,6 +221,19 @@
         backToLoginBtn.addEventListener('click', showLoginForm);
         backToLoginFromRecoveryBtn.addEventListener('click', showLoginForm);
         forgotPasswordBtn.addEventListener('click', showRecoverPasswordForm);
+
+        // Prefill remembered email if present
+        (function(){
+            const remembered = localStorage.getItem('rememberUser');
+            const saved = localStorage.getItem('userEmail') || sessionStorage.getItem('lastEmail');
+            if(saved){
+                const input = document.getElementById('loginEmail');
+                if(input) input.value = saved;
+            }
+            if(remembered){
+                const chk = document.getElementById('rememberCheck'); if(chk) chk.checked = true;
+            }
+        })();
     </script>
 </body>
 </html>

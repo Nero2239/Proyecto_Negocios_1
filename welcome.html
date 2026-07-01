@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenid@ · Ruta Salvaje</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/welcome.css">
+</head>
+<body>
+
+    <div class="scenery">
+        <div class="stars"></div>
+        <div class="moon"></div>
+
+        <div class="overlay-text">Ruta Salvaje</div>
+
+            <div class="mountain left"></div>
+            <div class="mountain"></div>
+            <div class="mountain right"></div>
+        </div>
+
+        <div class="tree tree1"></div>
+        <div class="tree tree2"></div>
+        <div class="tree tree3"></div>
+        <div class="tree tree4"></div>
+
+        <div class="camp-zone">
+            <div class="tent"></div>
+
+            <div class="campfire">
+                <div class="fire"></div>
+                <div class="logs"></div>
+                <div class="sparks"></div>
+                <div class="sparks spark2"></div>
+                <div class="sparks spark3"></div>
+            </div>
+        </div>
+
+        <div class="ground"></div>
+
+        <div class="welcome-card" role="dialog" aria-label="Bienvenida Ruta Salvaje">
+            <h1>Tu próxima aventura comienza aquí <i class="bi bi-fire" style="color:#FCE8D6;margin-left:.45rem"></i></h1>
+            <p>Encuentra guías, equipo y todo lo necesario para acampar bajo las estrellas.</p>
+            <div class="welcome-sub">
+                <span class="text-sm">Explora</span>
+                <i class="bi bi-compass" style="opacity:0.9"></i>
+                <span class="text-sm">Compra</span>
+                <i class="bi bi-handbag-fill" style="opacity:0.9"></i>
+            </div>
+            <div style="margin-top:1.25rem">
+                <button id="enterBtn" class="btn-primary">Entrar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('enterBtn').addEventListener('click', function(){
+            const card = document.querySelector('.welcome-card');
+            card.classList.add('exiting');
+            setTimeout(()=>{
+                if (window.opener && !window.opener.closed) {
+                    try { window.opener.focus(); } catch(e) {}
+                    window.close();
+                    return;
+                }
+                window.location.href = 'index.html';
+            }, 420);
+        });
+    </script>
+</body>
+</html>

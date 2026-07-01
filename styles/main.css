@@ -1,15 +1,23 @@
 /* ==================== VARIABLES Y ESTILOS GLOBALES ==================== */
 
 :root {
-    --color-bosque: #e0a122;
-    --color-naranja: #e07856;
-    --color-crema: #faf8f3;
-    --color-gris-claro: #f3f4f6;
-    --color-gris-oscuro: #374151;
+    /* Chill palette */
+    --chill-dark: #0B132B;
+    --chill-mid: #1C2541;
+    --chill-soft: #3A506B;
+    --accent-warm: #E07A5F;
+    --accent-warm-2: #F4A261;
+    --muted-light: #E6EEF3;
+
+    --color-bosque: var(--accent-warm);
+    --color-naranja: var(--accent-warm-2);
+    --color-crema: #081321;
+    --color-gris-claro: #243447;
+    --color-gris-oscuro: #cbd5e1;
     --transition-smooth: all 0.3s ease;
-    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.07);
-    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.12);
-    --shadow-large: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-soft: 0 6px 18px rgba(2,6,23,0.2);
+    --shadow-medium: 0 12px 30px rgba(2,6,23,0.25);
+    --shadow-large: 0 24px 60px rgba(2,6,23,0.35);
 }
 
 * {
@@ -20,9 +28,8 @@
 
 body {
     font-family: 'Segoe UI', Roboto, sans-serif;
-    color: var(--color-gris-oscuro);
-    background-color: var(--color-crema);
-    background-image: radial-gradient(circle at top left, rgba(224, 120, 86, 0.16), transparent 35%), radial-gradient(circle at bottom right, rgba(45, 80, 22, 0.16), transparent 25%);
+    color: var(--muted-light);
+    background: linear-gradient(180deg, var(--chill-dark) 0%, var(--chill-mid) 50%, var(--chill-soft) 100%);
     line-height: 1.7;
 }
 
@@ -136,22 +143,19 @@ html {
 }
 
 .redes-flotantes a {
-    background-color: rgba(45, 80, 22, 0.95);
-    color: white;
+    background-color: rgba(28,37,65,0.9); /* chill-mid tint */
+    color: var(--muted-light);
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    
-    /* Centrado del icono */
+
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Tamaño del icono */
-    font-size: 1.5rem; 
-    
+
+    font-size: 1.5rem;
     text-decoration: none;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 30px rgba(2,6,23,0.35);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
