@@ -6,13 +6,15 @@
     --chill-soft: #3A506B;
     --accent-warm: #E07A5F;
     --accent-warm-2: #F4A261;
+    --accent-soft: #F7E6D0;
     --muted-light: #E6EEF3;
+    --deep-forest: #1F4D2A;
 
-    --color-bosque: var(--accent-warm);
-    --color-naranja: var(--accent-warm-2);
-    --color-crema: #081321;
-    --color-gris-claro: #243447;
-    --color-gris-oscuro: #cbd5e1;
+    --color-bosque: #1C2541;
+    --color-naranja: #E07A5F;
+    --color-crema: #F7E6D0;
+    --color-gris-claro: #E6EEF3;
+    --color-gris-oscuro: #1C2541;
     --transition-smooth: all 0.3s ease;
     --shadow-soft: 0 6px 18px rgba(2,6,23,0.2);
     --shadow-medium: 0 12px 30px rgba(2,6,23,0.25);
@@ -86,13 +88,31 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-2px);
 }
 
+.btn-welcome {
+    background: linear-gradient(135deg, var(--accent-soft), #f8dfc2);
+    color: var(--color-bosque);
+    border: 1px solid rgba(28, 37, 65, 0.14);
+}
+
+.btn-welcome:hover {
+    background: linear-gradient(135deg, #f4d7b3, #f2c78d);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.btn-small {
+    padding: 0.55rem 1rem;
+    font-size: 0.9rem;
+    box-shadow: none;
+}
+
 .btn-secondary {
     background-color: var(--color-bosque);
     color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #1f3a0d;
+    background-color: #0f172a;
     box-shadow: var(--shadow-medium);
     transform: translateY(-2px);
 }
@@ -142,7 +162,7 @@ html {
 }
 
 .redes-flotantes a {
-    background-color: rgba(28,37,65,0.9); /* chill-mid tint */
+    background-color: rgba(28,37,65,0.92);
     color: var(--muted-light);
     width: 50px;
     height: 50px;
@@ -160,7 +180,7 @@ html {
 
 .redes-flotantes a:hover {
     transform: scale(1.1);
-    background-color: rgba(45, 80, 22, 1);
+    background-color: var(--color-naranja);
 }
 
 .form-input,

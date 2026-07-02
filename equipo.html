@@ -22,16 +22,20 @@
             <a href="nosotros.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-person-arms-up"></i> Nosotros</a>
             <a href="contacto.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-envelope-fill"></i> Contacto</a>
         </div>
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 flex-wrap">
             <a href="login.html"
-                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
+                class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
                 <i class="bi bi-box-arrow-in-right"></i>
                 <span>Iniciar sesión</span>
             </a>
 
             <button
-                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
+                class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
                 Planifica tu viaje  <i class="bi bi-calendar-event-fill"></i>
+            </button>
+            <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button">
+                <i class="bi bi-cart3"></i>
+                <span id="cartCount">0</span>
             </button>
         </div>
     </nav>
@@ -50,9 +54,9 @@
     <section class="py-20 px-10 bg-white">
         <div class="max-w-7xl mx-auto">
                 <div class="mb-8">
-                    <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center justify-between mb-4 gap-4 flex-wrap">
                         <h2 class="text-2xl font-bold">Lista productos / servicios</h2>
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3 flex-wrap">
                             <input id="searchInput" type="search" placeholder="Buscar equipo..." class="px-4 py-2 rounded-lg border focus:ring-2 focus:ring-naranja" />
                             <select id="categorySelect" class="px-3 py-2 rounded-lg border">
                                 <option value="all">Todas las categorías</option>
@@ -72,6 +76,30 @@
 
                 <div id="productGrid" class="equipo-grid"></div>
                 <div id="productDetail" class="product-detail hidden"></div>
+                <div id="cartPage" class="cart-page hidden">
+                    <button id="closeCartButton" class="cart-close-btn" type="button" aria-label="Cerrar carrito"><i class="bi bi-x-lg"></i></button>
+                    <div class="cart-shell">
+                        <div class="cart-left">
+                            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-naranja">Recomendados</p>
+                            <h3 class="text-2xl font-bold text-bosque mt-2">Completa tu kit de aventura</h3>
+                            <p class="text-gray-600 mt-2">Estas piezas suelen acompañar muy bien a los artículos que ya tienes en tu carrito.</p>
+                            <div id="recommendedProducts" class="recommended-grid"></div>
+                        </div>
+                        <div class="cart-right">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-2xl font-bold text-bosque">Tu carrito</h3>
+                                <span id="cartCountInline" class="rounded-full bg-bosque/10 px-3 py-1 text-sm font-semibold text-bosque">0 artículos</span>
+                            </div>
+                            <div id="cartEmpty" class="cart-empty">
+                                <i class="bi bi-bag-heart text-4xl mb-3 block text-naranja"></i>
+                                <p class="font-semibold">Tu carrito está vacío</p>
+                                <p class="text-sm mt-2">Agrega artículos para preparar tu próxima salida.</p>
+                            </div>
+                            <div id="cartBody" class="space-y-2"></div>
+                            <div id="cartSummary" class="cart-summary-box"></div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </section>
 
@@ -119,106 +147,7 @@
         </a>
     </div>
 
-    <script>
-        const productos = [
-            { id: 1, nombre: 'Tienda Pro-Series', precio: '$120.00', descripcion: 'Resistente al agua y viento, para 2 personas.', detalle: 'Material reforzado y costuras selladas.', esRecomendado: true, categoria: 'tiendas', descuento: 0 },
-            { id: 2, nombre: 'Saco Térmico -5°C', precio: '$85.00', descripcion: 'Máximo confort en noches frías de montaña.', detalle: 'Aislamiento térmico premium.', esRecomendado: false, categoria: 'sacos', descuento: 10 },
-            { id: 3, nombre: 'Linterna Solar LED', precio: '$30.00', descripcion: 'Recargable y duradera.', detalle: 'Tres modos de iluminación y carga solar integrada.', esRecomendado: true, categoria: 'iluminacion', descuento: 0 },
-            { id: 4, nombre: 'Mochila Ergonómica 50L', precio: '$95.00', descripcion: 'Espacio y comodidad para travesías largas.', detalle: 'Soporte lumbar y compartimentos.', esRecomendado: false, categoria: 'mochilas', descuento: 15 },
-            { id: 5, nombre: 'Tienda Compact 1P', precio: '$70.00', descripcion: 'Ligera y fácil de montar.', detalle: 'Perfecta para rutas rápidas.', esRecomendado: false, categoria: 'tiendas', descuento: 20 },
-            { id: 6, nombre: 'Saco UltraLight 0°C', precio: '$110.00', descripcion: 'Aislamiento alto con bajo peso.', detalle: 'Diseñado para alta montaña.', esRecomendado: true, categoria: 'sacos', descuento: 0 },
-            { id: 7, nombre: 'Luz Frontal PRO', precio: '$22.00', descripcion: 'Fuerte y cómoda.', detalle: 'Varios modos y larga duración.', esRecomendado: false, categoria: 'iluminacion', descuento: 25 },
-            { id: 8, nombre: 'Organizador de Mochila', precio: '$18.00', descripcion: 'Bolsillos y funda impermeable.', detalle: 'Mantén tus objetos ordenados.', esRecomendado: false, categoria: 'accesorios', descuento: 5 },
-        ];
-
-        const productGrid = document.getElementById('productGrid');
-        const productDetail = document.getElementById('productDetail');
-
-        function renderProducts(filter, query, category){
-            filter = filter || 'all';
-            query = (query||'').toLowerCase().trim();
-            category = category || 'all';
-            const list = productos.filter(p => {
-                if(filter === 'recommended' && !p.esRecomendado) return false;
-                if(category !== 'all' && p.categoria !== category) return false;
-                if(query && !(p.nombre.toLowerCase().includes(query) || p.descripcion.toLowerCase().includes(query))) return false;
-                return true;
-            });
-            // keep grid with consistent sizing by rendering placeholders if few
-            const html = list.map(producto => {
-                const recomendado = producto.esRecomendado ? '<span class="product-recommendation">Recomendado</span>' : '';
-                const descuentoBadge = producto.descuento ? `<span class="product-discount">-${producto.descuento}%</span>` : '';
-                return `
-                    <article class="product-card">
-                        ${recomendado}
-                        ${descuentoBadge}
-                        <div class="product-image">📸</div>
-                        <div class="product-body">
-                            <h2 class="product-title">${producto.nombre}</h2>
-                            <p class="product-description">${producto.descripcion}</p>
-                            <p class="product-price">${producto.precio}</p>
-                            <div class="product-actions">
-                                <button class="btn btn-secondary" onclick="showProductDetail(${producto.id})">Ver Detalle</button>
-                            </div>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-            // if less than 4 results, add invisible placeholders to keep layout
-            let placeholders = '';
-            if(list.length>0 && list.length<4){
-                for(let i=0;i<4-list.length;i++) placeholders += '<div class="product-card placeholder" aria-hidden="true"></div>';
-            }
-            productGrid.innerHTML = html + placeholders;
-        }
-
-                function showProductDetail(id) {
-            const producto = productos.find(item => item.id === id);
-            if (!producto) return;
-            productDetail.innerHTML = `
-                <div class="product-modal-backdrop" onclick="closeProductModal()">
-                  <div class="product-modal-card" onclick="event.stopPropagation();">
-                    <div class="left">
-                                            <div class="detalle-imagen">📸</div>
-                    </div>
-                    <div class="right">
-                      <h2 class="text-2xl font-bold text-bosque mb-2">${producto.nombre}</h2>
-                      <div class="flex items-center gap-4 mb-4"><div class="text-yellow-400">★★★★★</div><div class="text-sm text-gray-500">(24 reseñas)</div></div>
-                      <p class="text-gray-700 mb-4">${producto.detalle}</p>
-                      <p class="text-3xl font-extrabold text-naranja mb-4">${producto.precio}</p>
-                      <ul class="text-gray-700 list-none mb-6">
-                        <li>✓ Temperatura mínima: -5°C</li>
-                        <li>✓ Peso: 1.8 kg</li>
-                        <li>✓ Impermeable</li>
-                        <li>✓ Ideal para montaña</li>
-                      </ul>
-                      <div class="detalle-actions">
-                                                <button class="btn btn-secondary"><i class="bi bi-cart-fill"></i> Agregar</button>
-                        <button class="btn btn-primary" onclick="closeProductModal()">Volver</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            `;
-            productDetail.classList.remove('hidden');
-        }
-
-        function closeProductModal(){
-            productDetail.classList.add('hidden');
-            productDetail.innerHTML = '';
-        }
-
-        // Initialize UI: render all
-        renderProducts();
-
-        // Wire search and filters
-        document.getElementById('filterAll').addEventListener('click', function(){ renderProducts('all', document.getElementById('searchInput').value, document.getElementById('categorySelect').value); });
-        document.getElementById('filterRecommended').addEventListener('click', function(){ renderProducts('recommended', document.getElementById('searchInput').value, document.getElementById('categorySelect').value); });
-        document.getElementById('searchInput').addEventListener('input', function(){ renderProducts('all', this.value, document.getElementById('categorySelect').value); });
-        document.getElementById('categorySelect').addEventListener('change', function(){ renderProducts('all', document.getElementById('searchInput').value, this.value); });
-
-        document.getElementById('filterAll').addEventListener('click', function(){ renderProducts('all'); });
-        document.getElementById('filterRecommended').addEventListener('click', function(){ renderProducts('recommended'); });
-    </script>
+    <script src="js/shop.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

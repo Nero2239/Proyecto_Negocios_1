@@ -87,7 +87,7 @@
 
 .valor-item h4 {
     font-size: 1.1rem;
-    color: #E07A5F;
+    color: var(--color-naranja);
     margin-bottom: 0.75rem;
     font-family: 'Georgia', 'Garamond', serif;
     font-weight: bold;

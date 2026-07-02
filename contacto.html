@@ -24,14 +24,18 @@
         </div>
                 <div class="flex items-center gap-3">
             <a href="login.html"
-                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
+                class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
                 <i class="bi bi-box-arrow-in-right"></i>
                 <span>Iniciar sesión</span>
             </a>
 
             <button
-                class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
+                class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
                 Planifica tu viaje  <i class="bi bi-calendar-event-fill"></i>
+            </button>
+            <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button" onclick="window.location.href='equipo.html?openCart=1'">
+                <i class="bi bi-cart3"></i>
+                <span id="cartCount">0</span>
             </button>
         </div>
     </nav>

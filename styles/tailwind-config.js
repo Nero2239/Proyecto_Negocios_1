@@ -3,9 +3,9 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                bosque: '#2d5016',
-                naranja: '#e07856',
-                crema: '#faf8f3',
+                bosque: '#1C2541',
+                naranja: '#E07A5F',
+                crema: '#F7E6D0',
             },
             fontFamily: {
                 serif: ['Georgia', 'Garamond', 'serif'],
