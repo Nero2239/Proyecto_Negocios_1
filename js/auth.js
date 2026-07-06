@@ -11,15 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToLoginBtn = document.getElementById('backToLoginBtn');
     const backToLoginFromRecoveryBtn = document.getElementById('backToLoginFromRecoveryBtn');
 
-    if (!messageBox) {
-        return;
-    }
-
     function clearMessageBox() {
-        messageBox.innerHTML = '';
+        if (messageBox) {
+            messageBox.innerHTML = '';
+        }
     }
 
     function showMessage(text, type = 'success', showClose = false) {
+        if (!messageBox) return;
         const className = type === 'error' ? 'message-error' : 'message-success';
         const closeButton = showClose ? ` <button type="button" id="messageCloseBtn" class="rounded-full bg-white/10 px-3 py-1 text-sm text-white hover:bg-white/20">Cerrar</button>` : '';
         messageBox.innerHTML = `<div class="${className} flex items-center justify-between gap-4">${text}${closeButton}</div>`;
@@ -67,12 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const remember = document.getElementById('rememberCheck').checked;
 
             sessionStorage.setItem('lastEmail', email);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('isLoggedIn', '1');
             if (remember) {
-                localStorage.setItem('userEmail', email);
                 localStorage.setItem('rememberUser', '1');
             } else {
-                localStorage.removeItem('userEmail');
-                localStorage.removeItem('rememberUser');
+                localStorage.setItem('rememberUser', '0');
             }
 
             showMessage('Redirigiendo a tu perfil...');
@@ -85,6 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (registerForm) {
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
+            const email = document.getElementById('registerEmail').value.trim();
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('isLoggedIn', '1');
+            localStorage.setItem('rememberUser', '1');
             showLoginForm();
             showMessage('Registrado correctamente.', 'success', true);
             registerForm.reset();
@@ -119,39 +122,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })();
 
-    const userEmail = localStorage.getItem('userEmail');
-    const navAuthContainer = document.getElementById('nav-auth-buttons');
-    const profileEmail = document.getElementById('profileEmail');
+    function updateAuthUI() {
+        const navAuthContainer = document.getElementById('nav-auth-buttons');
+        const profileEmail = document.getElementById('profileEmail');
+        const userEmail = localStorage.getItem('userEmail') || '';
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === '1' || Boolean(userEmail);
 
-    if (navAuthContainer) {
-        if (userEmail) {
-            navAuthContainer.innerHTML = `
-                <div class="flex items-center gap-4">
-                    <a href="profile.html" class="font-semibold text-bosque hover:text-naranja transition hidden sm:block" title="${userEmail}">
-                        ${userEmail}
-                    </a>
-                    <button id="navLogoutBtn" title="Cerrar sesión" class="text-bosque hover:text-naranja transition text-xl">
-                        <i class="bi bi-box-arrow-right"></i>
-                    </button>
-                </div>
-                <button class="bg-naranja hover:bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">Planifica tu viaje</button>
-            `;
+        if (navAuthContainer) {
+            const loginLink = navAuthContainer.querySelector('a[href="login.html"]');
+            const existingLogoutButton = document.getElementById('navLogoutBtn');
 
-            document.getElementById('navLogoutBtn')?.addEventListener('click', function () {
-                localStorage.removeItem('userEmail');
-                window.location.href = 'index.html';
-            });
+            if (isLoggedIn && userEmail) {
+                if (loginLink) {
+                    loginLink.outerHTML = `
+                        <div class="flex items-center gap-3">
+                            <a href="profile.html" class="font-semibold text-bosque hover:text-naranja transition hidden sm:block" title="${userEmail}">
+                                ${userEmail}
+                            </a>
+                            <button id="navLogoutBtn" title="Cerrar sesión" class="text-bosque hover:text-naranja transition text-xl">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+
+                document.getElementById('navLogoutBtn')?.addEventListener('click', function () {
+                    localStorage.removeItem('userEmail');
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('rememberUser');
+                    updateAuthUI();
+                    window.location.href = 'index.html';
+                });
+            } else if (existingLogoutButton) {
+                existingLogoutButton.remove();
+                const profileLink = navAuthContainer.querySelector('a[href="profile.html"]');
+                profileLink?.remove();
+            }
+        }
+
+        if (profileEmail) {
+            profileEmail.textContent = isLoggedIn && userEmail ? userEmail : 'usuario@ruta.com';
         }
     }
 
-    if (profileEmail) {
-        profileEmail.textContent = userEmail || 'usuario@ruta.com';
-    }
+    updateAuthUI();
 
     const mainLogoutButton = document.querySelector('a[href="login.html"].btn-secondary');
     mainLogoutButton?.addEventListener('click', function (event) {
         event.preventDefault();
         localStorage.removeItem('userEmail');
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('rememberUser');
+        updateAuthUI();
         window.location.href = 'index.html';
     });
 });

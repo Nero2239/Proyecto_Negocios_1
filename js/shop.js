@@ -184,6 +184,7 @@ function renderCart() {
     const cartSummary = document.getElementById('cartSummary');
     const cartEmpty = document.getElementById('cartEmpty');
     const recommendedProducts = document.getElementById('recommendedProducts');
+    const checkoutButton = document.getElementById('checkoutButton');
 
     if (!cartBody || !cartSummary || !cartEmpty) return;
 
@@ -219,8 +220,14 @@ function renderCart() {
                 <span>Total</span>
                 <span>${formatPrice(subtotal)}</span>
             </div>
-            <button class="btn btn-primary w-full mt-4" type="button">Checkout</button>
+            <a href="checkout.html" class="btn btn-primary w-full mt-4 inline-flex justify-center" id="checkoutButton">Checkout</a>
         `;
+    }
+
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            closeCart();
+        });
     }
 
     if (recommendedProducts) {
@@ -258,19 +265,35 @@ function removeFromCart(productId) {
     renderProducts();
 }
 
-function showCartPanel() {
+function openCart() {
     const cartPage = document.getElementById('cartPage');
-    if (cartPage) {
-        cartPage.classList.remove('hidden');
-        document.body.classList.add('cart-open');
-    }
+    if (!cartPage) return;
+    cartPage.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    document.body.classList.add('cart-open');
+    renderCart();
+}
+
+function closeCart() {
+    const cartPage = document.getElementById('cartPage');
+    if (!cartPage) return;
+    cartPage.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+    document.body.classList.remove('cart-open');
+}
+
+function showCartPanel() {
+    openCart();
 }
 
 function toggleCartPanel() {
     const cartPage = document.getElementById('cartPage');
     if (!cartPage) return;
-    cartPage.classList.toggle('hidden');
-    document.body.classList.toggle('cart-open', !cartPage.classList.contains('hidden'));
+    if (cartPage.classList.contains('hidden')) {
+        openCart();
+    } else {
+        closeCart();
+    }
 }
 
 function initShop() {
@@ -320,11 +343,7 @@ function initShop() {
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
             closeProductModal();
-            const cartPage = document.getElementById('cartPage');
-            if (cartPage && !cartPage.classList.contains('hidden')) {
-                cartPage.classList.add('hidden');
-                document.body.classList.remove('cart-open');
-            }
+            closeCart();
         }
     });
 
