@@ -39,6 +39,11 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-bosque);
 }
 
+/* Para que los títulos en el footer sean visibles sobre el fondo oscuro */
+footer h4 {
+    color: white;
+}
+
 /* ==================== UTILIDADES ==================== */
 
 .container-max {
