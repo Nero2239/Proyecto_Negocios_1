@@ -53,7 +53,7 @@
                 <div class="mt-8 grid gap-4 md:grid-cols-2">
                     <div class="p-6 bg-white rounded-3xl shadow-sm">
                         <p class="text-sm text-gray-500">Rol</p>
-                        <p class="text-lg font-semibold mt-2">Campista explorador</p>
+                        <p id="profileRole" class="text-lg font-semibold mt-2">Campista explorador</p>
                     </div>
                     <div class="p-6 bg-white rounded-3xl shadow-sm">
                         <p class="text-sm text-gray-500">Último acceso</p>
@@ -69,8 +69,9 @@
                 </div>
             </div>
 
-            <div class="auth-actions mt-10 justify-center">
+            <div class="auth-actions mt-10 justify-center gap-3 flex-wrap">
                 <a href="login.html" class="btn btn-secondary">Cerrar sesión</a>
+                <a id="adminPanelLink" href="admin.html" class="btn btn-primary hidden">Ir al panel admin</a>
             </div>
         </div>
     </main>
@@ -82,6 +83,7 @@
     </div>
 
     <script src="js/auth.js"></script>
+    <script src="js/profile-admin.js"></script>
 <div id="cartPage" class="cart-page hidden">
     <button id="closeCartButton" class="cart-close-btn" type="button" aria-label="Cerrar carrito"><i class="bi bi-x-lg"></i></button>
     <div class="cart-shell">

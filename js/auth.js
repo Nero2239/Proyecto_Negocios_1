@@ -74,9 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('rememberUser', '0');
             }
 
-            showMessage('Redirigiendo a tu perfil...');
+            const isAdminAccount = email.toLowerCase().includes('admin');
+            showMessage(isAdminAccount ? 'Redirigiendo al panel de administrador...' : 'Redirigiendo a tu perfil...');
             setTimeout(() => {
-                window.location.href = 'profile.html';
+                window.location.href = isAdminAccount ? 'admin.html' : 'profile.html';
             }, 800);
         });
     }
