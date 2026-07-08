@@ -305,6 +305,55 @@ html {
     margin-right: auto;
 }
 
+.promo-card,
+.testimonial-card,
+.comment-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.75rem;
+    padding: 1.75rem;
+    box-shadow: 0 22px 50px rgba(15, 23, 42, 0.08);
+}
+
+.promo-card {
+    display: grid;
+    gap: 1rem;
+}
+
+.promo-badge {
+    width: fit-content;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: #fef3c7;
+    color: #b45309;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.popout-alert {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+}
+
+.featured-card {
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.testimonial-card {
+    min-height: 12rem;
+}
+
+.comment-card {
+    border-left: 4px solid #e07a5f;
+}
+
 /* ==================== RESPONSIVIDAD ==================== */
 
 @media (max-width: 768px) {

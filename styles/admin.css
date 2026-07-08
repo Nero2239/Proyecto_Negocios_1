@@ -409,7 +409,103 @@ th {
     display: grid;
     place-items: center;
     background: var(--admin-accent-soft);
+    color: var(--admin-accent);
     font-size: 1.2rem;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 50;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.modal-content {
+    position: relative;
+    z-index: 10;
+    width: min(34rem, calc(100% - 2rem));
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 30px 80px rgba(15,23,42,0.2);
+    overflow: hidden;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: transparent;
+    color: var(--admin-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: var(--admin-accent-soft);
+    color: var(--admin-accent);
+    margin-bottom: 1rem;
+    font-size: 1.9rem;
+}
+
+.modal-name {
+    margin: 0;
+    font-size: 1.65rem;
+    color: var(--admin-text);
+    font-weight: 700;
+}
+
+.modal-meta,
+.modal-description {
+    margin: 0.9rem 0 0;
+    color: var(--admin-muted);
+    line-height: 1.7;
+}
+
+.client-orders-card {
+    margin-top: 1rem;
+}
+
+.table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-wrap th,
+.table-wrap td {
+    padding: 0.75rem 0.65rem;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.table-wrap th {
+    color: var(--admin-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.table-wrap tbody tr:hover {
+    background: #faf7f2;
 }
 
 .badge {
@@ -502,6 +598,10 @@ th {
     gap: 0.8rem;
 }
 
+.clients-layout {
+    grid-template-columns: 0.9fr 1.1fr;
+}
+
 .client-card h4 {
     margin: 0 0 0.3rem;
 }
@@ -513,10 +613,25 @@ th {
     font-size: 0.92rem;
 }
 
-.promo-card {
+.promo-card,
+.promotion-card {
     background: linear-gradient(135deg, rgba(224,122,95,0.16), rgba(47,111,79,0.12));
     border-radius: 16px;
     padding: 1rem;
+}
+
+.promotions-list {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.promotion-card h4 {
+    margin: 0 0 0.35rem;
+}
+
+.promotion-card p {
+    margin: 0.2rem 0;
+    color: var(--admin-muted);
 }
 
 .sales-chart {

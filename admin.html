@@ -14,7 +14,7 @@
         <aside class="sidebar" id="adminSidebar">
             <div class="sidebar-brand">
                 <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Plegar menú">
-                    <i class="bi bi-list"></i>
+                    <i class="bi bi-shield-lock-fill"></i>
                 </button>
                 <div class="brand-copy">
                     <h1>Ruta Salvaje</h1>
@@ -41,7 +41,7 @@
             <header class="topbar">
                 <div class="topbar-left">
                     <button class="mobile-toggle" id="mobileSidebarToggle" type="button" aria-label="Abrir menú">
-                        <i class="bi bi-list"></i>
+                        <i class="bi bi-shield-lock-fill"></i>
                     </button>
                     <div>
                         <p class="eyebrow">Panel de administrador</p>
@@ -136,7 +136,9 @@
                             <option value="Tiendas">Tiendas</option>
                             <option value="Sacos">Sacos</option>
                             <option value="Iluminación">Iluminación</option>
-                            <option value="Cocina">Cocina</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Botas">Botas</option>
+                            <option value="Emergencias">Emergencias</option>
                         </select>
                     </div>
                     <div class="filter-group">
@@ -185,7 +187,14 @@
                             </div>
                             <div class="field-group">
                                 <label for="productCategory">Categoría</label>
-                                <input id="productCategory" name="category" type="text" required />
+                                <select id="productCategory" name="category" required>
+                                    <option value="Tiendas">Tiendas</option>
+                                    <option value="Sacos">Sacos</option>
+                                    <option value="Iluminación">Iluminación</option>
+                                    <option value="Ropa">Ropa</option>
+                                    <option value="Botas">Botas</option>
+                                    <option value="Emergencias">Emergencias</option>
+                                </select>
                             </div>
                             <div class="field-group">
                                 <label for="productPrice">Precio</label>
@@ -258,42 +267,118 @@
                 <section class="panel-grid">
                     <div class="panel-card">
                         <div class="panel-head">
-                            <h3>Promoción destacada</h3>
-                            <p>Válida del 7 al 14 de julio</p>
+                            <h3>Crear promoción</h3>
+                            <p>Aplica descuentos por producto o evento</p>
                         </div>
-                        <div class="promo-card">
-                            <h4>20% OFF en tiendas</h4>
-                            <p>Ideal para aventuras de fin de semana. Válido por compras mayores a $200.</p>
-                        </div>
+                        <form id="promotionForm" class="product-form">
+                            <div class="field-group">
+                                <label for="promotionName">Nombre de la promoción</label>
+                                <input id="promotionName" name="name" type="text" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="promotionType">Tipo</label>
+                                <select id="promotionType" name="type">
+                                    <option value="Producto">Por producto</option>
+                                    <option value="Evento">Por evento</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <label for="promotionTarget">Producto o evento</label>
+                                <input id="promotionTarget" name="target" type="text" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="promotionDiscount">Descuento (%)</label>
+                                <input id="promotionDiscount" name="discount" type="number" min="1" max="100" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="promotionStart">Fecha de inicio</label>
+                                <input id="promotionStart" name="start" type="date" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="promotionEnd">Fecha de fin</label>
+                                <input id="promotionEnd" name="end" type="date" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="promotionNotes">Observaciones</label>
+                                <textarea id="promotionNotes" name="notes" rows="3"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" type="submit">Guardar promoción</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="panel-card">
                         <div class="panel-head">
-                            <h3>Campañas activas</h3>
+                            <h3>Promociones activas</h3>
+                            <p>Validación por periodo</p>
                         </div>
-                        <ul class="activity-list">
-                            <li>Kit de inicio para principiantes con envío gratis.</li>
-                            <li>Combo de iluminación solar + saco térmico.</li>
-                            <li>Descuento en primera compra para nuevos clientes.</li>
-                        </ul>
+                        <div id="promotionsList" class="promotions-list"></div>
                     </div>
                 </section>
             </section>
 
             <section id="view-clientes" class="view-section">
-                <section class="panel-card">
-                    <div class="panel-head">
-                        <h3>Clientes registrados</h3>
-                        <p>8 perfiles simulados</p>
+                <section class="panel-grid clients-layout">
+                    <div class="panel-card">
+                        <div class="panel-head">
+                            <h3>Alta de clientes</h3>
+                            <p>Registrar usuarios con problemas o seguimiento</p>
+                        </div>
+                        <form id="clientForm" class="product-form">
+                            <div class="field-group">
+                                <label for="clientName">Nombre completo</label>
+                                <input id="clientName" name="name" type="text" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="clientEmail">Correo</label>
+                                <input id="clientEmail" name="email" type="email" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="clientPhone">Teléfono</label>
+                                <input id="clientPhone" name="phone" type="tel" required />
+                            </div>
+                            <div class="field-group">
+                                <label for="clientIssue">Problema o comentario</label>
+                                <textarea id="clientIssue" name="issue" rows="3"></textarea>
+                            </div>
+                            <div class="field-group">
+                                <label for="clientStatus">Estado</label>
+                                <select id="clientStatus" name="status">
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="Atendido">Atendido</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" type="submit">Dar de alta</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="clients-grid">
-                        <article class="client-card"><h4>Laura G.</h4><p>Cliente premium</p><span>Última compra: 2 días</span></article>
-                        <article class="client-card"><h4>Diego R.</h4><p>Nuevo cliente</p><span>Última compra: 1 día</span></article>
-                        <article class="client-card"><h4>Sofía L.</h4><p>Frecuente</p><span>Última compra: 4 días</span></article>
-                        <article class="client-card"><h4>Tomás H.</h4><p>Cliente VIP</p><span>Última compra: 6 días</span></article>
-                        <article class="client-card"><h4>Paula M.</h4><p>Recurrente</p><span>Última compra: 3 días</span></article>
-                        <article class="client-card"><h4>Javier C.</h4><p>Primer compra</p><span>Última compra: 1 semana</span></article>
-                        <article class="client-card"><h4>Clara V.</h4><p>Frecuente</p><span>Última compra: 2 días</span></article>
-                        <article class="client-card"><h4>Nicolás T.</h4><p>Cliente premium</p><span>Última compra: 5 días</span></article>
+                    <div class="panel-card">
+                        <div class="panel-head">
+                            <h3>Clientes registrados</h3>
+                            <p>Lista de seguimiento</p>
+                        </div>
+                        <div id="clientsList" class="clients-grid"></div>
+                        <div class="client-orders-card">
+                            <div class="panel-head" style="margin-top: 1rem;">
+                                <h3>Pedidos de clientes</h3>
+                                <p>Últimos pedidos registrados</p>
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th># Pedido</th>
+                                            <th>Cliente</th>
+                                            <th>Estado</th>
+                                            <th>Total</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ordersTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </section>
@@ -350,6 +435,38 @@
                 </section>
             </section>
         </main>
+    </div>
+
+    <div id="productModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" id="productModalBackdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="productModalClose" type="button" aria-label="Cerrar detalles"><i class="bi bi-x-lg"></i></button>
+            <div class="modal-body">
+                <div class="modal-icon" id="modalProductIcon"></div>
+                <h3 id="modalTitle">Detalle del producto</h3>
+                <p id="modalProductName" class="modal-name"></p>
+                <p id="modalProductCategory" class="modal-meta"></p>
+                <p id="modalProductPrice" class="modal-meta"></p>
+                <p id="modalProductStock" class="modal-meta"></p>
+                <p id="modalProductDescription" class="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteConfirmModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteConfirmTitle">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" type="button" id="deleteConfirmClose" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+            <div class="modal-body">
+                <div class="modal-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
+                <h3 id="deleteConfirmTitle">Confirmar eliminación</h3>
+                <p id="deleteConfirmText" class="modal-description">¿Deseas eliminar este producto?</p>
+                <div class="mt-6 flex flex-wrap items-center gap-3 justify-end">
+                    <button id="deleteConfirmCancel" type="button" class="btn btn-outline">Cancelar</button>
+                    <button id="deleteConfirmAccept" type="button" class="btn btn-primary">Eliminar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/admin.js"></script>

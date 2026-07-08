@@ -7,16 +7,22 @@ Ruta Salvaje es una propuesta de sitio web para una tienda de camping con un enf
 - Página principal con una propuesta visual inspirada en la experiencia de acampar.
 - Sección de productos con búsqueda, filtros y vista de detalle.
 - Carrito de compras en una vista aparte, con productos recomendados al costado.
+- Página de promociones con códigos de descuento y simulación de oferta.
+- Página de campaña con producto destacado, llamado a la acción y testimonios.
+- Panel administrativo simulado para gestionar productos, promociones y clientes.
 - Páginas de contacto, nosotros, login y perfil.
-- Estilos compartidos y una paleta de colores más cercana a la estética de bienvenida.
+- Estilos compartidos y una paleta de colores cercana a la estética del sitio.
 
 ## Estructura del proyecto
 
 - index.html: página inicial.
 - equipo.html: catálogo de productos y carrito.
+- promociones.html: página de descuentos y códigos.
+- campana.html: página de campaña con producto destacado y comunidad.
+- admin.html: panel administrativo simulado.
 - login.html, profile.html, nosotros.html y contacto.html: páginas de navegación y cuenta.
-- styles/: estilos globales y de secciones específicas.
-- js/: lógica de tienda y autenticación.
+- styles/: estilos globales y estilos específicos para secciones.
+- js/: lógica de tienda, eventos y administración.
 
 ## Cómo revisar el proyecto
 
@@ -24,6 +30,8 @@ Ruta Salvaje es una propuesta de sitio web para una tienda de camping con un enf
 2. Si prefieres usar un servidor local, puedes ejecutar:
    python -m http.server 8000
 3. Luego entra a http://127.0.0.1:8000/.
+
+> Los enlaces de navegación incluyen ahora las páginas de Promociones y Campaña, y el panel admin solo se accede desde el perfil cuando el usuario es administrador.
 
 ## Tecnologías usadas
 
