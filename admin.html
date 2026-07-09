@@ -251,13 +251,7 @@
                                     <th>Acción</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr><td>#125</td><td>Mara R.</td><td><span class="badge badge-ok">Recibido</span></td><td>$205</td><td>07/07</td><td><button class="btn btn-outline">Ver</button></td></tr>
-                                <tr><td>#126</td><td>Leo B.</td><td><span class="badge badge-ok">En tránsito</span></td><td>$318</td><td>06/07</td><td><button class="btn btn-outline">Ver</button></td></tr>
-                                <tr><td>#127</td><td>Sofía C.</td><td><span class="badge badge-warn">Pendiente</span></td><td>$142</td><td>06/07</td><td><button class="btn btn-outline">Ver</button></td></tr>
-                                <tr><td>#128</td><td>Tomás D.</td><td><span class="badge badge-ok">Entregado</span></td><td>$267</td><td>05/07</td><td><button class="btn btn-outline">Ver</button></td></tr>
-                                <tr><td>#129</td><td>Paula M.</td><td><span class="badge badge-warn">Pendiente</span></td><td>$188</td><td>05/07</td><td><button class="btn btn-outline">Ver</button></td></tr>
-                            </tbody>
+                            <tbody id="ordersTableBody"></tbody>
                         </table>
                     </div>
                 </section>
@@ -429,6 +423,71 @@
                 <p id="modalProductPrice" class="modal-meta"></p>
                 <p id="modalProductStock" class="modal-meta"></p>
                 <p id="modalProductDescription" class="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="clientModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="clientModalTitle">
+        <div class="modal-backdrop" id="clientModalBackdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="clientModalClose" type="button" aria-label="Cerrar cliente"><i class="bi bi-x-lg"></i></button>
+            <div class="modal-body">
+                <div class="modal-icon"><i class="bi bi-person-lines-fill"></i></div>
+                <h3 id="clientModalTitle">Detalle del cliente</h3>
+                <div class="client-edit-grid">
+                    <div class="field-group">
+                        <label>Nombre</label>
+                        <input id="clientModalName" type="text" />
+                    </div>
+                    <div class="field-group">
+                        <label>Correo</label>
+                        <input id="clientModalEmail" type="email" />
+                    </div>
+                    <div class="field-group">
+                        <label>Teléfono</label>
+                        <input id="clientModalPhone" type="text" />
+                    </div>
+                    <div class="field-group">
+                        <label>Problema / Nota</label>
+                        <textarea id="clientModalIssue" rows="3"></textarea>
+                    </div>
+                    <div class="field-group">
+                        <label>Estado</label>
+                        <select id="clientModalStatus">
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Atendido">Atendido</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-6 flex flex-wrap items-center gap-3 justify-end">
+                    <button id="clientModalCancel" type="button" class="btn btn-outline">Cancelar</button>
+                    <button id="clientModalSave" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="orderModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
+        <div class="modal-backdrop" id="orderModalBackdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="orderModalClose" type="button" aria-label="Cerrar pedido"><i class="bi bi-x-lg"></i></button>
+            <div class="modal-body">
+                <div class="modal-icon"><i class="bi bi-bag-check-fill"></i></div>
+                <h3 id="orderModalTitle">Detalle del pedido</h3>
+                <p id="orderModalClient" class="modal-meta"></p>
+                <p id="orderModalDate" class="modal-meta"></p>
+                <p id="orderModalItems" class="modal-meta"></p>
+                <p id="orderModalTotal" class="modal-meta"></p>
+                <div class="order-status-box">
+                    <label for="orderStatusSelect">Actualizar estado</label>
+                    <select id="orderStatusSelect">
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Recibido">Recibido</option>
+                        <option value="En tránsito">En tránsito</option>
+                        <option value="Entregado">Entregado</option>
+                    </select>
+                    <button id="orderStatusSave" class="btn btn-primary" type="button">Actualizar</button>
+                </div>
             </div>
         </div>
     </div>

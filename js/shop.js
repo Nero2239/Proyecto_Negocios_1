@@ -252,6 +252,9 @@ function renderCart() {
                     <input id="promoCodeInput" type="text" value="${state.promoCode}" placeholder="RUTA10" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
                     <button id="applyPromoButton" type="button" class="btn btn-welcome btn-small">Aplicar</button>
                 </div>
+                <div class="mt-3 flex justify-end">
+                    <button id="clearCartButton" type="button" class="text-sm font-semibold text-red-500">Vaciar carrito</button>
+                </div>
                 <div id="promoAlert" class="popout-alert hidden mt-3"></div>
                 ${state.promoCode ? `<p id="promoStatus" class="mt-2 text-xs text-emerald-600">Descuento ${state.promoCode} aplicado</p>` : ''}
             </div>
@@ -274,6 +277,7 @@ function renderCart() {
     const promoInput = document.getElementById('promoCodeInput');
     const applyPromoButton = document.getElementById('applyPromoButton');
     const promoAlert = document.getElementById('promoAlert');
+    const clearCartButton = document.getElementById('clearCartButton');
 
     if (promoAlert) {
         if (state.promoMessage) {
@@ -282,6 +286,10 @@ function renderCart() {
         } else {
             promoAlert.classList.add('hidden');
         }
+    }
+
+    if (clearCartButton) {
+        clearCartButton.addEventListener('click', clearCart);
     }
 
     if (promoInput && applyPromoButton) {
@@ -338,6 +346,13 @@ function renderCart() {
             </div>
         `).join('');
     }
+}
+
+function clearCart() {
+    state.cart = [];
+    saveCart();
+    renderCart();
+    renderProducts();
 }
 
 function changeQuantity(productId, delta) {
@@ -458,6 +473,7 @@ window.shop = {
     addToCart,
     changeQuantity,
     removeFromCart,
+    clearCart,
     renderCart,
     toggleCartPanel,
     showCartPanel,
