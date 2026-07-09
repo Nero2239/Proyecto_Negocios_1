@@ -15,7 +15,24 @@ const state = {
     activeQuery: '',
     activeCategory: 'all',
     selectedProductId: null,
+    promoCode: localStorage.getItem('campingPromo') || '',
+    promoMessage: '',
 };
+
+function savePromoCode() {
+    localStorage.setItem('campingPromo', state.promoCode);
+}
+
+function getPromoDiscount(code) {
+    const normalized = (code || '').trim().toUpperCase();
+    const discounts = {
+        RUTA10: 0.10,
+        VERANO20: 0.20,
+        CAMPING15: 0.15,
+    };
+
+    return discounts[normalized] || 0;
+}
 
 function formatPrice(value) {
     return `$${value.toFixed(2)}`;
@@ -34,6 +51,13 @@ function renderProducts() {
     const detail = document.getElementById('productDetail');
     const cartCount = document.getElementById('cartCount');
     const cartCountInline = document.getElementById('cartCountInline');
+
+    if (cartCount) {
+        cartCount.textContent = getCartCount();
+    }
+    if (cartCountInline) {
+        cartCountInline.textContent = `${getCartCount()} artículos`;
+    }
 
     if (!grid) return;
 
@@ -72,12 +96,6 @@ function renderProducts() {
     }
 
     grid.innerHTML = html + placeholders;
-    if (cartCount) {
-        cartCount.textContent = getCartCount();
-    }
-    if (cartCountInline) {
-        cartCountInline.textContent = `${getCartCount()} artículos`;
-    }
     if (detail && !state.selectedProductId) {
         detail.classList.add('hidden');
         detail.innerHTML = '';
@@ -99,6 +117,10 @@ function showProductDetail(id) {
                 <button class="detail-close-btn" type="button" onclick="window.shop.closeProductModal()" aria-label="Cerrar ventana">
                     <i class="bi bi-x-lg"></i>
                 </button>
+                <div class="modal-card-header">
+                    <span class="text-sm uppercase tracking-[0.3em] text-naranja font-semibold">Detalle del producto</span>
+                    <h3>${producto.nombre}</h3>
+                </div>
                 <div class="left">
                     <div class="detalle-imagen">📸</div>
                     <div class="rounded-2xl bg-crema p-4 text-sm text-gray-700">
@@ -107,7 +129,6 @@ function showProductDetail(id) {
                     </div>
                 </div>
                 <div class="right">
-                    <h2 class="text-2xl font-bold text-bosque mb-2">${producto.nombre}</h2>
                     <div class="flex items-center gap-4 mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                         <div class="text-sm text-gray-500">(${producto.stock} disponibles)</div>
@@ -185,6 +206,15 @@ function renderCart() {
     const cartEmpty = document.getElementById('cartEmpty');
     const recommendedProducts = document.getElementById('recommendedProducts');
     const checkoutButton = document.getElementById('checkoutButton');
+    const cartCount = document.getElementById('cartCount');
+    const cartCountInline = document.getElementById('cartCountInline');
+
+    if (cartCount) {
+        cartCount.textContent = getCartCount();
+    }
+    if (cartCountInline) {
+        cartCountInline.textContent = `${getCartCount()} artículos`;
+    }
 
     if (!cartBody || !cartSummary || !cartEmpty) return;
 
@@ -211,17 +241,81 @@ function renderCart() {
             </div>
         `).join('');
 
+        const discountPercent = getPromoDiscount(state.promoCode);
+        const discountAmount = subtotal * discountPercent;
+        const total = subtotal - discountAmount;
+
         cartSummary.innerHTML = `
-            <div class="flex items-center justify-between text-sm text-gray-600">
+            <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                <label class="text-sm font-semibold text-bosque" for="promoCodeInput">Código promocional</label>
+                <div class="mt-2 flex gap-2">
+                    <input id="promoCodeInput" type="text" value="${state.promoCode}" placeholder="RUTA10" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+                    <button id="applyPromoButton" type="button" class="btn btn-welcome btn-small">Aplicar</button>
+                </div>
+                <div id="promoAlert" class="popout-alert hidden mt-3"></div>
+                ${state.promoCode ? `<p id="promoStatus" class="mt-2 text-xs text-emerald-600">Descuento ${state.promoCode} aplicado</p>` : ''}
+            </div>
+            <div class="flex items-center justify-between text-sm text-gray-600 mt-4">
                 <span>Subtotal</span>
                 <span>${formatPrice(subtotal)}</span>
             </div>
+            ${discountPercent > 0 ? `<div class="flex items-center justify-between text-sm text-emerald-600">
+                <span>Descuento</span>
+                <span>- ${formatPrice(discountAmount)}</span>
+            </div>` : ''}
             <div class="flex items-center justify-between text-lg font-bold text-bosque">
                 <span>Total</span>
-                <span>${formatPrice(subtotal)}</span>
+                <span>${formatPrice(total)}</span>
             </div>
             <a href="checkout.html" class="btn btn-primary w-full mt-4 inline-flex justify-center" id="checkoutButton">Checkout</a>
         `;
+    }
+
+    const promoInput = document.getElementById('promoCodeInput');
+    const applyPromoButton = document.getElementById('applyPromoButton');
+    const promoAlert = document.getElementById('promoAlert');
+
+    if (promoAlert) {
+        if (state.promoMessage) {
+            promoAlert.textContent = state.promoMessage;
+            promoAlert.classList.remove('hidden');
+        } else {
+            promoAlert.classList.add('hidden');
+        }
+    }
+
+    if (promoInput && applyPromoButton) {
+        applyPromoButton.onclick = () => {
+            const code = promoInput.value.trim().toUpperCase();
+            if (!code) {
+                state.promoCode = '';
+                state.promoMessage = '';
+                savePromoCode();
+                renderCart();
+                return;
+            }
+
+            const discountPercent = getPromoDiscount(code);
+            if (!discountPercent) {
+                state.promoCode = '';
+                state.promoMessage = 'Código no válido';
+                savePromoCode();
+                renderCart();
+                return;
+            }
+
+            state.promoCode = code;
+            state.promoMessage = '';
+            savePromoCode();
+            renderCart();
+        };
+
+        promoInput.onkeydown = (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                applyPromoButton.click();
+            }
+        };
     }
 
     if (checkoutButton) {

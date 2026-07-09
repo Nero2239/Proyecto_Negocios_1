@@ -94,9 +94,16 @@ footer h4 {
 }
 
 .btn-welcome {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
     background: linear-gradient(135deg, var(--accent-soft), #f8dfc2);
     color: var(--color-bosque);
     border: 1px solid rgba(28, 37, 65, 0.14);
+    min-height: 2.8rem;
 }
 
 .btn-welcome:hover {
@@ -106,8 +113,8 @@ footer h4 {
 }
 
 .btn-small {
-    padding: 0.55rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.85rem;
     box-shadow: none;
 }
 

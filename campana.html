@@ -14,12 +14,13 @@
     <nav class="sticky top-0 z-50 flex justify-between items-center py-6 px-10 bg-white shadow-md">
         <a href="index.html" class="text-3xl font-bold text-bosque font-serif hover:text-naranja transition">Ruta <i class="bi bi-fire"></i> Salvaje</a>
         <div class="hidden md:flex items-center gap-8 font-semibold">
-            <a href="index.html" class="text-bosque hover:text-naranja transition">Inicio</a>
-            <a href="equipo.html" class="text-bosque hover:text-naranja transition">Equipo</a>
-            <a href="promociones.html" class="text-bosque hover:text-naranja transition">Promociones</a>
-            <a href="campana.html" class="text-naranja font-bold">Campaña</a>
-            <a href="nosotros.html" class="text-bosque hover:text-naranja transition">Nosotros</a>
-            <a href="contacto.html" class="text-bosque hover:text-naranja transition">Contacto</a>
+            <a href="index.html" class="text-bosque hover:text-naranja transition font-bold"><i class="bi bi-house-door-fill"></i> Inicio</a>
+            <a href="index.html#guias" class="text-bosque hover:text-naranja transition"><i class="bi bi-map-fill"></i> Guías de Aventura</a>
+            <a href="equipo.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-handbag-fill"></i> Equipo</a>
+            <a href="promociones.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-tags-fill"></i> Promociones</a>
+            <a href="campana.html" class="text-naranja font-bold"><i class="bi bi-megaphone-fill"></i> Campaña</a>
+            <a href="nosotros.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-person-arms-up"></i> Nosotros</a>
+            <a href="contacto.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-envelope-fill"></i> Contacto</a>
         </div>
         <div id="nav-auth-buttons" class="flex items-center gap-3">
             <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button">
@@ -176,6 +177,33 @@
         </div>
     </footer>
 
+    <div id="cartPage" class="cart-page hidden">
+        <button id="closeCartButton" class="cart-close-btn" type="button" aria-label="Cerrar carrito"><i class="bi bi-x-lg"></i></button>
+        <div class="cart-shell">
+            <div class="cart-left">
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-naranja">Recomendados</p>
+                <h3 class="text-2xl font-bold text-bosque mt-2">Completa tu kit de aventura</h3>
+                <p class="text-gray-600 mt-2">Estas piezas suelen acompañar muy bien a los artículos que ya tienes en tu carrito.</p>
+                <div id="recommendedProducts" class="recommended-grid"></div>
+            </div>
+            <div class="cart-right">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-bosque">Tu carrito</h3>
+                    <span id="cartCountInline" class="rounded-full bg-bosque/10 px-3 py-1 text-sm font-semibold text-bosque">0 artículos</span>
+                </div>
+                <div id="cartEmpty" class="cart-empty">
+                    <i class="bi bi-bag-heart text-4xl mb-3 block text-naranja"></i>
+                    <p class="font-semibold">Tu carrito está vacío</p>
+                    <p class="text-sm mt-2">Agrega artículos para preparar tu próxima salida.</p>
+                </div>
+                <div id="cartBody" class="space-y-2"></div>
+                <div id="cartSummary" class="cart-summary-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/shop.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/campana.js"></script>
 </body>
 </html>
