@@ -664,21 +664,69 @@ th {
 }
 
 .client-card {
-    background: #fcfaf6;
-    border: 1px solid var(--admin-border);
-    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
     padding: 1rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.client-card h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--admin-text);
+}
+
+.client-card-line {
+    margin: 0;
+    padding: 0.55rem 0.75rem;
+    border-radius: 10px;
+    background: #f7f5f2;
+    color: var(--admin-muted);
+    font-size: 0.94rem;
+}
+
+.client-status-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.client-status-text {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: #fff4e5;
+    color: var(--admin-primary);
+    font-weight: 700;
+    font-size: 0.82rem;
+}
+
+.client-status-text.status-ok {
+    background: #e8f6ee;
+    color: var(--admin-accent);
+}
+
+.client-action-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-small {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.82rem;
 }
 
 .clients-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
     align-items: start;
 }
 
 .clients-layout {
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 1fr;
 }
 
 .client-card h4 {
@@ -791,4 +839,130 @@ th {
         flex-direction: column;
         align-items: flex-start;
     }
+}
+
+.clients-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.client-card-new {
+    background: #fff;
+    border: 1px solid var(--admin-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: var(--shadow-card);
+    transition: all 0.2s ease;
+}
+
+.client-card-new:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(17, 24, 39, 0.1);
+}
+
+.client-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.client-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.client-name {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--admin-text);
+}
+
+.client-details {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.client-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--admin-muted);
+    font-size: 0.9rem;
+}
+
+.client-detail-item i {
+    color: var(--admin-primary);
+    font-size: 1.1rem;
+}
+
+.client-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--admin-border);
+    font-size: 0.9rem;
+    color: var(--admin-muted);
+}
+
+.status-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.status-label.status-pending {
+    color: var(--admin-primary);
+}
+
+.status-label.status-ok {
+    color: var(--admin-accent);
+}
+
+.status-dot {
+    font-size: 0.7rem;
+}
+
+.client-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.btn-client-action {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--admin-border);
+    background: transparent;
+    color: var(--admin-text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-client-action:hover {
+    background: var(--admin-accent-soft);
+    color: var(--admin-accent);
+    border-color: var(--admin-accent-soft);
 }

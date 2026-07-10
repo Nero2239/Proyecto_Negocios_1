@@ -130,6 +130,26 @@ document.addEventListener('DOMContentLoaded', () => {
         adminNameLabel.textContent = userEmail;
     }
 
+    // Helper to get initials from a name
+    function getInitials(name) {
+        if (!name) return '?';
+        const parts = name.split(' ');
+        if (parts.length > 1) {
+            return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+        }
+        return (name.substring(0, 2)).toUpperCase();
+    }
+
+    // Helper to generate a color from a string
+    function nameToColor(name) {
+        const colors = ['#E07A5F', '#3D405B', '#81B29A', '#F2CC8F', '#5E8B7E', '#A47D6C'];
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) {
+            hash = name.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        return colors[Math.abs(hash % colors.length)];
+    }
+
     function setView(viewName) {
         viewSections.forEach(section => {
             section.classList.toggle('active', section.id === `view-${viewName}`);
@@ -229,22 +249,37 @@ document.addEventListener('DOMContentLoaded', () => {
         clientPage = Math.min(clientPage, totalPages);
         const start = (clientPage - 1) * clientsPerPage;
         const visibleClients = clients.slice(start, start + clientsPerPage);
-        const visibleRange = `${start + 1}-${Math.min(start + visibleClients.length, clients.length)}`;
+
         clientsList.innerHTML = `
-            <div class="clients-summary">Mostrando ${visibleRange} de ${clients.length} clientes</div>
-            <div class="clients-grid">
+            <div class="clients-grid-new">
                 ${visibleClients.map(client => `
-                    <article class="client-card" data-id="${client.id}">
-                        <h4>${client.name}</h4>
-                        <p><strong>Correo:</strong> ${client.email}</p>
-                        <p><strong>Teléfono:</strong> ${client.phone}</p>
-                        <p><strong>Problema:</strong> ${client.issue}</p>
-                        <div style="display:flex; gap:0.5rem; margin-top:0.6rem; align-items:center; justify-content:space-between;">
-                            <span><strong>Estado:</strong> <span class="client-status">${client.status}</span></span>
-                            <div style="display:flex; gap:0.4rem;">
-                                <button class="btn btn-outline btn-small" type="button" data-action="view-client" data-id="${client.id}">Ver</button>
-                                <button class="btn btn-small" type="button" data-action="toggle-status" data-id="${client.id}">Actualizar</button>
+                    <article class="client-card-new" data-id="${client.id}">
+                        <div class="client-card-header">
+                            <div class="client-avatar" style="background-color: ${nameToColor(client.name)};">
+                                <span class="client-avatar-initials">${getInitials(client.name)}</span>
                             </div>
+                            <h4 class="client-name">${client.name}</h4>
+                        </div>
+                        <div class="client-details">
+                            <div class="client-detail-item">
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>${client.email}</span>
+                            </div>
+                            <div class="client-detail-item">
+                                <i class="bi bi-telephone-fill"></i>
+                                <span>${client.phone}</span>
+                            </div>
+                        </div>
+                        <div class="client-status">
+                            <span>Estado:</span>
+                            <span class="status-label ${client.status === 'Pendiente' ? 'status-pending' : 'status-ok'}">
+                                <i class="bi bi-circle-fill status-dot"></i>
+                                ${client.status}
+                            </span>
+                        </div>
+                        <div class="client-card-actions">
+                            <button class="btn-client-action" type="button" data-action="view-client" data-id="${client.id}"><i class="bi bi-eye"></i> Ver</button>
+                            <button class="btn-client-action" type="button" data-action="edit-client" data-id="${client.id}"><i class="bi bi-pencil"></i> Editar</button>
                         </div>
                     </article>
                 `).join('')}
@@ -559,22 +594,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const viewBtn = event.target.closest('[data-action="view-client"]');
-            if (viewBtn) {
-                const id = Number(viewBtn.dataset.id);
+            const clientActionBtn = event.target.closest('[data-action="view-client"], [data-action="edit-client"]');
+            if (clientActionBtn) {
+                const id = Number(clientActionBtn.dataset.id);
                 const client = clients.find(c => c.id === id);
                 if (client) openClientModal(client);
                 return;
             }
 
-            const toggleBtn = event.target.closest('[data-action="toggle-status"]');
-            if (toggleBtn) {
-                const id = Number(toggleBtn.dataset.id);
-                clients = clients.map(c => c.id === id ? { ...c, status: c.status === 'Pendiente' ? 'Atendido' : 'Pendiente' } : c);
-                renderClients();
-                showFeedback('Estado de cliente actualizado.', 'success');
-                return;
-            }
+            // The 'Editar' button now opens the modal.
         });
     }
 
