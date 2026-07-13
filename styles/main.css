@@ -361,6 +361,23 @@ html {
     border-left: 4px solid #e07a5f;
 }
 
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: #f7f5f2;
+    color: var(--color-bosque);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.feature-card i {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
 /* ==================== RESPONSIVIDAD ==================== */
 
 @media (max-width: 768px) {

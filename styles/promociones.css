@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
+
+body.page-promociones {
+    background: linear-gradient(135deg, #f4efe8 0%, #ece3d4 100%);
+    color: #584c3e;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.day-scenery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.page-promociones .text-bosque {
+    color: #4a4137;
+}
+
+.page-promociones .text-gray-600 {
+    color: #695f55;
+}
+
+/* Journal page wrapper */
+.journal-page {
+    background-color: #fffbf0;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 1; /* Para que esté sobre el fondo animado */
+}
+
+.journal-page::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #e0e0e0, #c0c0c0, #e0e0e0);
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+/* Hero as a pasted photo */
+.page-promociones .hero-photo {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    transform: rotate(-2deg);
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 1rem;
+    background: white;
+}
+
+.page-promociones .hero-photo:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 10px 10px 25px rgba(0,0,0,0.25);
+}
+
+.page-promociones .hero-photo .hero-content {
+    transform: rotate(2deg);
+}
+
+/* Promo cards as taped notes */
+.promo-note {
+    background: #fffee5;
+    padding: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+    position: relative;
+    transition: transform 0.2s ease;
+    min-height: 180px;
+}
+
+.promo-note:hover {
+    transform: scale(1.05);
+}
+
+.promo-note::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 25px;
+    background: rgba(255, 221, 170, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.promo-note:nth-child(odd) {
+    transform: rotate(-1deg);
+}
+.promo-note:nth-child(even) {
+    transform: rotate(1.5deg);
+}
+.promo-note:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.promo-note .promo-badge {
+    font-family: 'Kalam', cursive;
+    background-color: #e3d5b8;
+    color: #584c3e;
+    font-size: 1.1rem;
+}
+
+/* Testimonials as handwritten notes */
+.testimonial-note {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 1rem;
+    font-family: 'Kalam', cursive;
+    color: #695f55;
+    border-bottom: 1px dashed #c9bba7;
+}
+
+.testimonial-note p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* ==================== FONDO ANIMADO DE DÍA ==================== */
+.sun {
+    display: none;
+}
+
+.cloud {
+    display: none;
+}
+
+.cloud.c1 {
+    display: none;
+}
+.cloud.c2 {
+    display: none;
+}
