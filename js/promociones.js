@@ -117,6 +117,16 @@ function initPromotionPage() {
     if (applyButton) {
         applyButton.addEventListener('click', applyDiscountCode);
     }
+    // Promo-card apply buttons
+    const promoApplyButtons = document.querySelectorAll('.promo-apply-btn');
+    promoApplyButtons.forEach(btn => {
+        btn.addEventListener('click', function(){
+            const code = (this.getAttribute('data-code') || '').toUpperCase();
+            const input = document.getElementById('discountCodeInput');
+            if(input){ input.value = code; }
+            applyDiscountCode();
+        });
+    });
     if (commentForm) {
         commentForm.addEventListener('submit', addComment);
     }

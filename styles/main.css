@@ -259,6 +259,104 @@ html {
     }
 }
 
+/* ==================== COOKIE CONSENT ==================== */
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    max-width: 380px;
+    background: linear-gradient(135deg, #ffffff, #f7f3ec);
+    color: var(--color-bosque);
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-large);
+    z-index: 2000;
+    animation: slideUp 0.5s ease-out;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.cookie-consent-banner p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+}
+
+.cookie-consent-banner a {
+    color: var(--color-naranja);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cookie-consent-banner a:hover {
+    text-decoration: underline;
+}
+
+.cookie-consent-banner.hiding {
+    animation: slideDown 0.5s ease-in forwards;
+}
+
+.cookie-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.cookie-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-bosque);
+    cursor: pointer;
+}
+
+.cookie-option input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 0.3rem;
+    border: 2px solid var(--color-bosque);
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.cookie-option input[type="checkbox"]:checked {
+    background-color: var(--color-naranja);
+    border-color: var(--color-naranja);
+}
+
+.cookie-option input[type="checkbox"]:checked::before {
+    content: '✔';
+    position: absolute;
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+.cookie-consent-banner .btn[disabled] {
+    background-color: #b8c2d3;
+    color: #6c757d;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+@media (max-width: 480px) {
+    .cookie-consent-banner {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
+
 /* ==================== HERO SECTION ==================== */
 
 .hero {
@@ -419,6 +517,50 @@ html {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Cookie / terms popout */
+.cookie-popout {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: white;
+    color: #333;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(16,24,40,0.2);
+    z-index: 60;
+    max-width: 340px;
+    font-size: 0.95rem;
+}
+.cookie-popout p { margin: 0 0 0.5rem 0; }
+.cookie-popout .cp-actions { display:flex; gap:0.5rem; justify-content:flex-end; }
+.cookie-popout .cp-actions .btn { font-size:0.9rem; padding:0.5rem 0.85rem; }
+
+/* Small discount code badge for promotions */
+.discount-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff6e8;
+    color: #b85b3f;
+    border: 1px solid rgba(224,122,95,0.15);
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-weight:700;
+    font-size:0.85rem;
+}
+
+
+@keyframes slideDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(30px);
     }
 }
 

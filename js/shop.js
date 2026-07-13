@@ -405,6 +405,52 @@ function toggleCartPanel() {
     }
 }
 
+function initCookieConsent() {
+    const bannerHTML = `
+        <div id="cookieConsentBanner" class="cookie-consent-banner">
+            <p class="font-semibold text-lg mb-2">Tu privacidad es importante</p>
+            <p class="text-sm">
+                Para ofrecerte la mejor experiencia, usamos cookies y te pedimos que aceptes nuestros términos de compra.
+            </p>
+            <div class="cookie-options">
+                <label class="cookie-option">
+                    <input type="checkbox" id="acceptCookiesCheck" name="consent" value="cookies">
+                    <span>Acepto el uso de <strong>cookies</strong> funcionales.</span>
+                </label>
+                <label class="cookie-option">
+                    <input type="checkbox" id="acceptTermsCheck" name="consent" value="terms">
+                    <span>He leído y acepto los <a href="politicas.html" target="_blank" rel="noopener noreferrer">Términos de Compra</a>.</span>
+                </label>
+            </div>
+            <button id="acceptCookiesBtn" class="btn btn-primary w-full mt-4" disabled>Aceptar y continuar</button>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', bannerHTML);
+
+    const acceptBtn = document.getElementById('acceptCookiesBtn');
+    const cookiesCheck = document.getElementById('acceptCookiesCheck');
+    const termsCheck = document.getElementById('acceptTermsCheck');
+
+    function checkConsent() {
+        acceptBtn.disabled = !(cookiesCheck.checked && termsCheck.checked);
+    }
+
+    cookiesCheck.addEventListener('change', checkConsent);
+    termsCheck.addEventListener('change', checkConsent);
+
+    acceptBtn.addEventListener('click', () => {
+        if (acceptBtn.disabled) return;
+
+        localStorage.setItem('cookiesAccepted', 'true');
+        const banner = document.getElementById('cookieConsentBanner');
+        banner.classList.add('hiding');
+        banner.addEventListener('animationend', () => {
+            banner.style.display = 'none';
+        }, { once: true });
+    });
+}
+
 function initShop() {
     const searchInput = document.getElementById('searchInput');
     const categorySelect = document.getElementById('categorySelect');
@@ -412,6 +458,10 @@ function initShop() {
     const filterRecommended = document.getElementById('filterRecommended');
     const openCartButton = document.getElementById('openCartButton');
     const closeCartButton = document.getElementById('closeCartButton');
+
+    if (document.body.classList.contains('home-page')) {
+        initCookieConsent();
+    }
 
     if (searchInput) {
         searchInput.addEventListener('input', (event) => {
