@@ -131,3 +131,75 @@
     0% { filter: brightness(0.92) saturate(0.95); }
     100% { filter: brightness(1.08) saturate(1.05); }
 }
+
+/* ==================== VALORACIÓN DINÁMICA (ESTRELLAS) ==================== */
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem; /* Ajustado para el formulario */
+}
+
+.star-rating-fieldset {
+    display: inline-flex;
+    flex-direction: row-reverse; /* Crucial para el efecto hover */
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Ocultar los radio buttons reales */
+.star-rating-fieldset input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Estilo de las estrellas (etiquetas) */
+.star-rating-fieldset label {
+    font-size: 1.75rem;
+    color: #d1d5db; /* Color de estrella vacía (gris claro) */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out, transform 0.15s ease;
+    padding: 0 0.1em;
+}
+
+.star-rating-fieldset label:hover {
+    transform: scale(1.15);
+}
+
+/* 
+  Efecto hover: colorea las estrellas hasta la que se está apuntando.
+  La magia está en `row-reverse` y el selector de hermanos general (~).
+*/
+.star-rating-fieldset:not(:hover) input[type="radio"]:checked ~ label,
+.star-rating-fieldset:hover label:hover,
+.star-rating-fieldset:hover label:hover ~ label {
+    color: var(--accent-warm-2); /* Naranja más brillante para hover */
+}
+
+/* Estado seleccionado: mantiene las estrellas coloreadas con el color de acento principal */
+.star-rating-fieldset input[type="radio"]:checked ~ label {
+    color: var(--accent-warm);
+}
+
+.rating-feedback-message {
+    color: #6b7280;
+    font-weight: 600;
+    margin-left: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+/* Utilidad para accesibilidad */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

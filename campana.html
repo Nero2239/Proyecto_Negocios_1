@@ -131,14 +131,20 @@
                         <textarea id="campaignCommentText" class="form-textarea mt-2" placeholder="Comparte tu experiencia o idea..." required></textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-bosque">Valoración</label>
-                        <select id="campaignCommentRating" class="form-input mt-2" required>
-                            <option value="5">★★★★★</option>
-                            <option value="4">★★★★☆</option>
-                            <option value="3">★★★☆☆</option>
-                            <option value="2">★★☆☆☆</option>
-                            <option value="1">★☆☆☆☆</option>
-                        </select>
+                        <label class="block text-sm font-semibold text-bosque mb-2">Valoración</label>
+                        <!-- Componente de Valoración Dinámica -->
+                        <div class="star-rating">
+                            <fieldset class="star-rating-fieldset">
+                                <legend class="sr-only">Calificación de 5 estrellas</legend>
+                                <!-- Las estrellas están en orden inverso (5 a 1) para que el CSS funcione correctamente -->
+                                <input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="5 estrellas"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 estrellas"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 estrellas"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 estrellas"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 estrella"><i class="bi bi-star-fill"></i></label>
+                            </fieldset>
+                            <span class="rating-feedback-message font-semibold"></span>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary w-full">Publicar comentario</button>
                     <div id="campaignCommentFeedback" class="message-success hidden"><i class="bi bi-check-circle-fill"></i> <span>Comentario publicado.</span></div>
@@ -204,6 +210,30 @@
 
     <script src="js/shop.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/campana.js"></script>
+    <script src="js/campana.js"></script> 
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Busca el componente de valoración dentro del formulario de comentarios
+        const ratingComponent = document.querySelector('#campaignCommentForm .star-rating');
+
+        if (ratingComponent) {
+            const fieldset = ratingComponent.querySelector('.star-rating-fieldset');
+            const ratingMessage = ratingComponent.querySelector('.rating-feedback-message');
+
+            fieldset.addEventListener('change', (event) => {
+                const ratingValue = event.target.value;
+                let message = '';
+                switch (ratingValue) {
+                    case '5': message = '¡Excelente!'; break;
+                    case '4': message = '¡Muy bueno!'; break;
+                    case '3': message = 'Bueno'; break;
+                    case '2': message = 'Regular'; break;
+                    case '1': message = 'Malo'; break;
+                }
+                ratingMessage.textContent = message;
+            });
+        }
+    });
+    </script>
 </body>
 </html>
