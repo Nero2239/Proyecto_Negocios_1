@@ -63,10 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
+            const displayName = email.split('@')[0];
             const remember = document.getElementById('rememberCheck').checked;
 
             sessionStorage.setItem('lastEmail', email);
             localStorage.setItem('userEmail', email);
+            localStorage.setItem('userName', displayName);
             localStorage.setItem('isLoggedIn', '1');
             if (remember) {
                 localStorage.setItem('rememberUser', '1');
@@ -75,6 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const isAdminAccount = email.toLowerCase().includes('admin');
+            const isSellerAccount = email.toLowerCase().includes('vendedor');
+            const userRole = isAdminAccount ? 'admin' : isSellerAccount ? 'seller' : 'user';
+            localStorage.setItem('userRole', userRole);
+
             showMessage(isAdminAccount ? 'Redirigiendo al panel de administrador...' : 'Redirigiendo a tu perfil...');
             setTimeout(() => {
                 window.location.href = isAdminAccount ? 'admin.html' : 'profile.html';
@@ -86,7 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
             const email = document.getElementById('registerEmail').value.trim();
+            const name = document.getElementById('registerName').value.trim();
             localStorage.setItem('userEmail', email);
+            localStorage.setItem('userName', name);
             localStorage.setItem('isLoggedIn', '1');
             localStorage.setItem('rememberUser', '1');
             showLoginForm();
@@ -150,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('navLogoutBtn')?.addEventListener('click', function () {
                     localStorage.removeItem('userEmail');
                     localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userName');
                     localStorage.removeItem('rememberUser');
                     updateAuthUI();
                     window.location.href = 'index.html';
@@ -162,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (profileEmail) {
-            profileEmail.textContent = isLoggedIn && userEmail ? userEmail : 'usuario@ruta.com';
+            profileEmail.textContent = isLoggedIn && userEmail ? userEmail : 'paramore@ruta.com';
         }
     }
 
@@ -173,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         localStorage.removeItem('userEmail');
         localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userName');
         localStorage.removeItem('rememberUser');
         updateAuthUI();
         window.location.href = 'index.html';

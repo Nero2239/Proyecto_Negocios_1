@@ -53,7 +53,7 @@
 
             <div class="bg-gray-50 rounded-[1.75rem] p-8 shadow-sm text-left">
                 <p class="text-lg font-semibold text-bosque">Correo registrado</p>
-                <p id="profileEmail" class="text-gray-700 mt-2 text-lg">usuario@ruta.com</p>
+                <p id="profileEmail" class="text-gray-700 mt-2 text-lg">paramore@ruta.com</p>
                 <div class="mt-8 grid gap-4 md:grid-cols-2">
                     <div class="p-6 bg-white rounded-3xl shadow-sm">
                         <p class="text-sm text-gray-500">Rol</p>
@@ -73,6 +73,15 @@
                 </div>
             </div>
 
+            <div id="sellerDashboard" class="bg-gray-50 rounded-[1.75rem] p-8 shadow-sm text-left mt-8 hidden">
+                <p class="text-lg font-semibold text-bosque mb-4">Panel de Vendedor</p>
+                <div class="grid gap-4 md:grid-cols-3">
+                    <a href="publicar-producto.html" class="btn btn-primary text-center">Publicar Producto</a>
+                    <a href="mis-publicaciones.html" class="btn btn-primary text-center">Mis Publicaciones</a>
+                    <a href="subasta.html" class="btn btn-primary text-center">Ver Subasta</a>
+                </div>
+            </div>
+
             <div class="auth-actions mt-10 justify-center gap-3 flex-wrap">
                 <a href="login.html" class="btn btn-secondary">Cerrar sesión</a>
                 <a id="adminPanelLink" href="admin.html" class="btn btn-primary hidden">Ir al panel admin</a>
@@ -86,13 +95,19 @@
         <a href="https://twitter.com" target="_blank" title="Twitter"><i class="bi bi-twitter"></i></a>
     </div>
 
-    <script src="js/auth.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const adminPanelLink = document.getElementById('adminPanelLink');
+            const sellerDashboard = document.getElementById('sellerDashboard');
             const email = localStorage.getItem('userEmail') || '';
-            if (email.toLowerCase().includes('admin')) {
+            const userRole = localStorage.getItem('userRole');
+
+            if (userRole === 'admin' && email.toLowerCase().includes('admin')) {
                 adminPanelLink.classList.remove('hidden');
+            }
+
+            if (userRole === 'seller' && sellerDashboard) {
+                sellerDashboard.classList.remove('hidden');
             }
         });
     </script>
@@ -123,5 +138,6 @@
 
 <script src="js/shop.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/c2c.js"></script>
 </body>
 </html>

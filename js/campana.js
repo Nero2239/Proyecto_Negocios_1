@@ -1,16 +1,18 @@
 function addCampaignComment(event) {
     event.preventDefault();
+    const form = event.target;
     const nameInput = document.getElementById('campaignCommentName');
     const commentInput = document.getElementById('campaignCommentText');
     const feedback = document.getElementById('campaignCommentFeedback');
     const list = document.getElementById('campaignCommentsList');
+
     if (!nameInput || !commentInput || !feedback || !list) return;
+
     const name = nameInput.value.trim();
     const text = commentInput.value.trim();
-    const ratingSelect = document.getElementById('campaignCommentRating');
-    const rating = ratingSelect ? Number(ratingSelect.value) : 5;
+
     if (!name || !text) return;
-    const stars = '★★★★★'.slice(0, rating) + '☆☆☆☆☆'.slice(0, 5 - rating);
+
     const commentCard = document.createElement('article');
     commentCard.className = 'comment-card';
     commentCard.innerHTML = `
@@ -19,13 +21,19 @@ function addCampaignComment(event) {
                 <p class="font-semibold text-bosque">${name}</p>
                 <p class="text-sm text-gray-500">Ahora</p>
             </div>
-            <span class="text-sm text-amber-600 font-semibold">${stars}</span>
         </div>
         <p class="mt-3 text-gray-700">${text}</p>
     `;
+
     list.prepend(commentCard);
-    nameInput.value = '';
+
+    // No usar form.reset() para no borrar el nombre del usuario logueado
     commentInput.value = '';
+    // Solo limpiar el nombre si el campo no es de solo lectura (usuario no logueado)
+    if (!nameInput.readOnly) {
+        nameInput.value = '';
+    }
+
     feedback.classList.remove('hidden');
     setTimeout(() => feedback.classList.add('hidden'), 2800);
 }
@@ -34,6 +42,17 @@ function initCampaignPage() {
     const commentForm = document.getElementById('campaignCommentForm');
     if (commentForm) {
         commentForm.addEventListener('submit', addCampaignComment);
+
+        // Pre-fill name if user is logged in
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === '1';
+        if (isLoggedIn) {
+            const nameInput = document.getElementById('campaignCommentName');
+            const userName = localStorage.getItem('userName');
+            if (nameInput && userName) {
+                nameInput.value = userName;
+                nameInput.readOnly = true;
+            }
+        }
     }
 }
 

@@ -1,0 +1,112 @@
+/* Panel principal para las páginas C2C */
+.c2c-panel {
+    max-width: 56rem;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-large);
+}
+
+/* Formulario de publicación */
+.c2c-form {
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-bosque);
+    margin-bottom: 0.5rem;
+}
+
+/* Tarjeta de publicación en "Mis Publicaciones" */
+.publication-card {
+    display: grid;
+    grid-template-columns: 150px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    background-color: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+.publication-photo {
+    width: 150px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.publication-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-bosque);
+}
+
+.publication-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-naranja);
+    margin: 0.25rem 0;
+}
+
+.publication-description {
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.publication-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Contenedor de la subasta */
+.auction-container {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.auction-timer-card, .auction-bid-card {
+    background-color: #f8fafc;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    text-align: center;
+}
+
+.timer-label, .bid-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.timer-display, .bid-display {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-bosque);
+    line-height: 1;
+}
+
+.bid-form {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.auction-bids-list {
+    background-color: #f8fafc;
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
+
+.auction-bids-list ul {
+    list-style-type: none;
+    padding: 0;
+}
