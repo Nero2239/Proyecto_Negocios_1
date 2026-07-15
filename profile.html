@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/equipo.css">
+    <link rel="stylesheet" href="styles/c2c.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="styles/tailwind-config.js"></script>
 </head>
@@ -51,40 +52,150 @@
                 <p class="text-gray-600 mt-3">Bienvenido 🦝</p>
             </div>
 
-            <div class="bg-gray-50 rounded-[1.75rem] p-8 shadow-sm text-left">
-                <p class="text-lg font-semibold text-bosque">Correo registrado</p>
-                <p id="profileEmail" class="text-gray-700 mt-2 text-lg">paramore@ruta.com</p>
-                <div class="mt-8 grid gap-4 md:grid-cols-2">
-                    <div class="p-6 bg-white rounded-3xl shadow-sm">
-                        <p class="text-sm text-gray-500">Rol</p>
-                        <p id="profileRole" class="text-lg font-semibold mt-2">Campista explorador</p>
+            <div class="profile-dashboard">
+                <section class="profile-hero-card">
+                    <div class="profile-hero-content">
+                        <p class="text-sm uppercase tracking-[0.3em] text-naranja font-bold">Datos generales</p>
+                        <h1 class="text-4xl font-bold text-bosque mt-4">Tu espacio en Ruta Salvaje</h1>
+                        <p class="text-gray-600 mt-3">Gestiona tu experiencia, tus compras y tus publicaciones desde un solo lugar.</p>
                     </div>
-                    <div class="p-6 bg-white rounded-3xl shadow-sm">
-                        <p class="text-sm text-gray-500">Último acceso</p>
-                        <p class="text-lg font-semibold mt-2">Hoy</p>
+                    <div class="profile-highlight-card">
+                        <span class="profile-chip">Cuenta activa</span>
+                        <div class="profile-metric">
+                            <span class="profile-metric-label">Correo</span>
+                            <strong id="profileEmail">paramore@ruta.com</strong>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <div class="bg-gray-50 rounded-[1.75rem] p-8 shadow-sm text-left mt-8">
-                <p class="text-lg font-semibold text-bosque mb-4">Mis compras</p>
-                <div class="space-y-3 max-h-64 overflow-y-auto min-h-32 flex items-center justify-center">
-                    <p class="text-gray-500 text-center">No hay compras registradas aún</p>
-                </div>
-            </div>
+                <section class="profile-section-card">
+                    <div class="profile-section-header">
+                        <div>
+                            <p class="text-sm uppercase tracking-[0.3em] text-naranja font-bold">Datos generales</p>
+                            <h2 class="text-2xl font-bold text-bosque mt-2">Tu perfil</h2>
+                        </div>
+                        <span class="profile-pill">Explorador activo</span>
+                    </div>
+                    <div class="profile-summary-grid">
+                        <div class="profile-detail-card">
+                            <p class="text-sm text-gray-500">Rol</p>
+                            <p id="profileRole" class="text-lg font-semibold mt-2">Campista explorador</p>
+                        </div>
+                        <div class="profile-detail-card">
+                            <p class="text-sm text-gray-500">Último acceso</p>
+                            <p class="text-lg font-semibold mt-2">Hoy</p>
+                        </div>
+                        <div class="profile-detail-card">
+                            <p class="text-sm text-gray-500">Estado</p>
+                            <p class="text-lg font-semibold mt-2">Listo para tu próxima salida</p>
+                        </div>
+                    </div>
+                </section>
 
-            <div id="sellerDashboard" class="bg-gray-50 rounded-[1.75rem] p-8 shadow-sm text-left mt-8 hidden">
-                <p class="text-lg font-semibold text-bosque mb-4">Panel de Vendedor</p>
-                <div class="grid gap-4 md:grid-cols-3">
-                    <a href="publicar-producto.html" class="btn btn-primary text-center">Publicar Producto</a>
-                    <a href="mis-publicaciones.html" class="btn btn-primary text-center">Mis Publicaciones</a>
-                    <a href="subasta.html" class="btn btn-primary text-center">Ver Subasta</a>
-                </div>
+                <section class="profile-section-card">
+                    <div class="profile-section-header">
+                        <div>
+                            <p class="text-sm uppercase tracking-[0.3em] text-naranja font-bold">Mis compras</p>
+                            <h2 class="text-2xl font-bold text-bosque mt-2">Historial reciente</h2>
+                        </div>
+                        <span class="profile-pill">0 artículos</span>
+                    </div>
+                    <div class="profile-empty-state">
+                        <i class="bi bi-bag-heart text-3xl mb-3 block text-naranja"></i>
+                        <p class="font-semibold text-bosque">No hay compras registradas aún</p>
+                        <p class="text-sm mt-2 text-gray-500">Tus compras aparecerán aquí cuando realices tu próxima reserva o compra.</p>
+                    </div>
+                </section>
+
+                <section id="sellerDashboard" class="c2c-dashboard-shell hidden">
+                    <div class="profile-section-header">
+                        <div>
+                            <p class="text-sm uppercase tracking-[0.3em] text-naranja font-bold">Mis publicaciones</p>
+                            <h2 class="text-2xl font-bold text-bosque mt-2">Publica, gestiona y subasta</h2>
+                            <p class="text-gray-600 mt-2">Tu espacio para vender productos y participar en subastas simuladas desde tu perfil.</p>
+                        </div>
+                        <div class="c2c-dashboard-actions">
+                            <a id="adminPanelLink" href="admin.html" class="btn btn-primary hidden">Ir al panel admin</a>
+                        </div>
+                    </div>
+
+                    <div id="c2c-tabs" class="c2c-tabs-container">
+                        <button class="c2c-tab active" data-view="publications">Mis Publicaciones</button>
+                        <button class="c2c-tab" data-view="publish">Publicar Producto</button>
+                        <button class="c2c-tab" data-view="auction">Subasta</button>
+                    </div>
+
+                    <div id="c2c-views-container" class="mt-6">
+                        <div id="c2c-publications-view" class="c2c-view">
+                            <div class="text-center mb-8">
+                                <h2 class="text-3xl font-bold text-bosque">Mis Publicaciones</h2>
+                                <p class="text-gray-600 mt-2">Aquí puedes ver y gestionar los productos que has publicado.</p>
+                            </div>
+                            <div id="myPublicationsList" class="c2c-publications-grid"></div>
+                        </div>
+
+                        <div id="c2c-publish-view" class="c2c-view hidden">
+                            <div class="text-center mb-8">
+                                <h2 class="text-3xl font-bold text-bosque">Publica tu producto</h2>
+                                <p class="text-gray-600 mt-2">Completa el formulario para que otros aventureros vean tu equipo.</p>
+                            </div>
+                            <div id="publishFeedback"></div>
+                            <form id="publishProductForm" class="c2c-form max-w-2xl mx-auto">
+                                <div>
+                                    <label for="productName" class="form-label">Nombre del producto</label>
+                                    <input id="productName" type="text" class="form-input" placeholder="Ej: Tienda para 2 personas" required>
+                                </div>
+                                <div>
+                                    <label for="productPrice" class="form-label">Precio</label>
+                                    <input id="productPrice" type="number" class="form-input" placeholder="Ej: 50.00" required min="0" step="0.01">
+                                </div>
+                                <div>
+                                    <label for="productDescription" class="form-label">Descripción</label>
+                                    <textarea id="productDescription" class="form-textarea" placeholder="Describe el estado, uso y características de tu producto." required></textarea>
+                                </div>
+                                <div>
+                                    <label for="productPhoto" class="form-label">Foto del producto (simulado)</label>
+                                    <input id="productPhoto" type="file" class="form-input">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-full">Publicar</button>
+                            </form>
+                        </div>
+
+                        <div id="c2c-auction-view" class="c2c-view hidden">
+                            <div class="text-center mb-8">
+                                <h2 class="text-3xl font-bold text-bosque">Subasta: Mochila de Expedición 70L</h2>
+                                <p class="text-gray-600 mt-2">Una oportunidad única para conseguir equipo de alta gama.</p>
+                            </div>
+                            <div class="auction-container">
+                                <div class="auction-details">
+                                    <div class="auction-timer-card">
+                                        <p class="timer-label">Tiempo restante</p>
+                                        <div id="auctionTimer" class="timer-display">05:00</div>
+                                    </div>
+                                    <div class="auction-bid-card">
+                                        <p class="bid-label">Oferta actual</p>
+                                        <div id="currentBid" class="bid-display">$85.00</div>
+                                        <form id="bidForm" class="bid-form">
+                                            <input id="bidAmount" type="number" class="form-input" placeholder="Tu oferta" required min="86">
+                                            <button type="submit" class="btn btn-primary">Ofertar</button>
+                                        </form>
+                                        <div id="bidFeedback" class="mt-4"></div>
+                                    </div>
+                                </div>
+                                <div class="auction-bids-list">
+                                    <h3 class="text-xl font-bold text-bosque mb-4">Últimas ofertas (simuladas)</h3>
+                                    <ul id="bidsList" class="space-y-3">
+                                        <li><span class="font-semibold text-bosque">Carlos M.</span> ofertó <span class="text-naranja font-bold">$85.00</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <div class="auth-actions mt-10 justify-center gap-3 flex-wrap">
                 <a href="login.html" class="btn btn-secondary">Cerrar sesión</a>
-                <a id="adminPanelLink" href="admin.html" class="btn btn-primary hidden">Ir al panel admin</a>
             </div>
         </div>
     </main>
@@ -98,15 +209,20 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const adminPanelLink = document.getElementById('adminPanelLink');
+            const profileRole = document.getElementById('profileRole');
             const sellerDashboard = document.getElementById('sellerDashboard');
-            const email = localStorage.getItem('userEmail') || '';
+            const email = (localStorage.getItem('userEmail') || '').toLowerCase();
             const userRole = localStorage.getItem('userRole');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === '1' || Boolean(localStorage.getItem('userEmail'));
 
-            if (userRole === 'admin' && email.toLowerCase().includes('admin')) {
+            if ((userRole === 'admin' || email.includes('admin')) && adminPanelLink) {
                 adminPanelLink.classList.remove('hidden');
+                if (profileRole) profileRole.textContent = 'Administrador';
+            } else if (profileRole) {
+                profileRole.textContent = isLoggedIn ? 'Usuario' : 'Campista explorador';
             }
 
-            if (userRole === 'seller' && sellerDashboard) {
+            if (isLoggedIn && sellerDashboard) {
                 sellerDashboard.classList.remove('hidden');
             }
         });

@@ -27,23 +27,16 @@ body.page-promociones {
 
 /* Journal page wrapper */
 .journal-page {
-    background-color: #fffbf0;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(0,0,0,0.05);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
     position: relative;
-    z-index: 1; /* Para que esté sobre el fondo animado */
+    z-index: 1;
 }
 
 .journal-page::before {
-    content: '';
-    position: absolute;
-    left: -2px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #e0e0e0, #c0c0c0, #e0e0e0);
-    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    display: none;
 }
 
 /* Hero as a pasted photo */

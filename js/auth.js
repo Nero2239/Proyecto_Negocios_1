@@ -77,8 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const isAdminAccount = email.toLowerCase().includes('admin');
-            const isSellerAccount = email.toLowerCase().includes('vendedor');
-            const userRole = isAdminAccount ? 'admin' : isSellerAccount ? 'seller' : 'user';
+            const userRole = isAdminAccount ? 'admin' : 'user';
             localStorage.setItem('userRole', userRole);
 
             showMessage(isAdminAccount ? 'Redirigiendo al panel de administrador...' : 'Redirigiendo a tu perfil...');
