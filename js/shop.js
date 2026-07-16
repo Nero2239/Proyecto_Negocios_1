@@ -7,6 +7,8 @@ const productos = [
     { id: 6, nombre: 'Saco UltraLight 0°C', precio: 110, descripcion: 'Aislamiento alto con bajo peso.', detalle: 'Diseñado para alta montaña.', esRecomendado: true, categoria: 'sacos', descuento: 0, rating: 4.9, stock: 7 },
     { id: 7, nombre: 'Luz Frontal PRO', precio: 22, descripcion: 'Fuerte y cómoda.', detalle: 'Varios modos y larga duración.', esRecomendado: false, categoria: 'iluminacion', descuento: 25, rating: 4.4, stock: 10 },
     { id: 8, nombre: 'Organizador de Mochila', precio: 18, descripcion: 'Bolsillos y funda impermeable.', detalle: 'Mantén tus objetos ordenados.', esRecomendado: false, categoria: 'accesorios', descuento: 5, rating: 4.3, stock: 9 },
+    { id: 9, nombre: 'Tienda 3 Estaciones', precio: 150, descripcion: 'Versátil y ligera para 3 estaciones.', detalle: 'Costuras reforzadas y ventilación.', esRecomendado: true, categoria: 'tiendas', descuento: 0, rating: 4.8, stock: 5 },
+    { id: 10, nombre: 'Colchoneta Aislante', precio: 45, descripcion: 'Aislamiento y comodidad para acampar.', detalle: 'Inflable con funda resistente.', esRecomendado: false, categoria: 'accesorios', descuento: 0, rating: 4.5, stock: 11 },
 ];
 
 const state = {
@@ -17,6 +19,8 @@ const state = {
     selectedProductId: null,
     promoCode: localStorage.getItem('campingPromo') || '',
     promoMessage: '',
+    currentPage: 1,
+    pageSize: 8,
 };
 
 function savePromoCode() {
@@ -68,7 +72,13 @@ function renderProducts() {
         return true;
     });
 
-    const html = list.map((producto) => {
+    const total = list.length;
+    const totalPages = Math.max(1, Math.ceil(total / state.pageSize));
+    if (state.currentPage > totalPages) state.currentPage = totalPages;
+    const start = (state.currentPage - 1) * state.pageSize;
+    const pageItems = list.slice(start, start + state.pageSize);
+
+    const html = pageItems.map((producto) => {
         const recomendado = producto.esRecomendado ? '<span class="product-recommendation">Recomendado</span>' : '';
         const descuentoBadge = producto.descuento ? `<span class="product-discount">-${producto.descuento}%</span>` : '';
         return `
@@ -96,6 +106,22 @@ function renderProducts() {
     }
 
     grid.innerHTML = html + placeholders;
+    // pagination controls
+    const paginationContainerId = 'productsPagination';
+    let paginationHtml = '';
+    if (totalPages > 1) {
+        paginationHtml = `<div id="${paginationContainerId}" class="mt-6 flex items-center justify-center gap-3">`;
+        paginationHtml += `<button class="btn btn-secondary btn-small" onclick="window.shop.changePage(${Math.max(1, state.currentPage-1)})">‹</button>`;
+        for (let p = 1; p <= totalPages; p++) {
+            paginationHtml += `<button class="btn ${p===state.currentPage? 'btn-primary' : 'btn-secondary'} btn-small" onclick="window.shop.setPage(${p})">${p}</button>`;
+        }
+        paginationHtml += `<button class="btn btn-secondary btn-small" onclick="window.shop.changePage(${Math.min(totalPages, state.currentPage+1)})">›</button>`;
+        paginationHtml += `</div>`;
+    }
+    const wrapper = document.querySelector('#productGrid').parentElement;
+    const existing = document.getElementById(paginationContainerId);
+    if (existing) existing.remove();
+    if (paginationHtml) wrapper.insertAdjacentHTML('beforeend', paginationHtml);
     if (detail && !state.selectedProductId) {
         detail.classList.add('hidden');
         detail.innerHTML = '';
@@ -352,6 +378,16 @@ function clearCart() {
     state.cart = [];
     saveCart();
     renderCart();
+    renderProducts();
+}
+
+function setPage(p) {
+    state.currentPage = p;
+    renderProducts();
+}
+
+function changePage(p) {
+    state.currentPage = p;
     renderProducts();
 }
 

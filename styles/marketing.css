@@ -1,0 +1,52 @@
+/* Marketing page styles */
+.marketing-hero {
+    position: relative;
+    min-height: 520px;
+}
+.marketing-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15,23,42,0.04), rgba(15,23,42,0.12));
+    pointer-events: none;
+}
+.marketing-entry { max-width: 1100px; margin: 0 auto; }
+.marketing-entry .entry-card {
+    min-height: 220px;
+    box-shadow: 0 30px 70px rgba(15,23,42,0.12);
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(15,23,42,0.08);
+}
+.publications-controls .btn { padding: 0.45rem 0.8rem; }
+#publicationsGrid { position: relative; z-index: 10; }
+.main-header, .marketing-controls { position: relative; z-index: 10; }
+
+.c2c-publications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.auction-summary-card { min-width: 320px; }
+
+.auctions-carousel { display: flex; align-items: center; gap: 0.75rem; }
+.auctions-carousel .carousel-nav { background: rgba(15,23,42,0.08); border: none; width: 44px; height: 44px; border-radius: 12px; font-size: 1.6rem; display: grid; place-items: center; cursor: pointer; color: var(--color-bosque); }
+.auctions-carousel .carousel-nav.left { margin-right: 0.5rem; }
+.auctions-carousel .carousel-nav.right { margin-left: 0.5rem; }
+
+#auctionsCarousel { flex: 1 1 auto; }
+#auctionsCarouselInner { display: flex; align-items: stretch; }
+
+.publication-card { transition: transform 0.14s ease; background: linear-gradient(180deg,#fff,#f7f3ec); border-radius: 1.2rem; padding: 0.8rem; display: grid; grid-template-columns: 120px 1fr auto; align-items:center; gap:1rem; border:1px solid rgba(28,37,65,0.06); }
+.publication-card:hover { transform: translateY(-6px); }
+
+.publication-photo { width:120px; height:90px; object-fit:cover; border-radius:0.8rem }
+.publication-body { padding:0 }
+.publication-title { font-size:1.05rem; font-weight:700; color:var(--color-bosque) }
+.publication-price { color:var(--color-naranja); font-weight:700 }
+.publication-description { color:#475569; font-size:0.95rem }
+
+@media (max-width: 640px) {
+    .auctions-carousel .carousel-nav { display: none; }
+    #auctionsCarouselInner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}

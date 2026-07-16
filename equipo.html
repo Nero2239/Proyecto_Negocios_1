@@ -44,14 +44,45 @@
     </nav>
 
     <!-- ==================== HERO ==================== -->
-    <header class="relative h-64 flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
+    <header class="relative h-96 flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-bosque/90 to-green-900/80 z-10"></div>
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=600&fit=crop'); z-index: 5;"></div>
         <div class="relative z-20">
-            <h1 class="text-5xl font-bold font-serif drop-shadow-lg">Equipo Destacado</h1>
-            <p class="text-xl mt-2 drop-shadow-md max-w-2xl mx-auto">Explora nuestra selección de productos recomendados para tu próxima aventura.</p>
+            <h1 class="text-5xl font-bold font-serif drop-shadow-lg text-crema">Equipo Destacado</h1>
+            <p class="text-xl mt-2 drop-shadow-md max-w-2xl mx-auto text-white/90">Explora nuestra selección de productos recomendados para tu próxima aventura.</p>
         </div>
     </header>
+
+    <!-- ENTRY HERO WITH TWO CARDS -->
+    <section class="entry-hero max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <article id="entryCardStore" class="entry-card rounded-2xl shadow-lg bg-gradient-to-br from-white to-[#f7f3ec] hover:shadow-2xl cursor-pointer">
+                <div class="flex items-start gap-4">
+                    <div class="entry-icon bg-bosque text-white rounded-xl p-3 text-2xl"><i class="bi bi-shop"></i></div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-bosque">Visitar la tienda</h3>
+                        <p class="text-gray-600 mt-2">Explora nuestro catálogo curado y encuentra equipo nuevo y recomendado.</p>
+                        <div class="mt-4">
+                            <button class="btn btn-primary">Ir a la tienda</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="entryCardMarketing" class="entry-card rounded-2xl shadow-lg bg-gradient-to-br from-white to-[#fff9f2] hover:shadow-2xl cursor-pointer">
+                <div class="flex items-start gap-4">
+                    <div class="entry-icon bg-naranja text-white rounded-xl p-3 text-2xl"><i class="bi bi-megaphone-fill"></i></div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-bosque">Comunidad y subastas</h3>
+                        <p class="text-gray-600 mt-2">Ver equipos usados por otros aventureros y participar en subastas activas.</p>
+                        <div class="mt-4">
+                            <button class="btn btn-secondary">Ver publicaciones</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
 
     <!-- ==================== LISTA DE PRODUCTOS ==================== -->
     <section class="py-20 px-10 bg-white">
@@ -153,5 +184,24 @@
 
     <script src="js/shop.js"></script>
     <script src="js/auth.js"></script>
+    <script>
+        // Equipo entry card handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardStore = document.getElementById('entryCardStore');
+            const cardMarketing = document.getElementById('entryCardMarketing');
+
+            cardStore?.addEventListener('click', (e) => {
+                // scroll to products section
+                const productsSection = document.querySelector('section.py-20');
+                if (productsSection) {
+                    productsSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            cardMarketing?.addEventListener('click', (e) => {
+                window.location.href = 'marketing.html';
+            });
+        });
+    </script>
 </body>
 </html>

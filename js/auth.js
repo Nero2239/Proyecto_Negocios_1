@@ -137,23 +137,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === '1' || Boolean(userEmail);
 
         if (navAuthContainer) {
-            const loginLink = navAuthContainer.querySelector('a[href="login.html"]');
-            const existingLogoutButton = document.getElementById('navLogoutBtn');
-
             if (isLoggedIn && userEmail) {
-                if (loginLink) {
-                    loginLink.outerHTML = `
-                        <div class="flex items-center gap-3">
-                            <a href="profile.html" class="font-semibold text-bosque hover:text-naranja transition hidden sm:block" title="${userEmail}">
-                                ${userEmail}
-                            </a>
-                            <button id="navLogoutBtn" title="Cerrar sesión" class="text-bosque hover:text-naranja transition text-xl">
-                                <i class="bi bi-box-arrow-right"></i>
-                            </button>
-                        </div>
-                    `;
-                }
-
+                navAuthContainer.innerHTML = `
+                    <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button">
+                        <i class="bi bi-cart3"></i>
+                        <span id="cartCount">0</span>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <a href="profile.html" class="font-semibold text-bosque hover:text-naranja transition hidden sm:block" title="${userEmail}">${userEmail}</a>
+                        <button id="navLogoutBtn" title="Cerrar sesión" class="text-bosque hover:text-naranja transition text-xl"><i class="bi bi-box-arrow-right"></i></button>
+                    </div>
+                `;
                 document.getElementById('navLogoutBtn')?.addEventListener('click', function () {
                     localStorage.removeItem('userEmail');
                     localStorage.removeItem('isLoggedIn');
@@ -162,10 +156,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     updateAuthUI();
                     window.location.href = 'index.html';
                 });
-            } else if (existingLogoutButton) {
-                existingLogoutButton.remove();
-                const profileLink = navAuthContainer.querySelector('a[href="profile.html"]');
-                profileLink?.remove();
+            } else {
+                navAuthContainer.innerHTML = `
+                    <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button">
+                        <i class="bi bi-cart3"></i>
+                        <span id="cartCount">0</span>
+                    </button>
+                    <div class="flex flex-col gap-2">
+                        <a href="login.html" class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span>Iniciar sesión</span>
+                        </a>
+                        <button class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">Planifica tu viaje  <i class="bi bi-calendar-event-fill"></i></button>
+                    </div>
+                `;
             }
         }
 
