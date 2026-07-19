@@ -5,65 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Ruta Salvaje</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/equipo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles/contacto.css">
-    <script src="styles/tailwind-config.js"></script>
 </head>
-<body class="bg-crema text-gray-800">
+<body class="bg-[#F9F6F0] text-[#2C302E] antialiased selection:bg-[#606C5A] selection:text-white">
 
     <!-- ==================== HEADER / NAVEGACIÓN ==================== -->
-    <nav class="sticky top-0 z-50 flex justify-between items-center py-6 px-10 bg-white shadow-md">
-        <a href="index.html" class="text-3xl font-bold text-bosque font-serif hover:text-naranja transition">Ruta <i class="bi bi-fire"></i> Salvaje</a>
-        <div class="hidden md:flex space-x-8 font-semibold">
-            <a href="index.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-house-door-fill"></i> Inicio</a>
-            <a href="index.html#guias" class="text-bosque hover:text-naranja transition"><i class="bi bi-map-fill"></i> Guías de Aventura</a>
-            <a href="equipo.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-handbag-fill"></i> Equipo</a>
-            <a href="promociones.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-tags-fill"></i> Promociones</a>
-            <a href="campana.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-megaphone-fill"></i> Campaña</a>
-            <a href="nosotros.html" class="text-bosque hover:text-naranja transition"><i class="bi bi-person-arms-up"></i> Nosotros</a>
-            <a href="contacto.html" class="text-bosque hover:text-naranja transition font-bold text-naranja"><i class="bi bi-envelope-fill"></i> Contacto</a>
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl bg-white/80 backdrop-blur-md border border-white/40 z-50 px-6 py-3 rounded-full flex justify-between items-center shadow-sm">
+        <a href="index.html" class="font-serif text-xl tracking-wide font-semibold text-[#2C302E]">Ruta Salvaje</a>
+        <div class="hidden md:flex space-x-6 text-sm tracking-wider uppercase text-[#2C302E]/80">
+            <a href="index.html" class="hover:text-[#606C5A] transition-colors">Inicio</a>
+            <a href="equipo.html" class="hover:text-[#606C5A] transition-colors">Equipo</a>
+            <a href="promociones.html" class="hover:text-[#606C5A] transition-colors">Promociones</a>
+            <a href="campana.html" class="hover:text-[#606C5A] transition-colors">Campaña</a>
+            <a href="nosotros.html" class="hover:text-[#606C5A] transition-colors">Nosotros</a>
+            <a href="contacto.html" class="text-[#606C5A] font-semibold transition-colors">Contacto</a>
         </div>
-                <div id="nav-auth-buttons" class="flex items-center gap-3">
-            <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button">
-                <i class="bi bi-cart3"></i>
+        <div id="nav-auth-buttons" class="flex items-center gap-4">
+            <a href="login.html" class="hidden md:block border border-[#2C302E] px-5 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-[#2C302E] hover:text-[#F9F6F0] transition-all duration-300">
+                Login
+            </a>
+            <button id="openCartButton" class="relative border border-transparent hover:border-[#2C302E]/30 rounded-full p-2 transition-colors" type="button">
+                <i class="bi bi-cart3 text-xl"></i>
                 <span id="cartCount">0</span>
             </button>
-            <div class="flex flex-col gap-2">
-                <a href="login.html"
-                    class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Iniciar sesión</span>
-                </a>
-                <button
-                    class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">
-                    Planifica tu viaje  <i class="bi bi-calendar-event-fill"></i>
-                </button>
-            </div>
         </div>
     </nav>
 
     <!-- ==================== HERO SECTION (Mini) ==================== -->
-    <header class="relative h-64 flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
+    <header class="relative h-80 flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
         <!-- Fondo con overlay -->
-        <div class="absolute inset-0 bg-gradient-to-r from-bosque/90 to-green-900/90 z-10"></div>
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1200&h=400&fit=crop'); z-index: 5;"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#2C302E]/80 to-[#2C302E]/60 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1510312305653-8ed496efae75?q=80&w=1920&auto=format&fit=crop'); z-index: 5; filter: brightness(0.8);"></div>
         
         <!-- Contenido del Hero -->
         <div class="relative z-20">
-            <h1 class="text-5xl font-bold font-serif drop-shadow-lg">Contáctanos</h1>
-            <p class="text-xl mt-2 drop-shadow-md">¿Preguntas o sugerencias? Nos encantaría escucharte</p>
+            <h1 class="font-serif text-5xl font-light">Contáctanos</h1>
+            <p class="text-xl mt-2 text-white/80 font-light">¿Preguntas o sugerencias? Nos encantaría escucharte.</p>
         </div>
     </header>
 
     <!-- ==================== SECCIÓN: CONTACTO ==================== -->
-    <section class="py-20 px-10 bg-white">
+    <section class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="contact-container">
                 <!-- Formulario -->
                 <div class="contact-form">
-                    <h3 class="text-2xl font-bold text-bosque font-serif mb-6">Envíanos tu Mensaje</h3>
+                    <h3 class="text-3xl font-serif text-[#2C302E] mb-6">Envíanos tu Mensaje</h3>
                     <form id="contactForm">
                         <div id="formMessage"></div>
 
@@ -91,19 +84,19 @@
                 <!-- Información de Contacto -->
                 <div class="contact-info">
                     <!-- Información -->
-                    <div class="contact-info-item">
+                    <div class="contact-info-item bg-white">
                         <h4><i class="bi bi-envelope"></i> Email</h4>
-                        <p><a href="mailto:info@rutasalvaje.com" class="text-naranja hover:underline">info@rutasalvaje.com</a></p>
+                        <p><a href="mailto:info@rutasalvaje.com" class="text-[#606C5A] hover:underline">info@rutasalvaje.com</a></p>
                     </div>
 
-                    <div class="contact-info-item">
+                    <div class="contact-info-item bg-white">
                         <h4><i class="bi bi-geo-alt"></i>  Ubicación</h4>
                         <p>Calle Principal 123<br>Ciudad Aventura, PA 12345<br>Latinoamérica</p>
                     </div>
 
-                    <div class="contact-info-item">
+                    <div class="contact-info-item bg-white">
                         <h4><i class="bi bi-telephone"></i> Teléfono</h4>
-                        <p><a href="tel:+1234567890" class="text-naranja hover:underline">+1 (234) 567-890</a></p>
+                        <p><a href="tel:+1234567890" class="text-[#606C5A] hover:underline">+1 (234) 567-890</a></p>
                     </div>
 
                     <!-- Redes Sociales -->
@@ -113,41 +106,32 @@
     </section>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="bg-bosque text-white py-16 px-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 mb-12">
+    <footer class="bg-[#2C302E] text-[#F9F6F0]/80 mt-16 py-16 px-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <h4 class="font-serif text-2xl text-white tracking-wide">Ruta Salvaje</h4>
+                <p class="text-sm font-light max-w-xs text-white/60">
+                    Tu escape a la naturaleza. Equipo y guías para tu próxima aventura.
+                </p>
+            </div>
+            <div class="space-y-4">
                 <!-- Newsletter -->
-                <div>
-                    <h4 class="text-2xl font-bold mb-4 font-serif">Recibe Guías Mensuales</h4>
-                    <p class="text-sm text-gray-200 mb-6">Suscríbete para recibir rutas exclusivas y tips de camping directamente en tu correo.</p>
-                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirse!');">
-                        <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-4 py-3 rounded-lg text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-naranja" required>
-                        <button type="submit" class="bg-naranja hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition shadow-lg">Suscribirse</button>
-                    </form>
-                </div>
-
-                <!-- Enlaces Rápidos -->
-                <div>
-                    <h4 class="text-2xl font-bold mb-4 font-serif">Enlaces Rápidos</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="index.html" class="hover:text-naranja transition">Inicio</a></li>
-                        <li><a href="index.html#guias" class="hover:text-naranja transition">Guías de Aventura</a></li>
-                        <li><a href="equipo.html" class="hover:text-naranja transition">Nuestra Tienda</a></li>
-                        <li><a href="nosotros.html" class="hover:text-naranja transition">Nosotros</a></li>
-                        <li><a href="contacto.html" class="hover:text-naranja transition">Contacto</a></li>
-                        <li><a href="politicas.html" class="hover:text-naranja transition">Políticas de compra y venta</a></li>
-                    </ul>
-                </div>
-
-                <!-- Redes Sociales removed from footer (floating remains) -->
+                <h5 class="text-white uppercase tracking-widest text-xs">Newsletter</h5>
+                <p class="text-sm font-light text-white/60">Recibe calma en tu correo.</p>
+                <form class="flex border-b border-white/20 pb-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+                    <input type="email" placeholder="Tu email" class="bg-transparent text-sm w-full focus:outline-none text-white placeholder-white/40" required>
+                    <button type="submit" class="text-xs uppercase tracking-wider text-white hover:text-[#8A9A86] transition-colors">Suscribir</button>
+                </form>
             </div>
-
-            <hr class="border-gray-600 mb-8">
-
-            <!-- Copyright -->
-            <div class="text-center text-sm text-gray-300">
-                <p>&copy; 2026 Ruta Salvaje. Todos los derechos reservados. | <a href="#" class="hover:text-naranja">Política de Privacidad</a> | <a href="#" class="hover:text-naranja">Términos de Servicio</a></p>
+            <div class="space-y-2 text-sm font-light">
+                <h5 class="text-white uppercase tracking-widest text-xs mb-4">Explora</h5>
+                <p><a href="index.html" class="hover:text-white transition-colors">Inicio</a></p>
+                <p><a href="equipo.html" class="hover:text-white transition-colors">Equipo</a></p>
+                <p><a href="politicas.html" class="hover:text-white transition-colors">Políticas</a></p>
             </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-white/10 mt-12 pt-8 text-center text-xs text-white/40 font-light">
+            &copy; 2026 Ruta Salvaje. Diseñado con calma.
         </div>
     </footer>
 
@@ -205,18 +189,18 @@
     <button id="closeCartButton" class="cart-close-btn" type="button" aria-label="Cerrar carrito"><i class="bi bi-x-lg"></i></button>
     <div class="cart-shell">
         <div class="cart-left">
-            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-naranja">Recomendados</p>
-            <h3 class="text-2xl font-bold text-bosque mt-2">Completa tu kit de aventura</h3>
+            <p class="text-sm font-semibold uppercase tracking-widest text-[#606C5A]">Recomendados</p>
+            <h3 class="font-serif text-2xl text-[#2C302E] mt-2">Completa tu kit de aventura</h3>
             <p class="text-gray-600 mt-2">Estas piezas suelen acompañar muy bien a los artículos que ya tienes en tu carrito.</p>
             <div id="recommendedProducts" class="recommended-grid"></div>
         </div>
         <div class="cart-right">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="text-2xl font-bold text-bosque">Tu carrito</h3>
-                <span id="cartCountInline" class="rounded-full bg-bosque/10 px-3 py-1 text-sm font-semibold text-bosque">0 artículos</span>
+                <h3 class="font-serif text-2xl text-[#2C302E]">Tu carrito</h3>
+                <span id="cartCountInline" class="rounded-full bg-[#606C5A]/10 px-3 py-1 text-sm font-semibold text-[#606C5A]">0 artículos</span>
             </div>
             <div id="cartEmpty" class="cart-empty">
-                <i class="bi bi-bag-heart text-4xl mb-3 block text-naranja"></i>
+                <i class="bi bi-bag-heart text-4xl mb-3 block text-[#606C5A]"></i>
                 <p class="font-semibold">Tu carrito está vacío</p>
                 <p class="text-sm mt-2">Agrega artículos para preparar tu próxima salida.</p>
             </div>

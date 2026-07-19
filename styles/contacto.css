@@ -58,7 +58,7 @@
 
 .contact-info-item h4 {
     margin-bottom: 1rem;
-    color: var(--color-naranja);
+    color: var(--color-green);
     font-size: 1.1rem;
     font-family: 'Georgia', 'Garamond', serif;
     font-weight: bold;
@@ -71,7 +71,7 @@
 }
 
 .contact-info-item a {
-    color: var(--color-naranja);
+    color: var(--color-green);
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition-smooth);
@@ -107,7 +107,7 @@
 }
 
 .social-link:hover {
-    background-color: var(--color-naranja);
+    background-color: var(--color-green);
     transform: translateY(-3px) scale(1.1);
     box-shadow: var(--shadow-medium);
 }
@@ -166,8 +166,8 @@
 .contact-form .form-input:focus,
 .contact-form .form-textarea:focus {
     outline: none;
-    border-color: var(--color-naranja);
-    box-shadow: 0 0 0 3px rgba(224, 120, 86, 0.1);
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 3px rgba(96, 108, 90, 0.1);
     background-color: rgba(250, 248, 243, 0.5);
 }
 
