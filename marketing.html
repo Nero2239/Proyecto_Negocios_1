@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketing - Ruta Salvaje</title>
@@ -36,7 +35,7 @@
     </nav>
 
     <main class="relative">
-        <section class="marketing-hero relative h-[520px]">
+        <section class="marketing-hero page-hero relative h-[520px]">
             <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=900&fit=crop'); filter: brightness(0.9);"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#F9F6F0]"></div>
             <div class="relative z-20 flex h-full flex-col justify-center px-6 text-white">
@@ -86,10 +85,10 @@
                     <div class="flex flex-wrap gap-3">
                         <button id="filterAll" class="btn btn-welcome btn-small">Todas</button>
                         <button id="filterUsed" class="btn btn-welcome btn-small">Usado</button>
-                        <button id="filterAuctions" class="btn btn-welcome btn-small">Solo subastas</button>
                     </div>
                     <input id="pubSearch" class="form-input w-full sm:w-72" placeholder="Buscar publicaciones..." />
                 </div>
+                <div id="publicationsPagination" class="flex flex-wrap justify-center gap-3 mb-6"></div>
                 <div id="publicationsGrid" class="c2c-publications-grid"></div>
             </section>
 
@@ -109,7 +108,40 @@
         </section>
     </main>
 
+    <footer class="bg-[#2C302E] text-[#F9F6F0]/80 mt-16 py-16 px-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <h4 class="font-serif text-2xl text-white tracking-wide">Ruta Salvaje</h4>
+                <p class="text-sm font-light max-w-xs text-white/60">
+                    Tu escape a la naturaleza. Equipo y guías para tu próxima aventura.
+                </p>
+            </div>
+            <div class="space-y-4">
+                <h5 class="text-white uppercase tracking-widest text-xs">Newsletter</h5>
+                <p class="text-sm font-light text-white/60">Recibe calma en tu correo.</p>
+                <form class="flex border-b border-white/20 pb-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+                    <input type="email" placeholder="Tu email" class="bg-transparent text-sm w-full focus:outline-none text-white placeholder-white/40" required>
+                    <button type="submit" class="text-xs uppercase tracking-wider text-white hover:text-[#8A9A86] transition-colors">Suscribir</button>
+                </form>
+            </div>
+            <div class="space-y-2 text-sm font-light">
+                <h5 class="text-white uppercase tracking-widest text-xs mb-4">Explora</h5>
+                <p><a href="index.html" class="hover:text-white transition-colors">Inicio</a></p>
+                <p><a href="equipo.html" class="hover:text-white transition-colors">Equipo</a></p>
+                <p><a href="politicas.html" class="hover:text-white transition-colors">Políticas</a></p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-white/10 mt-12 pt-8 text-center text-xs text-white/40 font-light">
+            &copy; 2026 Ruta Salvaje. Diseñado con calma.
+        </div>
+    </footer>
+
     <div id="marketingDetail" class="product-detail hidden"></div>
+    <div class="redes-flotantes">
+        <a href="https://facebook.com" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+    </div>
     <script src="js/auth.js"></script>
     <script src="js/marketing-data.js"></script>
     <script src="js/marketing.js"></script>

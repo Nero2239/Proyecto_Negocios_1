@@ -55,3 +55,260 @@
 .carousel-nav.right {
     right: -20px;
 }
+
+.auction-summary-card {
+    min-width: 320px;
+    max-width: 360px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+.auctions-carousel #auctionsCarousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+}
+
+.auctions-carousel #auctionsCarouselInner {
+    display: flex;
+    gap: 1rem;
+}
+
+.c2c-publications-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.c2c-publications-grid .publication-card {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 1rem;
+}
+
+.c2c-publications-grid .publication-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.c2c-publications-grid .publication-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.c2c-publications-grid .publication-description {
+    line-height: 1.7;
+    margin-bottom: 0;
+    color: #4b5563;
+}
+
+.c2c-publications-grid .publication-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.75rem;
+}
+
+.c2c-publications-grid .publication-actions button {
+    width: 100%;
+    max-width: 180px;
+}
+
+@media (min-width: 768px) {
+    .c2c-publications-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+.product-detail {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.72);
+    z-index: 1300;
+    overflow-y: auto;
+}
+
+.product-detail.hidden {
+    display: none;
+}
+
+.product-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1301;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.product-modal-card {
+    position: relative;
+    width: min(900px, 95vw);
+    max-width: 900px;
+    background: rgba(255,255,255,0.98);
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    box-shadow: 0 35px 90px rgba(15, 23, 42, 0.25);
+    overflow: hidden;
+}
+
+.product-modal-card.compact-modal {
+    width: min(840px, 95vw);
+}
+
+.product-modal-card .left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1rem;
+    background: linear-gradient(180deg, #fff7ec, #f8ede3);
+    border-radius: 1.5rem;
+}
+
+.product-modal-card .left .detalle-imagen {
+    width: 100%;
+    min-height: 240px;
+    border-radius: 1.25rem;
+    background: linear-gradient(135deg, #f2e8dc, #d8c1a1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #766551;
+    font-size: 3rem;
+    box-shadow: inset 0 0 0 1px rgba(15,23,42,0.06);
+}
+
+.product-modal-card .right {
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.detail-meta-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+    color: #475569;
+    margin-bottom: 1.5rem;
+}
+
+.detail-meta-list li {
+    font-size: 0.95rem;
+}
+
+.detail-meta-list strong {
+    color: #2c302e;
+}
+
+.product-modal-card .detalle-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.product-modal-card .detalle-actions button {
+    width: auto;
+    min-width: 140px;
+}
+
+.product-modal-card .modal-card-header {
+    grid-column: 1 / -1;
+    padding: 1.4rem 2.2rem 1rem;
+    border-bottom: 1px solid rgba(28,37,65,0.08);
+    margin: 0 -2.5rem 1.5rem;
+    background: linear-gradient(135deg, rgba(224,120,86,0.18), rgba(247,230,208,0.24));
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.product-modal-card .modal-card-header span {
+    display: inline-flex;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-naranja);
+}
+
+.product-modal-card .modal-card-header h3 {
+    margin: 0.75rem 0 0;
+    font-size: 2rem;
+    color: var(--color-bosque);
+    line-height: 1.08;
+}
+
+.detail-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 999px;
+    background: var(--color-bosque);
+    color: white;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+}
+
+.product-modal-card .detalle-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.product-modal-card .detalle-actions button {
+    width: 100%;
+}
+.marketing-cart-feedback {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1400;
+    min-width: 220px;
+    padding: 0.85rem 1rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    justify-content: center;
+    font-size: 0.95rem;
+    color: white;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 25px 40px rgba(15, 23, 42, 0.2);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.marketing-cart-feedback.hidden {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+}
+
+.marketing-cart-feedback:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (min-width: 1100px) {
+    .c2c-publications-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}

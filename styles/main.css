@@ -95,6 +95,21 @@ footer h4, footer h5 {
     transform: translateY(-2px);
 }
 
+#openCartButton {
+    background-color: #d6d6d6;
+    color: #2c302e;
+    border: 1px solid rgba(44,48,46,0.16);
+}
+
+#openCartButton:hover {
+    background-color: #bfc0c0;
+}
+
+#openCartButton i,
+#openCartButton span {
+    color: #2c302e;
+}
+
 .btn-welcome {
     display: inline-flex;
     align-items: center;
@@ -179,7 +194,7 @@ html {
 
 .redes-flotantes a {
     background-color: rgba(44, 48, 46, 0.92);
-    color: var(--muted-light);
+    color: #ffffff;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -192,6 +207,10 @@ html {
     text-decoration: none;
     box-shadow: 0 12px 30px rgba(2,6,23,0.35);
     transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.redes-flotantes a i {
+    color: #ffffff;
 }
 
 .redes-flotantes a:hover {
@@ -359,6 +378,13 @@ html {
         right: 1rem;
         bottom: 1rem;
     }
+}
+
+body:not(.home-page) .page-hero h1,
+body:not(.home-page) .page-hero h2,
+body:not(.home-page) .page-hero p,
+body:not(.home-page) .page-hero span {
+    color: #ffffff !important;
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -592,4 +618,15 @@ html {
     to {
         transform: rotate(360deg);
     }
+}
+
+/* ==================== CAMPAIGN HERO FIX ==================== */
+
+/*
+  Forzar el centrado del contenido en el hero de la campaña.
+  Esto asegura que el título y los botones se alineen correctamente
+  incluso si hay otros estilos que interfieren.
+*/
+.campaign-hero {
+    text-align: center;
 }

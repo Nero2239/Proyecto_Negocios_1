@@ -495,7 +495,73 @@ function initShop() {
     const openCartButton = document.getElementById('openCartButton');
     const closeCartButton = document.getElementById('closeCartButton');
 
+    if (localStorage.getItem('cookiesAccepted') !== 'true') {
+        initCookieConsent();
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (event) => {
+            state.activeQuery = event.target.value.trim().toLowerCase();
+            renderProducts();
+        });
+    }
+
+    if (categorySelect) {
+        categorySelect.addEventListener('change', (event) => {
+            state.activeCategory = event.target.value;
+            renderProducts();
+        });
+    }
+
+    if (filterAll) {
+        filterAll.addEventListener('click', () => {
+            state.activeFilter = 'all';
+            renderProducts();
+        });
+    }
+
+    if (filterRecommended) {
+        filterRecommended.addEventListener('click', () => {
+            state.activeFilter = 'recommended';
+            renderProducts();
+        });
+    }
+
+    if (openCartButton) {
+        openCartButton.addEventListener('click', toggleCartPanel);
+    }
+
+    if (closeCartButton) {
+        closeCartButton.addEventListener('click', toggleCartPanel);
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeProductModal();
+            closeCart();
+        }
+    });
+
+    renderProducts();
+    renderCart();
+
+    const shouldOpenCart = new URLSearchParams(window.location.search).get('openCart') === '1';
+    if (shouldOpenCart) {
+        showCartPanel();
+    }
+}
+
+function initShop() {
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const filterAll = document.getElementById('filterAll');
+    const filterRecommended = document.getElementById('filterRecommended');
+    const openCartButton = document.getElementById('openCartButton');
+    const closeCartButton = document.getElementById('closeCartButton');
+
     if (document.body.classList.contains('home-page')) {
+        initCookieConsent();
+    } else if (localStorage.getItem('cookiesAccepted') !== 'true') {
         initCookieConsent();
     }
 
@@ -552,8 +618,6 @@ function initShop() {
 }
 
 window.shop = {
-    productos,
-    renderProducts,
     showProductDetail,
     closeProductModal,
     addToCart,
@@ -563,6 +627,10 @@ window.shop = {
     renderCart,
     toggleCartPanel,
     showCartPanel,
+    openCart,
+    closeCart,
+    setPage,
+    changePage,
 };
 
 document.addEventListener('DOMContentLoaded', initShop);
