@@ -35,26 +35,25 @@
         </div>
     </nav>
 
-    <main class="pt-32">
-        <section class="campaign-hero page-hero relative h-[500px] w-full flex items-center justify-center overflow-hidden px-6 md:px-24">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1533616688412-8a5b5d27fbf8?w=1400&h=900&fit=crop" alt="Campaña de verano" class="w-full h-full object-cover brightness-75" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1400&h=900&fit=crop';">
-            </div>
-            <div class="relative z-10 max-w-3xl text-white space-y-6">
-                <span class="text-sm uppercase tracking-widest font-medium">Campaña de Verano</span>
-                <h1 class="font-serif text-5xl md:text-6xl font-light leading-tight">
-                    Prepárate para la Aventura.
-                </h1>
-                <p class="text-lg md:text-xl font-light text-white/90 max-w-2xl mx-auto tracking-wide">
+    <header class="relative h-[450px] flex flex-col justify-center items-center text-white text-center px-4 overflow-hidden">
+        <img src="https://wallpapers.com/images/hd/skyrim-flying-dragon-kl4n2n4m4l34f7xv.jpg" alt="Campaña de verano" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#2C302E]/70 via-[#2C302E]/40 to-[#2C302E]/60 z-10"></div>
+        <div class="relative z-20 max-w-3xl">
+            <span class="text-sm uppercase tracking-widest font-medium">Campaña de Verano</span>
+            <h1 class="font-serif text-5xl md:text-6xl font-light mt-4">
+                Prepárate para la Aventura.
+            </h1>
+            <p class="text-xl mt-4 font-light text-white/80 max-w-2xl mx-auto">
                     Una selección de productos destacados, una oferta especial y testimonios reales para inspirar tu próxima aventura.
                 </p>
-                <div class="flex flex-col items-center sm:flex-row gap-4 justify-center">
-                    <a href="#destacado" class="bg-[#606C5A] text-[#F9F6F0] px-8 py-3 rounded-md tracking-wider text-sm uppercase hover:bg-[#4d5748] transition-colors shadow-md">Ver Producto</a>
-                    <a href="#testimonios" class="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-md tracking-wider text-sm uppercase hover:bg-white/30 transition-colors">Leer Opiniones</a>
-                </div>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#destacado" class="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-md tracking-wider text-sm uppercase hover:bg-white/30 transition-colors inline-block">Ver Producto</a>
+                <a href="#testimonios" class="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-md tracking-wider text-sm uppercase hover:bg-white/30 transition-colors inline-block">Leer Opiniones</a>
             </div>
-        </section>
+        </div>
+    </header>
 
+    <main>
         <section id="destacado" class="py-24 px-6 max-w-6xl mx-auto grid gap-12 lg:grid-cols-2 items-center">
             <div class="bg-white p-10 rounded-xl shadow-xl border border-stone-200">
                 <div class="flex items-center justify-between gap-4 mb-6">
@@ -72,10 +71,11 @@
                 <div class="flex flex-col sm:flex-row gap-4 items-center">
                     <span class="font-serif text-5xl text-[#2C302E]">$120.00</span>
                     <button type="button" class="btn btn-primary inline-flex items-center gap-2" onclick="window.shop.addToCart(1, true)">Comprar ahora <i class="bi bi-cart-plus-fill"></i></button>
+                    <a href="equipo.html" class="btn btn-secondary">Ver más equipo</a>
                 </div>
             </div>
             <div class="bg-white p-10 rounded-xl shadow-xl border border-stone-200">
-                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&h=700&fit=crop" alt="Bosque chill" class="w-full rounded-lg mb-6 object-cover h-96" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&h=700&fit=crop';" />
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&h=700&fit=crop" alt="Cabaña en el lago con montañas" class="w-full rounded-lg mb-6 object-cover h-96" loading="lazy" />
                 <div class="text-gray-700 mb-8">
                     <p class="text-sm uppercase tracking-widest text-[#606C5A] font-semibold mb-3">Oferta especial</p>
                     <p class="text-lg">Solo por esta campaña, recibe asesoría gratuita para elegir la tienda ideal según tu ruta.</p>

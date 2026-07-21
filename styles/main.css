@@ -34,7 +34,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Georgia', 'Garamond', serif;
-    color: var(--color-bosque);
+    /* color: var(--color-bosque); */ /* This is now handled by utility classes or inherited */
 }
 
 /* Para que los títulos en el footer sean visibles sobre el fondo oscuro */

@@ -1,64 +1,50 @@
-/* Welcome page styles - chill animated background */
+/* Welcome page styles - epic nordic hero */
 
-/* Palette and base */
-:root{
-    --chill-dark: #0B132B;
-    --chill-mid: #1C2541;
-    --chill-soft: #3A506B;
-    --accent-warm: #E07A5F;
-    --accent-warm-2: #F4A261;
-    --muted-light: #E6EEF3;
+:root {
+    --nordic-dark: #0B1015;
+    --nordic-slate: #16202A;
+    --nordic-frost: #A5C4D4;
+    --nordic-gold: #D4AF37;
+    --nordic-amber: #E67E22;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
-body{overflow:hidden;color:var(--muted-light);background:linear-gradient(to bottom,var(--chill-dark),var(--chill-mid),var(--chill-soft))}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+body { overflow: hidden; color: #e2e8f0; background-color: var(--nordic-dark); }
 
-.scenery{position:relative;width:100%;height:100%;background:linear-gradient(to bottom,var(--chill-dark),var(--chill-mid),var(--chill-soft))}
-.stars{position:absolute;width:100%;height:60%;background-image:radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#fff 1.5px,transparent 2px),radial-gradient(circle,#fff 1px,transparent 1.5px);background-size:550px 550px,350px 350px,250px 250px;background-position:0 0,40px 60px,130px 270px;animation:twinkle 6s ease-in-out infinite alternate;opacity:0.8;z-index:0}
-@keyframes twinkle{0%{opacity:0.5}50%{opacity:0.9}100%{opacity:0.6}}
+.welcome-page {
+    min-height: 100vh;
+    background-color: var(--nordic-dark);
+}
 
-.moon{position:absolute;top:8%;right:12%;width:92px;height:92px;background:#F4F1DE;border-radius:50%;box-shadow:0 0 60px rgba(244,241,222,0.35);z-index:1}
+.welcome-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--nordic-dark);
+    color: #e2e8f0;
+}
 
-.mountains{position:absolute;bottom:15%;width:100%;height:300px;display:flex;align-items:flex-end;z-index:2}
-.mountain{border-left:250px solid transparent;border-right:250px solid transparent;border-bottom:250px solid #1C2541;margin-bottom:-20px;filter:brightness(0.7)}
-.mountain.left{left:-50px;position:absolute;border-bottom-width:200px}
-.mountain.right{right:-50px;position:absolute;border-bottom-width:220px;filter:brightness(0.6)}
+.aurora-glow {
+    background: radial-gradient(circle at 50% -20%, rgba(20, 184, 166, 0.15), rgba(11, 16, 21, 0));
+}
 
-.ground{position:absolute;bottom:0;width:100%;height:20%;background:#081321;z-index:6}
+.glow-title {
+    text-shadow: 0 0 20px rgba(165, 196, 212, 0.3), 0 0 40px rgba(0, 0, 0, 0.8);
+}
 
-.camp-zone{position:absolute;bottom:15%;left:50%;transform:translateX(-50%);width:600px;height:150px;z-index:7}
-.tent{position:absolute;bottom:10px;left:100px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:110px solid var(--accent-warm);filter:drop-shadow(0 0 15px rgba(224,122,95,0.3))}
-.tent::after{content:'';position:absolute;left:-20px;bottom:-110px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:70px solid #3D405B}
-.campfire{position:absolute;bottom:10px;right:150px;width:60px;height:60px}
-.logs{position:absolute;bottom:0;width:100%;height:10px;background:#7F5539;border-radius:5px;transform:rotate(-10deg)}
-.logs::before{content:'';position:absolute;width:100%;height:10px;background:#9C6644;border-radius:5px;transform:rotate(25deg);top:-2px}
-.fire{position:absolute;bottom:8px;left:15px;width:30px;height:45px;background:linear-gradient(to top,var(--accent-warm-2),var(--accent-warm));border-radius:50% 50% 20% 20% / 60% 60% 40% 40%;animation:burn 1.2s ease-in-out infinite alternate;box-shadow:0 0 40px 15px rgba(244,162,97,0.5);transform-origin:bottom center}
-@keyframes burn{0%{transform:scaleX(0.9) scaleY(0.95) rotate(-2deg);background:var(--accent-warm)}50%{transform:scaleX(1.1) scaleY(1.1) rotate(3deg);background:var(--accent-warm-2)}100%{transform:scaleX(0.95) scaleY(1.05) rotate(-1deg);background:#E9C46A}}
-.sparks{position:absolute;bottom:40px;left:25px;width:4px;height:4px;background:#E9C46A;border-radius:50%;animation:float-up 3s linear infinite}.spark2{left:15px;animation-delay:0.7s;animation-duration:2.5s}.spark3{left:35px;animation-delay:1.4s;animation-duration:3.5s}
-@keyframes float-up{0%{transform:translateY(0) translateX(0) scale(1);opacity:1}50%{transform:translateY(-50px) translateX(-10px) scale(0.8);opacity:0.8}100%{transform:translateY(-120px) translateX(15px) scale(0);opacity:0}}
+.welcome-hero.exiting {
+    animation: heroExit 0.45s ease-in forwards;
+}
 
-.tree{position:absolute;bottom:12%;width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:90px solid #14213d;z-index:5}
-.tree::before{content:'';position:absolute;bottom:-110px;left:-15px;width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:50px solid #14213d}
-.tree1{left:5%;transform:scale(1.2)}.tree2{left:12%;transform:scale(0.9);opacity:0.8}.tree3{right:8%;transform:scale(1.4)}.tree4{right:20%;transform:scale(1)}
+@keyframes heroExit {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.97); }
+}
 
-.overlay-text{text-transform:uppercase;position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,0.06);font-size:3rem;letter-spacing:8px;font-weight:300;pointer-events:none;z-index:3}
-
-/* Welcome card */
-.welcome-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10;max-width:900px;width:calc(100% - 48px);padding:2.5rem;border-radius:1rem;background:linear-gradient(180deg,rgba(9,18,34,0.65),rgba(12,28,46,0.55));backdrop-filter:blur(6px);box-shadow:0 30px 60px rgba(2,6,23,0.5);color:var(--muted-light);border:1px solid rgba(255,255,255,0.04);text-align:center;opacity:0;transform-origin:center;animation:cardEnter 600ms cubic-bezier(.2,.9,.2,1) forwards}
-
-@keyframes cardEnter{0%{opacity:0;transform:translate(-50%,-50%) scale(.96)}60%{opacity:1;transform:translate(-50%,-50%) scale(1.02)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-
-.welcome-card.exiting{animation:cardExit 450ms ease forwards}
-@keyframes cardExit{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-48%) scale(.98)}}
-
-.welcome-card h1{font-size:2.4rem;margin-bottom:0.5rem;color:#F5EBD8}
-.welcome-card p{color:rgba(230,238,243,0.9);margin-bottom:1.25rem}
-.btn-primary{background:var(--accent-warm);color:white;border:none;padding:.9rem 1.25rem;border-radius:.6rem;font-weight:700;box-shadow:0 8px 20px rgba(224,122,95,0.18)}
-.btn-primary:hover{filter:brightness(1.03)}
-.welcome-sub{display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(241,235,216,0.9);margin-top:.5rem}
-
-@media (max-width:640px){.welcome-card{padding:1.5rem}.welcome-card h1{font-size:1.5rem}}
-
-/* subtle overlay text tweak */
-.overlay-text{font-size:2.2rem}
+@media (max-width: 640px) {
+    .welcome-hero { padding: 1.25rem; }
+}

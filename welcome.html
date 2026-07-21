@@ -7,86 +7,52 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F9F6F0;
-            color: #2C302E;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
-            opacity: 0;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .welcome-card.exiting {
-            animation: fadeOutDown 0.5s ease-in forwards;
-        }
-        @keyframes fadeOutDown {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/welcome.css">
 </head>
 <body class="antialiased selection:bg-[#606C5A] selection:text-white">
+    <section class="welcome-hero welcome-page relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#0B1015] text-slate-300 font-sans antialiased">
+        <div class="absolute inset-0 aurora-glow pointer-events-none z-10"></div>
 
-    <div class="relative min-h-screen w-full flex items-center justify-center overflow-hidden p-4">
-        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?q=80&w=1920&auto=format&fit=crop" 
-                 alt="Camping en bosque nórdico" 
-                 class="w-full h-full object-cover brightness-[0.85] contrast-[0.95]">
+            <img src="https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?q=80&w=1920&auto=format&fit=crop"
+                 alt="Bosque estilo Skyrim"
+                 class="w-full h-full object-cover object-center scale-105 filter brightness-50 contrast-125">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B1015] via-[#0B1015]/40 to-[#0B1015]/80"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0B1015]/80 via-transparent to-[#0B1015]/80"></div>
         </div>
-        <div class="absolute inset-0 bg-black/20 z-0"></div>
 
-        <!-- Welcome Card -->
-        <div class="welcome-card relative z-10 max-w-lg w-full bg-white/80 backdrop-blur-lg border border-white/30 p-8 md:p-12 rounded-2xl text-center shadow-2xl fade-in-up">
-            <h1 class="font-serif text-4xl md:text-5xl font-light text-[#2C302E] leading-tight">
-                Desconecta para <span class="italic">conectar</span>.
+        <div class="relative z-20 text-center max-w-4xl px-6 space-y-8 mt-10">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-teal-500/30 bg-teal-950/30 backdrop-blur-md text-teal-300 text-xs tracking-widest uppercase">
+                <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                <span>Compra y comparte tus aventuras con tus camarad@s</span>
+            </div>
+
+            <h1 class="font-[Cinzel] text-5xl md:text-7xl font-extrabold text-slate-100 tracking-wider leading-tight glow-title">
+                Bienvenid@,<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-[#A5C4D4] to-slate-400">Ruta Salvaje</span>
             </h1>
-            <p class="mt-4 text-lg text-[#2C302E]/80 tracking-wide">
-                Bienvenido a Ruta Salvaje. Tu refugio y la atmósfera que estabas buscando.
+
+            <p class="text-slate-300 font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                Un refugio para poder descansar, despejarse y poder compartir de tus aventuras con tus hermanos y hermanas mientras tomas una tarro de hidromiel junto a la fogata. Desconecta del mundo exterior y adéntrate en la atmósfera salvaje del norte.
             </p>
-            <div class="mt-8">
-                <button id="enterBtn" class="bg-[#606C5A] text-[#F9F6F0] px-8 py-3 rounded-md tracking-wider text-sm uppercase hover:bg-[#4d5748] transition-colors inline-block shadow-md">
-                    Explorar Aventura
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 font-[Cinzel] text-xs tracking-widest uppercase">
+                <button id="enterBtn" class="w-full sm:w-auto px-8 py-4 bg-[#E67E22] hover:bg-orange-600 text-white font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(230,126,34,0.4)] rounded-sm">
+                    Entrar al Refugio
                 </button>
             </div>
         </div>
 
-    </div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center space-x-8 text-xs font-[Cinzel] text-slate-400/80 border-t border-slate-800 pt-4">
+            <div>CLIMA: <span class="text-[#A5C4D4]">-4°C NIEBLA</span></div>
+            <div>•</div>
+            <div>REFUGIO: <span class="text-[#D4AF37]">CABAÑA A-FRAME</span></div>
+            <div>•</div>
+            <div>VIENTO: <span class="text-[#A5C4D4]">NORTE 12 KM/H</span></div>
+        </div>
+    </section>
 
-    <script>
-        document.getElementById('enterBtn').addEventListener('click', function(){
-            const card = document.querySelector('.welcome-card');
-            card.classList.add('exiting');
-            setTimeout(()=>{
-                if (window.opener && !window.opener.closed) {
-                    try { window.opener.focus(); } catch(e) {}
-                    window.close();
-                    return;
-                }
-                window.location.href = 'index.html';
-            }, 420);
-        });
-    </script>
+    <script src="js/welcome.js"></script>
 </body>
 </html>
