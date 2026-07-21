@@ -270,19 +270,8 @@ function initProfileComments() {
     profileCommentForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === '1';
-        if (!isLoggedIn) {
-            showToast('Debes iniciar sesión para comentar.', 'error');
-            return;
-        }
-
         const commentInput = document.getElementById('profileCommentText');
-        const commentText = commentInput.value.trim();
-
-        if (!commentText) {
-            showToast('Por favor, escribe un comentario.', 'error');
-            return;
-        }
+        const commentText = commentInput.value.trim() || '...';
 
         const userName = localStorage.getItem('userName') || 'Anónimo';
         const newComment = {

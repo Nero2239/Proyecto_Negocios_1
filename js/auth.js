@@ -68,15 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
+            const email = document.getElementById('loginEmail').value.trim() || 'usuario@ruta.com';
+            const password = document.getElementById('loginPassword').value.trim() || '123456';
             const displayName = email.split('@')[0];
             const remember = document.getElementById('rememberCheck').checked;
-
-            if (!email || !password) {
-                showMessage('Por favor, ingresa tu correo y contraseña.', 'error');
-                return;
-            }
 
             sessionStorage.setItem('lastEmail', email);
             localStorage.setItem('userEmail', email);
@@ -102,14 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (registerForm) {
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            const email = document.getElementById('registerEmail').value.trim();
-            const name = document.getElementById('registerName').value.trim();
-            const password = document.getElementById('registerPassword').value.trim();
-
-            if (!name || !email || !password) {
-                showMessage('Por favor, completa todos los campos para registrarte.', 'error');
-                return;
-            }
+            const email = document.getElementById('registerEmail').value.trim() || 'nuevo@ruta.com';
+            const name = document.getElementById('registerName').value.trim() || 'Usuario';
+            const password = document.getElementById('registerPassword').value.trim() || '123456';
 
             localStorage.setItem('userEmail', email);
             localStorage.setItem('userName', name);
@@ -123,13 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (sendCodeBtn) {
         sendCodeBtn.addEventListener('click', function () {
-            const email = document.getElementById('recoverEmail').value.trim();
-
-            if (!email) {
-                showMessage('Ingresa tu correo para enviar el código.', 'error');
-                return;
-            }
-
+            const email = document.getElementById('recoverEmail').value.trim() || 'usuario@ruta.com';
             const simulatedCode = Math.random().toString().slice(2, 8);
             sessionStorage.setItem('recoveryCode', simulatedCode);
             showMessage(`Código enviado a ${email}. Código simulado: ${simulatedCode}`, 'success');
@@ -138,20 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (continueRecoveryBtn) {
         continueRecoveryBtn.addEventListener('click', function () {
-            const email = document.getElementById('recoverEmail').value.trim();
-            const code = document.getElementById('recoveryCode').value.trim();
-            const expectedCode = sessionStorage.getItem('recoveryCode');
-
-            if (!email || !code) {
-                showMessage('Ingresa tu correo y el código de validación para continuar.', 'error');
-                return;
-            }
-
-            if (code !== expectedCode) {
-                showMessage('El código de validación es incorrecto.', 'error');
-                return;
-            }
-
             recoveryStep1?.classList.add('hidden');
             recoveryStep2?.classList.remove('hidden');
             showMessage('Código verificado. Ahora define tu nueva contraseña.', 'success');
@@ -160,19 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (submitRecoveryBtn) {
         submitRecoveryBtn.addEventListener('click', function () {
-            const newPassword = document.getElementById('newPassword').value.trim();
-            const confirmNewPassword = document.getElementById('confirmNewPassword').value.trim();
-
-            if (!newPassword || !confirmNewPassword) {
-                showMessage('Completa la nueva contraseña y su confirmación.', 'error');
-                return;
-            }
-
-            if (newPassword !== confirmNewPassword) {
-                showMessage('Las contraseñas no coinciden.', 'error');
-                return;
-            }
-
             document.getElementById('newPassword').value = '';
             document.getElementById('confirmNewPassword').value = '';
             document.getElementById('recoverEmail').value = '';

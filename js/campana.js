@@ -60,13 +60,8 @@ function addCampaignComment(event) {
 
     if (!nameInput || !commentInput || !list) return;
 
-    const name = nameInput.value.trim();
-    const text = commentInput.value.trim();
-
-    if (!name || !text) {
-        showToast('Por favor, completa tu nombre y comentario.', 'error');
-        return;
-    }
+    const name = nameInput.value.trim() || 'Anónimo';
+    const text = commentInput.value.trim() || '...';
 
     const newComment = {
         name: nameInput.readOnly && localStorage.getItem('userName') ? localStorage.getItem('userName') : name,

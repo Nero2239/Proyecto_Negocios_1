@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientModalStatus = document.getElementById('clientModalStatus');
     const clientModalSave = document.getElementById('clientModalSave');
     const clientModalCancel = document.getElementById('clientModalCancel');
-    let productToDelete = null;
+    let itemToDelete = null;
+    let editingPromoId = null;
     let currentOrder = null;
     let clientPage = 1;
     const clientsPerPage = 4;
@@ -236,8 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p><strong>${promo.type}:</strong> ${promo.target}</p>
                     <p><strong>Descuento:</strong> ${promo.discount}%</p>
                     <p><strong>Vigencia:</strong> ${promo.start} al ${promo.end}</p>
-                    <p><strong>Estado:</strong> ${isActive ? 'Activa' : 'Fuera de vigencia'}</p>
+                    <p><strong>Estado:</strong> <span class="badge ${isActive ? 'badge-ok' : 'badge-warn'}">${isActive ? 'Activa' : 'Fuera de vigencia'}</span></p>
                     <p>${promo.notes}</p>
+                    <div class="form-actions mt-4">
+                        <button class="btn btn-outline btn-small" type="button" data-action="edit-promo" data-id="${promo.id}">Editar</button>
+                        <button class="btn btn-outline btn-small" type="button" data-action="delete-promo" data-id="${promo.id}">Eliminar</button>
+                    </div>
                 </article>
             `;
         }).join('');
@@ -424,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showDeletePrompt(product) {
         if (!deleteConfirmModal || !deleteConfirmText) return;
-        productToDelete = product;
+        itemToDelete = { id: product.id, type: 'product', name: product.name };
         deleteConfirmText.textContent = `¿Seguro que deseas eliminar ${product.name}?`;
         deleteConfirmModal.classList.remove('hidden');
     }
@@ -432,14 +437,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideDeletePrompt() {
         if (!deleteConfirmModal) return;
         deleteConfirmModal.classList.add('hidden');
-        productToDelete = null;
+        itemToDelete = null;
     }
 
-    function confirmDeleteProduct() {
-        if (!productToDelete) return;
-        products = products.filter(item => item.id !== productToDelete.id);
-        renderProducts();
-        showFeedback(`Se eliminó ${productToDelete.name}.`);
+    function confirmDeleteItem() {
+        if (!itemToDelete) return;
+
+        if (itemToDelete.type === 'product') {
+            products = products.filter(item => item.id !== itemToDelete.id);
+            renderProducts();
+            showFeedback(`Se eliminó ${itemToDelete.name}.`);
+        } else if (itemToDelete.type === 'promotion') {
+            promotions = promotions.filter(p => p.id !== itemToDelete.id);
+            renderPromotions();
+            showFeedback(`Se eliminó la promoción "${itemToDelete.name}".`);
+        }
+        
         hideDeletePrompt();
     }
 
@@ -450,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteConfirmCancel.addEventListener('click', hideDeletePrompt);
     }
     if (deleteConfirmAccept) {
-        deleteConfirmAccept.addEventListener('click', confirmDeleteProduct);
+        deleteConfirmAccept.addEventListener('click', confirmDeleteItem);
     }
 
     if (productForm) {
@@ -515,20 +528,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const cancelPromoEdit = document.getElementById('cancelPromoEdit');
+
+    function resetPromotionForm() {
+        editingPromoId = null;
+        if (promotionForm) {
+            promotionForm.reset();
+            promotionForm.querySelector('button[type="submit"]').textContent = 'Guardar promoción';
+        }
+        if (cancelPromoEdit) {
+            cancelPromoEdit.classList.add('hidden');
+        }
+    }
+
+    cancelPromoEdit?.addEventListener('click', resetPromotionForm);
+
+    function handleEditPromotion(promoId) {
+        const promo = promotions.find(p => p.id === promoId);
+        if (!promo || !promotionForm) return;
+
+        editingPromoId = promoId;
+
+        promotionForm.elements['name'].value = promo.name;
+        promotionForm.elements['type'].value = promo.type;
+        promotionForm.elements['target'].value = promo.target;
+        promotionForm.elements['discount'].value = promo.discount;
+        promotionForm.elements['start'].value = promo.start;
+        promotionForm.elements['end'].value = promo.end;
+        promotionForm.elements['notes'].value = promo.notes;
+
+        promotionForm.querySelector('button[type="submit"]').textContent = 'Actualizar Promoción';
+        cancelPromoEdit.classList.remove('hidden');
+
+        promotionForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        showFeedback(`Editando la promoción: ${promo.name}`);
+    }
+
+    function handleDeletePromotion(promoId) {
+        const promo = promotions.find(p => p.id === promoId);
+        if (!promo) return;
+
+        itemToDelete = { id: promoId, type: 'promotion', name: promo.name };
+        deleteConfirmText.textContent = `¿Seguro que deseas eliminar la promoción "${promo.name}"?`;
+        deleteConfirmModal.classList.remove('hidden');
+    }
+
     if (promotionForm) {
         promotionForm.addEventListener('submit', (event) => {
             event.preventDefault();
             const formData = new FormData(promotionForm);
             const start = formData.get('start').toString();
             const end = formData.get('end').toString();
-
+    
             if (new Date(start) > new Date(end)) {
                 showFeedback('La fecha de fin debe ser posterior a la de inicio.', 'error');
                 return;
             }
-
-            promotions.unshift({
-                id: Date.now(),
+    
+            const promoData = {
                 name: formData.get('name').toString().trim(),
                 type: formData.get('type').toString(),
                 target: formData.get('target').toString().trim(),
@@ -536,10 +593,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 start,
                 end,
                 notes: formData.get('notes').toString().trim()
-            });
-            promotionForm.reset();
+            };
+    
+            if (editingPromoId) {
+                promotions = promotions.map(p => p.id === editingPromoId ? { ...p, ...promoData, id: editingPromoId } : p);
+                showFeedback('Promoción actualizada correctamente.');
+            } else {
+                promotions.unshift({ id: Date.now(), ...promoData });
+                showFeedback('Promoción creada correctamente.');
+            }
+            
             renderPromotions();
-            showFeedback('Promoción creada correctamente.');
+            resetPromotionForm();
         });
     }
 
@@ -579,6 +644,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 showFeedback(`Viendo detalle de ${product.name}.`);
             } else if (action === 'delete') {
                 showDeletePrompt(product);
+            }
+        });
+    }
+
+    if (promotionsList) {
+        promotionsList.addEventListener('click', (event) => {
+            const button = event.target.closest('button[data-action]');
+            if (!button) return;
+    
+            const { action, id } = button.dataset;
+            const promoId = Number(id);
+    
+            if (action === 'edit-promo') {
+                handleEditPromotion(promoId);
+            } else if (action === 'delete-promo') {
+                handleDeletePromotion(promoId);
             }
         });
     }
