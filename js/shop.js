@@ -1,3 +1,29 @@
+function showToast(message, type = 'success') {
+    // Remove any existing toasts
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) {
+        existingToast.remove();
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast-notification ${type}`;
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    // Trigger the animation
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    // Hide the toast after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        // Remove the element after the animation completes
+        toast.addEventListener('transitionend', () => toast.remove());
+    }, 3000);
+}
+
 const productos = [
     { id: 1, nombre: 'Tienda Pro-Series', precio: 120, descripcion: 'Resistente al agua y viento, para 2 personas.', detalle: 'Material reforzado y costuras selladas.', esRecomendado: true, categoria: 'tiendas', descuento: 0, rating: 4.9, stock: 8 },
     { id: 2, nombre: 'Saco Térmico -5°C', precio: 85, descripcion: 'Máximo confort en noches frías de montaña.', detalle: 'Aislamiento térmico premium.', esRecomendado: false, categoria: 'sacos', descuento: 10, rating: 4.7, stock: 5 },
@@ -223,6 +249,7 @@ function addToCart(productId, showFeedback = false) {
 
     if (showFeedback) {
         showAddFeedback();
+        showToast(`${producto.nombre} añadido al carrito`, 'success');
     }
 }
 
@@ -492,71 +519,7 @@ function initShop() {
     const categorySelect = document.getElementById('categorySelect');
     const filterAll = document.getElementById('filterAll');
     const filterRecommended = document.getElementById('filterRecommended');
-    const openCartButton = document.getElementById('openCartButton');
-    const closeCartButton = document.getElementById('closeCartButton');
-
-    if (localStorage.getItem('cookiesAccepted') !== 'true') {
-        initCookieConsent();
-    }
-
-    if (searchInput) {
-        searchInput.addEventListener('input', (event) => {
-            state.activeQuery = event.target.value.trim().toLowerCase();
-            renderProducts();
-        });
-    }
-
-    if (categorySelect) {
-        categorySelect.addEventListener('change', (event) => {
-            state.activeCategory = event.target.value;
-            renderProducts();
-        });
-    }
-
-    if (filterAll) {
-        filterAll.addEventListener('click', () => {
-            state.activeFilter = 'all';
-            renderProducts();
-        });
-    }
-
-    if (filterRecommended) {
-        filterRecommended.addEventListener('click', () => {
-            state.activeFilter = 'recommended';
-            renderProducts();
-        });
-    }
-
-    if (openCartButton) {
-        openCartButton.addEventListener('click', toggleCartPanel);
-    }
-
-    if (closeCartButton) {
-        closeCartButton.addEventListener('click', toggleCartPanel);
-    }
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            closeProductModal();
-            closeCart();
-        }
-    });
-
-    renderProducts();
-    renderCart();
-
-    const shouldOpenCart = new URLSearchParams(window.location.search).get('openCart') === '1';
-    if (shouldOpenCart) {
-        showCartPanel();
-    }
-}
-
-function initShop() {
-    const searchInput = document.getElementById('searchInput');
-    const categorySelect = document.getElementById('categorySelect');
-    const filterAll = document.getElementById('filterAll');
-    const filterRecommended = document.getElementById('filterRecommended');
-    const openCartButton = document.getElementById('openCartButton');
+    const nav = document.querySelector('nav.fixed'); // Stable parent for delegation
     const closeCartButton = document.getElementById('closeCartButton');
 
     if (document.body.classList.contains('home-page')) {
@@ -593,8 +556,12 @@ function initShop() {
         });
     }
 
-    if (openCartButton) {
-        openCartButton.addEventListener('click', toggleCartPanel);
+    if (nav) {
+        nav.addEventListener('click', (event) => {
+            if (event.target.closest('#openCartButton')) {
+                toggleCartPanel();
+            }
+        });
     }
 
     if (closeCartButton) {
@@ -633,4 +600,4 @@ window.shop = {
     changePage,
 };
 
-document.addEventListener('DOMContentLoaded', initShop);
+initShop();

@@ -63,8 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
             const displayName = email.split('@')[0];
             const remember = document.getElementById('rememberCheck').checked;
+
+            if (!email || !password) {
+                showMessage('Por favor, ingresa tu correo y contraseña.', 'error');
+                return;
+            }
 
             sessionStorage.setItem('lastEmail', email);
             localStorage.setItem('userEmail', email);
@@ -92,6 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const email = document.getElementById('registerEmail').value.trim();
             const name = document.getElementById('registerName').value.trim();
+            const password = document.getElementById('registerPassword').value.trim();
+
+            if (!name || !email || !password) {
+                showMessage('Por favor, completa todos los campos para registrarte.', 'error');
+                return;
+            }
+
             localStorage.setItem('userEmail', email);
             localStorage.setItem('userName', name);
             localStorage.setItem('isLoggedIn', '1');
@@ -105,6 +118,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (recoverPasswordForm) {
         recoverPasswordForm.addEventListener('submit', function (event) {
             event.preventDefault();
+            const email = document.getElementById('recoverEmail').value.trim();
+            const code = document.getElementById('recoveryCode').value.trim();
+            const newPassword = document.getElementById('newPassword').value.trim();
+
+            if (!email || !code || !newPassword) {
+                showMessage('Por favor, completa todos los campos para recuperar tu contraseña.', 'error');
+                return;
+            }
+
             showLoginForm();
             showMessage('La contraseña ha sido actualizada correctamente', 'success', true);
             recoverPasswordForm.reset();
@@ -130,46 +152,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })();
 
+    function logout() {
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('rememberUser');
+        updateAuthUI(); // Re-render the UI to show the logged-out state
+        // If on a protected page, redirect to home
+        if (window.location.pathname.includes('profile.html') || window.location.pathname.includes('admin.html')) {
+            window.location.href = 'index.html';
+        }
+    }
+
     function updateAuthUI() {
         const navAuthContainer = document.getElementById('nav-auth-buttons');
         const profileEmail = document.getElementById('profileEmail');
         const userEmail = localStorage.getItem('userEmail') || '';
         const isLoggedIn = localStorage.getItem('isLoggedIn') === '1' || Boolean(userEmail);
+        const displayName = (localStorage.getItem('userName') || userEmail.split('@')[0]) || 'Usuario';
 
         if (navAuthContainer) {
             if (isLoggedIn && userEmail) {
                 navAuthContainer.innerHTML = `
-                    <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button">
-                        <i class="bi bi-cart3"></i>
-                        <span id="cartCount">0</span>
+                    <a href="profile.html" class="hidden md:flex items-center gap-2 text-sm uppercase tracking-wider text-[#2C302E]/80 hover:text-[#606C5A] transition-colors" title="${userEmail}">
+                        <i class="bi bi-person-circle"></i>
+                        <span>${displayName}</span>
+                    </a>
+                    <button id="navLogoutBtn" title="Cerrar sesión" class="hidden md:block text-[#2C302E]/80 hover:text-[#606C5A] transition-colors text-xl"><i class="bi bi-box-arrow-right"></i></button>
+                    <button id="openCartButton" class="relative border border-transparent hover:border-[#2C302E]/30 rounded-full p-2 transition-colors" type="button">
+                        <i class="bi bi-cart3 text-xl text-[#2C302E]"></i>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-[#606C5A] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
                     </button>
-                    <div class="flex items-center gap-3">
-                        <a href="profile.html" class="font-semibold text-bosque hover:text-naranja transition hidden sm:block" title="${userEmail}">${userEmail}</a>
-                        <button id="navLogoutBtn" title="Cerrar sesión" class="text-bosque hover:text-naranja transition text-xl"><i class="bi bi-box-arrow-right"></i></button>
-                    </div>
                 `;
-                document.getElementById('navLogoutBtn')?.addEventListener('click', function () {
-                    localStorage.removeItem('userEmail');
-                    localStorage.removeItem('isLoggedIn');
-                    localStorage.removeItem('userName');
-                    localStorage.removeItem('rememberUser');
-                    updateAuthUI();
-                    window.location.href = 'index.html';
-                });
+                document.getElementById('navLogoutBtn')?.addEventListener('click', logout);
             } else {
                 navAuthContainer.innerHTML = `
-                    <button id="openCartButton" class="bg-bosque hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap flex items-center gap-2" type="button">
-                        <i class="bi bi-cart3"></i>
-                        <span id="cartCount">0</span>
+                    <a href="login.html" class="hidden md:block border border-[#2C302E] px-5 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-[#2C302E] hover:text-[#F9F6F0] transition-all duration-300">
+                        Login
+                    </a>
+                    <button id="openCartButton" class="relative border border-transparent hover:border-[#2C302E]/30 rounded-full p-2 transition-colors" type="button">
+                        <i class="bi bi-cart3 text-xl text-[#2C302E]"></i>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-[#606C5A] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
                     </button>
-                    <div class="flex flex-col gap-2">
-                        <a href="login.html" class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg flex items-center gap-2 text-sm whitespace-nowrap">
-                            <i class="bi bi-box-arrow-in-right"></i>
-                            <span>Iniciar sesión</span>
-                        </a>
-                        <button class="btn btn-welcome px-5 py-2.5 rounded-full font-bold transition shadow-lg text-sm whitespace-nowrap">Planifica tu viaje  <i class="bi bi-calendar-event-fill"></i></button>
-                    </div>
                 `;
+            }
+            // After innerHTML is replaced, we need to update the cart count from shop's state
+            if (window.shop && typeof window.shop.renderCart === 'function') {
+                // Calling renderCart is better as it updates multiple count displays
+                window.shop.renderCart();
             }
         }
 
@@ -183,11 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainLogoutButton = document.querySelector('a[href="login.html"].btn-secondary');
     mainLogoutButton?.addEventListener('click', function (event) {
         event.preventDefault();
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('rememberUser');
-        updateAuthUI();
-        window.location.href = 'index.html';
+        logout();
     });
 });

@@ -10,18 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/promociones.css" />
+    <link rel="stylesheet" href="styles/equipo.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body class="bg-[#F9F6F0] text-[#2C302E] antialiased selection:bg-[#606C5A] selection:text-white">
     <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl bg-white/80 backdrop-blur-md border border-white/40 z-50 px-6 py-3 rounded-full flex justify-between items-center shadow-sm">
         <a href="index.html" class="font-serif text-xl tracking-wide font-semibold text-[#2C302E]">Ruta Salvaje</a>
-        <div class="hidden md:flex space-x-6 text-sm tracking-wider uppercase text-[#2C302E]/80">
-            <a href="index.html" class="hover:text-[#606C5A] transition-colors">Inicio</a>
-            <a href="equipo.html" class="hover:text-[#606C5A] transition-colors">Equipo</a>
-            <a href="promociones.html" class="hover:text-[#606C5A] transition-colors">Promociones</a>
-            <a href="campana.html" class="text-[#606C5A] font-semibold transition-colors">Campaña</a>
-            <a href="nosotros.html" class="hover:text-[#606C5A] transition-colors">Nosotros</a>
-            <a href="contacto.html" class="hover:text-[#606C5A] transition-colors">Contacto</a>
+        <div class="hidden md:flex space-x-4 lg:space-x-6 text-sm tracking-wider uppercase text-[#2C302E]/80">
+            <a href="index.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-house-door"></i><span>Inicio</span></a>
+            <a href="equipo.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-handbag"></i><span>Equipo</span></a>
+            <a href="promociones.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-tags"></i><span>Promociones</span></a>
+            <a href="campana.html" class="text-[#606C5A] font-semibold transition-colors flex items-center gap-2"><i class="bi bi-megaphone"></i><span>Campaña</span></a>
+            <a href="nosotros.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-people"></i><span>Nosotros</span></a>
+            <a href="contacto.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-envelope"></i><span>Contacto</span></a>
         </div>
         <div id="nav-auth-buttons" class="flex items-center gap-4">
             <a href="login.html" class="hidden md:block border border-[#2C302E] px-5 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-[#2C302E] hover:text-[#F9F6F0] transition-all duration-300">
@@ -70,7 +71,7 @@
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4 items-center">
                     <span class="font-serif text-5xl text-[#2C302E]">$120.00</span>
-                    <a href="equipo.html" class="btn btn-primary inline-flex items-center gap-2">Comprar ahora <i class="bi bi-arrow-right"></i></a>
+                    <button type="button" class="btn btn-primary inline-flex items-center gap-2" onclick="window.shop.addToCart(1, true)">Comprar ahora <i class="bi bi-cart-plus-fill"></i></button>
                 </div>
             </div>
             <div class="bg-white p-10 rounded-xl shadow-xl border border-stone-200">
@@ -128,15 +129,14 @@
             <div class="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
                 <form id="campaignCommentForm" class="space-y-5 bg-white p-8 rounded-xl shadow-lg border border-stone-200">
                     <div>
-                        <label class="block text-sm font-semibold text-[#2C302E]">Tu nombre</label>
-                        <input id="campaignCommentName" type="text" class="form-input mt-2" placeholder="Ej. Camila" required />
+                        <label for="campaignCommentName" class="block text-sm font-semibold text-[#2C302E]">Tu nombre</label>
+                        <input id="campaignCommentName" type="text" class="form-input mt-2" placeholder="Ej. Camila" />
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-[#2C302E]">Comentario</label>
-                        <textarea id="campaignCommentText" class="form-textarea mt-2" placeholder="Comparte tu experiencia o idea..." required></textarea>
+                        <label for="campaignCommentText" class="block text-sm font-semibold text-[#2C302E]">Comentario</label>
+                        <textarea id="campaignCommentText" class="form-textarea mt-2" placeholder="Comparte tu experiencia o idea..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary w-full">Publicar comentario</button>
-                    <div id="campaignCommentFeedback" class="message-success hidden"><i class="bi bi-check-circle-fill"></i> <span>Comentario publicado.</span></div>
                 </form>
                 <div>
                     <div id="campaignCommentsList" class="space-y-4">

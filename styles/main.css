@@ -95,21 +95,6 @@ footer h4, footer h5 {
     transform: translateY(-2px);
 }
 
-#openCartButton {
-    background-color: #d6d6d6;
-    color: #2c302e;
-    border: 1px solid rgba(44,48,46,0.16);
-}
-
-#openCartButton:hover {
-    background-color: #bfc0c0;
-}
-
-#openCartButton i,
-#openCartButton span {
-    color: #2c302e;
-}
-
 .btn-welcome {
     display: inline-flex;
     align-items: center;
@@ -629,4 +614,33 @@ html {
 */
 .campaign-hero {
     text-align: center;
+}
+
+/* ==================== TOAST NOTIFICATION ==================== */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--color-charcoal);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-large);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    font-weight: 500;
+}
+.toast-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+.toast-notification.success {
+    background-color: var(--color-green);
+    color: white;
+}
+.toast-notification.error {
+    background-color: #c0392b; /* A reddish color for errors */
+    color: white;
 }

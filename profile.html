@@ -18,12 +18,13 @@
 <body class="bg-[#F9F6F0] text-[#2C302E] antialiased selection:bg-[#606C5A] selection:text-white">
     <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl bg-white/80 backdrop-blur-md border border-white/40 z-50 px-6 py-3 rounded-full flex justify-between items-center shadow-sm">
         <a href="index.html" class="font-serif text-xl tracking-wide font-semibold text-[#2C302E]">Ruta Salvaje</a>
-        <div class="hidden md:flex space-x-6 text-sm tracking-wider uppercase text-[#2C302E]/80">
-            <a href="index.html" class="hover:text-[#606C5A] transition-colors">Inicio</a>
-            <a href="equipo.html" class="hover:text-[#606C5A] transition-colors">Equipo</a>
-            <a href="promociones.html" class="hover:text-[#606C5A] transition-colors">Promociones</a>
-            <a href="nosotros.html" class="hover:text-[#606C5A] transition-colors">Nosotros</a>
-            <a href="contacto.html" class="hover:text-[#606C5A] transition-colors">Contacto</a>
+        <div class="hidden md:flex space-x-4 lg:space-x-6 text-sm tracking-wider uppercase text-[#2C302E]/80">
+            <a href="index.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-house-door"></i><span>Inicio</span></a>
+            <a href="equipo.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-handbag"></i><span>Equipo</span></a>
+            <a href="promociones.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-tags"></i><span>Promociones</span></a>
+            <a href="campana.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-megaphone"></i><span>Campaña</span></a>
+            <a href="nosotros.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-people"></i><span>Nosotros</span></a>
+            <a href="contacto.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-envelope"></i><span>Contacto</span></a>
         </div>
         <div id="nav-auth-buttons" class="flex items-center gap-4">
             <a href="login.html" class="hidden md:block border border-[#2C302E] px-5 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-[#2C302E] hover:text-[#F9F6F0] transition-all duration-300">
@@ -99,6 +100,23 @@
                     </div>
                 </section>
 
+                <section class="profile-section-card">
+                    <div class="profile-section-header">
+                        <div>
+                            <p class="text-sm uppercase tracking-widest text-[#606C5A] font-bold">Comunidad</p>
+                            <h2 class="text-2xl font-serif text-[#2C302E] mt-2">Deja un comentario</h2>
+                        </div>
+                    </div>
+                    <form id="profileCommentForm" class="c2c-form max-w-2xl mx-auto">
+                         <div>
+                            <label for="profileCommentText" class="form-label">Tu comentario para la página de Campaña</label>
+                            <textarea id="profileCommentText" class="form-textarea" placeholder="Comparte tu experiencia o idea..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full">Publicar Comentario</button>
+                    </form>
+                </section>
+
+
                 <section id="sellerDashboard" class="c2c-dashboard-shell hidden">
                     <div class="profile-section-header">
                         <div>
@@ -135,19 +153,19 @@
                             <form id="publishProductForm" class="c2c-form max-w-2xl mx-auto">
                                 <div>
                                     <label for="productName" class="form-label">Nombre del producto</label>
-                                    <input id="productName" type="text" class="form-input" placeholder="Ej: Tienda para 2 personas" required>
+                                    <input id="productName" type="text" class="form-input" placeholder="Ej: Tienda para 2 personas">
                                 </div>
                                 <div>
                                     <label for="productPrice" class="form-label">Precio</label>
-                                    <input id="productPrice" type="number" class="form-input" placeholder="Ej: 50.00" required min="0" step="0.01">
+                                    <input id="productPrice" type="number" class="form-input" placeholder="Ej: 50.00" min="0" step="0.01">
                                 </div>
                                 <div>
                                     <label for="productDescription" class="form-label">Descripción</label>
-                                    <textarea id="productDescription" class="form-textarea" placeholder="Describe el estado, uso y características de tu producto." required></textarea>
+                                    <textarea id="productDescription" class="form-textarea" placeholder="Describe el estado, uso y características de tu producto."></textarea>
                                 </div>
                                 <div>
                                     <label for="productPhoto" class="form-label">Foto del producto (simulado)</label>
-                                    <input id="productPhoto" type="file" class="form-input">
+                                    <input id="productPhoto" type="file" class="form-input" accept="image/*">
                                 </div>
                                 <button type="submit" class="btn btn-primary w-full">Publicar</button>
                             </form>
@@ -168,7 +186,7 @@
                                         <p class="bid-label">Oferta actual</p>
                                         <div id="currentBid" class="bid-display">$85.00</div>
                                         <form id="bidForm" class="bid-form">
-                                            <input id="bidAmount" type="number" class="form-input" placeholder="Tu oferta" required min="86">
+                                            <input id="bidAmount" type="number" class="form-input" placeholder="Tu oferta" min="86">
                                             <button type="submit" class="btn btn-primary">Ofertar</button>
                                         </form>
                                         <div id="bidFeedback" class="mt-4"></div>

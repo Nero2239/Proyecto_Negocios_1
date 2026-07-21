@@ -1,3 +1,29 @@
+// Toast Notification Function
+function showToast(message, type = 'success') {
+    // Remove any existing toasts
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) {
+        existingToast.remove();
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast-notification ${type}`;
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    // Trigger the animation
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    // Hide the toast after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        // Remove the element after the animation completes
+        toast.addEventListener('transitionend', () => toast.remove());
+    }, 3000);
+}
 // Helper para obtener la clave de almacenamiento específica del usuario
 function getPublicationsStorageKey() {
     const userEmail = localStorage.getItem('userEmail');
@@ -11,19 +37,27 @@ function initPublishProductPage() {
 
     publishProductForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        const feedbackEl = document.getElementById('publishFeedback');
         const storageKey = getPublicationsStorageKey();
 
         if (!storageKey) {
-            feedbackEl.innerHTML = `<div class="message-error">Debes iniciar sesión para publicar un producto.</div>`;
+            showToast('Debes iniciar sesión para publicar un producto.', 'error');
+            return;
+        }
+
+        const name = document.getElementById('productName').value.trim();
+        const price = document.getElementById('productPrice').value;
+        const description = document.getElementById('productDescription').value.trim();
+
+        if (!name || !price || !description) {
+            showToast('Por favor, completa todos los campos del producto.', 'error');
             return;
         }
 
         const product = {
             id: Date.now(),
-            name: document.getElementById('productName').value,
-            price: parseFloat(document.getElementById('productPrice').value),
-            description: document.getElementById('productDescription').value,
+            name: name,
+            price: parseFloat(price),
+            description: description,
             photo: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&h=300&fit=crop' // Foto simulada
         };
 
@@ -31,7 +65,7 @@ function initPublishProductPage() {
         publications.unshift(product);
         localStorage.setItem(storageKey, JSON.stringify(publications));
 
-        feedbackEl.innerHTML = `<div class="message-success">Publicado (simulado)</div>`;
+        showToast('Producto publicado con éxito.', 'success');
         publishProductForm.reset();
         renderMyPublications(); // Actualiza la lista de publicaciones en segundo plano
 
@@ -40,7 +74,6 @@ function initPublishProductPage() {
             if (publicationsTab) {
                 publicationsTab.click();
             }
-            feedbackEl.innerHTML = '';
         }, 1500);
     });
 }
@@ -51,7 +84,7 @@ function renderMyPublications() {
     if (!myPublicationsList) return;
 
     const storageKey = getPublicationsStorageKey();
-    if (!storageKey) {
+    if (!storageKey || !localStorage.getItem('isLoggedIn')) {
         myPublicationsList.innerHTML = `<p class="text-center text-gray-500">Debes <a href="login.html" class="text-naranja font-semibold">iniciar sesión</a> para ver tus publicaciones.</p>`;
         return;
     }
@@ -83,33 +116,14 @@ function editPublication(productId) {
     if (!storageKey) return;
 
     const publications = JSON.parse(localStorage.getItem(storageKey) || '[]');
-    const product = publications.find(item => item.id === productId);
-    if (!product) return;
+    // const product = publications.find(item => item.id === productId);
+    // if (!product) return;
 
-    const newName = prompt('Nuevo nombre del producto', product.name);
-    if (newName === null) return;
-
-    const newPrice = prompt('Nuevo precio', product.price.toString());
-    if (newPrice === null) return;
-
-    const newDescription = prompt('Nueva descripción', product.description);
-    if (newDescription === null) return;
-
-    Object.assign(product, {
-        name: newName.trim() || product.name,
-        price: parseFloat(newPrice) || product.price,
-        description: newDescription.trim() || product.description
-    });
-
-    localStorage.setItem(storageKey, JSON.stringify(publications));
-    renderMyPublications();
+    // La edición con prompts fue eliminada. Se requiere un modal para una mejor UX.
+    showToast('La función de edición no está disponible.', 'error');
 }
 
 function deletePublication(productId) {
-    if (!confirm('¿Estás seguro de que quieres eliminar esta publicación?')) {
-        return;
-    }
-
     const storageKey = getPublicationsStorageKey();
     if (!storageKey) return;
 
@@ -124,6 +138,7 @@ function deletePublication(productId) {
     } else {
         renderMyPublications();
     }
+    showToast('Publicación eliminada.', 'success');
 }
 
 function initMyPublicationsPage() {
@@ -191,8 +206,12 @@ function initAuctionPage() {
         const bidAmount = parseFloat(bidAmountInput.value);
         const currentBidEl = document.getElementById('currentBid');
         const bidsList = document.getElementById('bidsList');
-        const bidFeedback = document.getElementById('bidFeedback');
         const currentBid = parseFloat(currentBidEl.textContent.replace('$', ''));
+
+        if (!bidAmount) {
+            showToast('Ingresa un monto para ofertar.', 'error');
+            return;
+        }
 
         if (bidAmount > currentBid) {
             currentBidEl.textContent = `$${bidAmount.toFixed(2)}`;
@@ -202,15 +221,12 @@ function initAuctionPage() {
             newBidLi.style.animation = 'slideIn 0.5s ease forwards';
             bidsList.prepend(newBidLi);
 
-            bidFeedback.innerHTML = `<div class="message-success">Oferta registrada (simulado)</div>`;
+            showToast('¡Oferta registrada con éxito!', 'success');
             bidAmountInput.value = '';
             bidAmountInput.min = bidAmount + 1;
             bidAmountInput.placeholder = `> $${bidAmount}`;
-
-            setTimeout(() => { bidFeedback.innerHTML = ''; }, 2500);
         } else {
-            bidFeedback.innerHTML = `<div class="message-error">Tu oferta debe ser mayor a la actual.</div>`;
-            setTimeout(() => { bidFeedback.innerHTML = ''; }, 2500);
+            showToast('Tu oferta debe ser mayor a la actual.', 'error');
         }
     });
 }
@@ -244,6 +260,47 @@ function setupC2CTabs() {
     });
 }
 
+// --- Lógica para Comentarios desde el Perfil ---
+function initProfileComments() {
+    const profileCommentForm = document.getElementById('profileCommentForm');
+    const COMMENTS_KEY = 'userCampaignComments'; // Use the same key as campana.js
+
+    if (!profileCommentForm) return;
+
+    profileCommentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === '1';
+        if (!isLoggedIn) {
+            showToast('Debes iniciar sesión para comentar.', 'error');
+            return;
+        }
+
+        const commentInput = document.getElementById('profileCommentText');
+        const commentText = commentInput.value.trim();
+
+        if (!commentText) {
+            showToast('Por favor, escribe un comentario.', 'error');
+            return;
+        }
+
+        const userName = localStorage.getItem('userName') || 'Anónimo';
+        const newComment = {
+            name: userName,
+            text: commentText,
+            date: 'Ahora mismo'
+        };
+
+        const comments = JSON.parse(localStorage.getItem('campaignComments') || '[]');
+        comments.unshift(newComment);
+        localStorage.setItem('campaignComments', JSON.stringify(comments));
+        localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
+
+        showToast('Tu comentario ha sido publicado en la página de campaña.', 'success');
+        commentInput.value = '';
+    });
+}
+
 // --- Inicialización General ---
 document.addEventListener('DOMContentLoaded', () => {
     // Si estamos en la página de perfil y el panel de vendedor existe
@@ -251,6 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupC2CTabs(); // Configura los listeners de las pestañas
         initPublishProductPage(); // Configura el formulario de publicación
         initMyPublicationsPage(); // Carga las publicaciones iniciales
+        initProfileComments(); // Configura el formulario de comentarios del perfil
     }
 });
 

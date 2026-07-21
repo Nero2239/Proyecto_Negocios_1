@@ -18,13 +18,13 @@
     <!-- ==================== HEADER / NAVEGACIÓN ==================== -->
     <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl bg-white/80 backdrop-blur-md border border-white/40 z-50 px-6 py-3 rounded-full flex justify-between items-center shadow-sm">
         <a href="index.html" class="font-serif text-xl tracking-wide font-semibold text-[#2C302E]">Ruta Salvaje</a>
-        <div class="hidden md:flex space-x-6 text-sm tracking-wider uppercase text-[#2C302E]/80">
-            <a href="index.html" class="hover:text-[#606C5A] transition-colors">Inicio</a>
-            <a href="equipo.html" class="hover:text-[#606C5A] transition-colors">Equipo</a>
-            <a href="promociones.html" class="hover:text-[#606C5A] transition-colors">Promociones</a>
-            <a href="campana.html" class="hover:text-[#606C5A] transition-colors">Campaña</a>
-            <a href="nosotros.html" class="hover:text-[#606C5A] transition-colors">Nosotros</a>
-            <a href="contacto.html" class="text-[#606C5A] font-semibold transition-colors">Contacto</a>
+        <div class="hidden md:flex space-x-4 lg:space-x-6 text-sm tracking-wider uppercase text-[#2C302E]/80">
+            <a href="index.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-house-door"></i><span>Inicio</span></a>
+            <a href="equipo.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-handbag"></i><span>Equipo</span></a>
+            <a href="promociones.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-tags"></i><span>Promociones</span></a>
+            <a href="campana.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-megaphone"></i><span>Campaña</span></a>
+            <a href="nosotros.html" class="hover:text-[#606C5A] transition-colors flex items-center gap-2"><i class="bi bi-people"></i><span>Nosotros</span></a>
+            <a href="contacto.html" class="text-[#606C5A] font-semibold transition-colors flex items-center gap-2"><i class="bi bi-envelope"></i><span>Contacto</span></a>
         </div>
         <div id="nav-auth-buttons" class="flex items-center gap-4">
             <a href="login.html" class="hidden md:block border border-[#2C302E] px-5 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-[#2C302E] hover:text-[#F9F6F0] transition-all duration-300">
@@ -62,17 +62,17 @@
 
                         <div class="form-group">
                             <label for="nombre" class="form-label">Nombre Completo</label>
-                            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
+                            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre">
                         </div>
 
                         <div class="form-group">
                             <label for="correo" class="form-label">Correo Electrónico</label>
-                            <input type="email" id="correo" name="correo" class="form-input" placeholder="tu@correo.com" required>
+                            <input type="email" id="correo" name="correo" class="form-input" placeholder="tu@correo.com">
                         </div>
 
                         <div class="form-group">
                             <label for="mensaje" class="form-label">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" class="form-textarea" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
+                            <textarea id="mensaje" name="mensaje" class="form-textarea" placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-full font-bold py-3">
@@ -118,8 +118,8 @@
                 <!-- Newsletter -->
                 <h5 class="text-white uppercase tracking-widest text-xs">Newsletter</h5>
                 <p class="text-sm font-light text-white/60">Recibe calma en tu correo.</p>
-                <form class="flex border-b border-white/20 pb-2" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
-                    <input type="email" placeholder="Tu email" class="bg-transparent text-sm w-full focus:outline-none text-white placeholder-white/40" required>
+                <form id="newsletterForm" class="flex border-b border-white/20 pb-2">
+                    <input type="email" id="newsletterEmail" placeholder="Tu email" class="bg-transparent text-sm w-full focus:outline-none text-white placeholder-white/40">
                     <button type="submit" class="text-xs uppercase tracking-wider text-white hover:text-[#8A9A86] transition-colors">Suscribir</button>
                 </form>
             </div>
@@ -138,38 +138,40 @@
     <!-- ==================== JAVASCRIPT: MANEJADOR DEL FORMULARIO ==================== -->
     <script>
         // FORMULARIO DE CONTACTO: Manejador del envío
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
 
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+                    const nombre = document.getElementById('nombre').value.trim();
+                    const correo = document.getElementById('correo').value.trim();
+                    const mensaje = document.getElementById('mensaje').value.trim();
 
-                // Obtener valores del formulario
-                const nombre = document.getElementById('nombre').value;
-                const correo = document.getElementById('correo').value;
-                const mensaje = document.getElementById('mensaje').value;
+                    if (!nombre || !correo || !mensaje) {
+                        showToast('Por favor, completa todos los campos.', 'error');
+                        return;
+                    }
 
-                // Simulación: Mostrar mensaje de éxito
-                formMessage.innerHTML = `
-                    <div class="message-success">
-                        ✅ <strong>¡Mensaje enviado exitosamente!</strong><br>
-                        Gracias ${nombre}, pronto nos pondremos en contacto a través de ${correo}.
-                    </div>
-                `;
+                    showToast(`Gracias ${nombre}, tu mensaje ha sido enviado.`, 'success');
+                    contactForm.reset();
+                });
+            }
 
-                // Limpiar formulario
-                contactForm.reset();
-
-                // Ocultar el mensaje después de 5 segundos
-                setTimeout(() => {
-                    formMessage.innerHTML = '';
-                }, 5000);
-
-                // Log para demostración
-                console.log('Mensaje simulado:', { nombre, correo, mensaje });
-            });
-        }
+            const newsletterForm = document.getElementById('newsletterForm');
+            if(newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const emailInput = document.getElementById('newsletterEmail');
+                    if (emailInput.value.trim()) {
+                        showToast('¡Gracias por suscribirte!', 'success');
+                        emailInput.value = '';
+                    } else {
+                        showToast('Por favor, ingresa tu correo.', 'error');
+                    }
+                });
+            }
+        });
     </script>
 
     <!-- ==================== REDES SOCIALES FLOTANTES ==================== -->
