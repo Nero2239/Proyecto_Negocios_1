@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
-    const recoverPasswordForm = document.getElementById('recoverPasswordForm');
     const loginView = document.getElementById('loginView');
     const registerView = document.getElementById('registerView');
     const recoverPasswordView = document.getElementById('recoverPasswordView');
+    const recoveryStep1 = document.getElementById('recoveryStep1');
+    const recoveryStep2 = document.getElementById('recoveryStep2');
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const continueRecoveryBtn = document.getElementById('continueRecoveryBtn');
+    const submitRecoveryBtn = document.getElementById('submitRecoveryBtn');
     const messageBox = document.getElementById('messageBox');
     const showRegisterBtn = document.getElementById('showRegisterBtn');
     const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
@@ -56,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loginView?.classList.add('hidden');
         registerView?.classList.add('hidden');
         recoverPasswordView?.classList.remove('hidden');
+        recoveryStep1?.classList.remove('hidden');
+        recoveryStep2?.classList.add('hidden');
         clearMessageBox();
     }
 
@@ -115,21 +121,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (recoverPasswordForm) {
-        recoverPasswordForm.addEventListener('submit', function (event) {
-            event.preventDefault();
+    if (sendCodeBtn) {
+        sendCodeBtn.addEventListener('click', function () {
             const email = document.getElementById('recoverEmail').value.trim();
-            const code = document.getElementById('recoveryCode').value.trim();
-            const newPassword = document.getElementById('newPassword').value.trim();
 
-            if (!email || !code || !newPassword) {
-                showMessage('Por favor, completa todos los campos para recuperar tu contraseña.', 'error');
+            if (!email) {
+                showMessage('Ingresa tu correo para enviar el código.', 'error');
                 return;
             }
 
+            const simulatedCode = Math.random().toString().slice(2, 8);
+            sessionStorage.setItem('recoveryCode', simulatedCode);
+            showMessage(`Código enviado a ${email}. Código simulado: ${simulatedCode}`, 'success');
+        });
+    }
+
+    if (continueRecoveryBtn) {
+        continueRecoveryBtn.addEventListener('click', function () {
+            const email = document.getElementById('recoverEmail').value.trim();
+            const code = document.getElementById('recoveryCode').value.trim();
+            const expectedCode = sessionStorage.getItem('recoveryCode');
+
+            if (!email || !code) {
+                showMessage('Ingresa tu correo y el código de validación para continuar.', 'error');
+                return;
+            }
+
+            if (code !== expectedCode) {
+                showMessage('El código de validación es incorrecto.', 'error');
+                return;
+            }
+
+            recoveryStep1?.classList.add('hidden');
+            recoveryStep2?.classList.remove('hidden');
+            showMessage('Código verificado. Ahora define tu nueva contraseña.', 'success');
+        });
+    }
+
+    if (submitRecoveryBtn) {
+        submitRecoveryBtn.addEventListener('click', function () {
+            const newPassword = document.getElementById('newPassword').value.trim();
+            const confirmNewPassword = document.getElementById('confirmNewPassword').value.trim();
+
+            if (!newPassword || !confirmNewPassword) {
+                showMessage('Completa la nueva contraseña y su confirmación.', 'error');
+                return;
+            }
+
+            if (newPassword !== confirmNewPassword) {
+                showMessage('Las contraseñas no coinciden.', 'error');
+                return;
+            }
+
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmNewPassword').value = '';
+            document.getElementById('recoverEmail').value = '';
+            document.getElementById('recoveryCode').value = '';
+            sessionStorage.removeItem('recoveryCode');
             showLoginForm();
-            showMessage('La contraseña ha sido actualizada correctamente', 'success', true);
-            recoverPasswordForm.reset();
+            showMessage('Contraseña cambiada con éxito.', 'success', true);
         });
     }
 

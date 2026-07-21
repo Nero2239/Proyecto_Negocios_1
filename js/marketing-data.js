@@ -76,6 +76,7 @@
         if (k && k.startsWith('userPublications_')) { found = true; break; }
     }
 
+    const existing = getExistingPublications();
     if (found) {
         updateExistingPublicationImages();
         const existingIds = new Set(existing.map(item => item.id));
