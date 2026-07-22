@@ -145,6 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    function getPurchaseStorageKey() {
+        const userEmail = localStorage.getItem('userEmail') || 'guest';
+        return `rutaSalvajePurchases_${userEmail.toLowerCase()}`;
+    }
+
+    function savePurchase(purchase) {
+        const storageKey = getPurchaseStorageKey();
+        const savedPurchases = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        savedPurchases.unshift(purchase);
+        localStorage.setItem(storageKey, JSON.stringify(savedPurchases));
+    }
+
     function showDownloadMessage() {
         showToast('Descarga simulada lista: tu comprobante está preparado.', 'success');
     }
@@ -215,6 +227,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 timeStyle: 'short',
             }).format(new Date());
             latestOrder = { orderNumber, orderDate, cart, subtotal: getCartData().subtotal, discountAmount: getCartData().discountAmount, total };
+            savePurchase({
+                id: orderNumber,
+                date: orderDate,
+                status: 'Procesando',
+                customer: customer.name,
+                address: `${customer.address}, ${customer.city}, C.P. ${customer.zipCode}`,
+                payment: customer.paymentMethod,
+                total,
+                products: cart.map(item => ({
+                    name: item.name,
+                    quantity: item.quantity,
+                    price: item.price,
+                })),
+            });
             
             // Show confirmation
             checkoutProcess.classList.add('hidden');

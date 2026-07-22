@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!purchaseHistory || !detailModal || !detailContent) return;
 
-    const purchases = [
+    const simulatedPurchases = [
         {
             id: 'RS-240618',
             date: '18 de junio de 2026',
@@ -37,6 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
         },
     ];
+
+    function getPurchaseStorageKey() {
+        const userEmail = localStorage.getItem('userEmail') || 'guest';
+        return `rutaSalvajePurchases_${userEmail.toLowerCase()}`;
+    }
+
+    function getSavedPurchases() {
+        try {
+            return JSON.parse(localStorage.getItem(getPurchaseStorageKey()) || '[]');
+        } catch (error) {
+            return [];
+        }
+    }
+
+    const purchases = [...getSavedPurchases(), ...simulatedPurchases];
 
     function formatPrice(value) {
         return `$${Number(value).toFixed(2)}`;
