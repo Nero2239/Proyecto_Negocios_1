@@ -509,6 +509,56 @@
         </div>
     </div>
 
+    <div id="promotionEditModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="promotionEditModalTitle">
+        <div class="modal-backdrop" id="promotionEditModalBackdrop"></div>
+        <div class="modal-content max-w-2xl">
+            <button class="modal-close" id="promotionEditModalClose" type="button" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+            <div class="modal-body">
+                <div class="modal-icon"><i class="bi bi-percent"></i></div>
+                <h3 id="promotionEditModalTitle">Editar Promoción</h3>
+                <form id="promotionEditForm" class="product-form" style="padding: 0; box-shadow: none; border: none;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                        <div class="field-group md:col-span-2">
+                            <label for="editPromotionName">Nombre de la promoción</label>
+                            <input id="editPromotionName" name="name" type="text" />
+                        </div>
+                        <div class="field-group">
+                            <label for="editPromotionType">Tipo</label>
+                            <select id="editPromotionType" name="type">
+                                <option value="Producto">Por producto</option>
+                                <option value="Evento">Por evento</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="editPromotionDiscount">Descuento (%)</label>
+                            <input id="editPromotionDiscount" name="discount" type="number" min="1" max="100" />
+                        </div>
+                        <div class="field-group md:col-span-2">
+                            <label for="editPromotionTarget">Producto o evento</label>
+                            <input id="editPromotionTarget" name="target" type="text" />
+                        </div>
+                        <div class="field-group">
+                            <label for="editPromotionStart">Fecha de inicio</label>
+                            <input id="editPromotionStart" name="start" type="date" />
+                        </div>
+                        <div class="field-group">
+                            <label for="editPromotionEnd">Fecha de fin</label>
+                            <input id="editPromotionEnd" name="end" type="date" />
+                        </div>
+                        <div class="field-group md:col-span-2">
+                            <label for="editPromotionNotes">Observaciones</label>
+                            <textarea id="editPromotionNotes" name="notes" rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center gap-3 justify-end">
+                        <button id="promotionEditCancel" type="button" class="btn btn-outline">Cancelar</button>
+                        <button id="promotionEditSave" type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="js/admin.js"></script>
     <script>
         // This script is added to handle form validation since admin.js is not provided for modification.

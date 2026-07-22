@@ -88,6 +88,263 @@
     background: rgba(255, 255, 255, 0.72);
 }
 
+.purchase-history {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.purchase-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(28, 37, 65, 0.08);
+    border-radius: 1.15rem;
+    background: linear-gradient(110deg, #fffdf8 0%, #f7efe0 100%);
+}
+
+.purchase-card-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    display: grid;
+    place-items: center;
+    border-radius: 0.85rem;
+    color: #fffdf8;
+    background: var(--color-green, #606c5a);
+    font-size: 1.2rem;
+}
+
+.purchase-card-heading,
+.purchase-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.purchase-order-label,
+.purchase-card-heading h3,
+.purchase-card-meta {
+    margin: 0;
+}
+
+.purchase-order-label {
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.purchase-card-heading h3 {
+    color: #2c302e;
+    font: 600 1.1rem 'Playfair Display', Georgia, serif;
+}
+
+.purchase-card-heading h3 span {
+    color: #64748b;
+    font: 400 0.82rem 'Inter', sans-serif;
+}
+
+.purchase-card-meta {
+    margin-top: 0.55rem;
+    color: #64748b;
+    font-size: 0.78rem;
+}
+
+.purchase-card-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.purchase-card-meta strong {
+    color: #29483d;
+    font-size: 1rem;
+}
+
+.purchase-status {
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    color: #29483d;
+    background: #dce8d7;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.purchase-status.is-shipping {
+    color: #8a542f;
+    background: #f1dfcf;
+}
+
+.purchase-detail-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.purchase-history-note {
+    background: linear-gradient(135deg, #eef1e8 0%, #fffdf8 100%);
+}
+
+.purchase-detail-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+}
+
+.purchase-detail-modal.hidden {
+    display: none;
+}
+
+.purchase-detail-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 18, 15, 0.72);
+    backdrop-filter: blur(0.3rem);
+}
+
+.purchase-ticket-panel {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 34rem);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    color: #24312d;
+    background: #f4efe3;
+    border: 1px solid #d8d1c2;
+    border-top: 0.35rem solid #b9784f;
+    border-radius: 0.75rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
+    animation: purchase-ticket-rise 0.25s ease-out;
+}
+
+@keyframes purchase-ticket-rise {
+    from { opacity: 0; transform: translateY(1rem); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.purchase-detail-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid #d8d1c2;
+    border-radius: 50%;
+    color: #29483d;
+    background: transparent;
+    cursor: pointer;
+}
+
+.purchase-detail-close:hover {
+    color: #f4efe3;
+    background: #29483d;
+}
+
+.purchase-ticket-kicker,
+.purchase-ticket-section,
+.purchase-ticket-meta span {
+    margin: 0;
+    color: #69756e;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.purchase-ticket-heading,
+.purchase-ticket-meta,
+.purchase-ticket-products > div,
+.purchase-ticket-total {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.purchase-ticket-heading {
+    align-items: flex-start;
+    padding: 0.55rem 0 1.1rem;
+    border-bottom: 1px solid #d8d1c2;
+}
+
+.purchase-ticket-heading h2 {
+    margin: 0.2rem 0;
+    color: #29483d;
+    font: 600 1.7rem 'Playfair Display', Georgia, serif;
+}
+
+.purchase-ticket-heading p {
+    margin: 0;
+    color: #69756e;
+    font-size: 0.8rem;
+}
+
+.purchase-ticket-heading > i {
+    color: #6d8061;
+    font-size: 1.8rem;
+}
+
+.purchase-ticket-meta {
+    padding: 1rem 0;
+    border-bottom: 1px dashed #d8d1c2;
+}
+
+.purchase-ticket-meta div {
+    display: grid;
+    gap: 0.15rem;
+}
+
+.purchase-ticket-customer,
+.purchase-ticket-products {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem 0;
+    border-bottom: 1px dashed #d8d1c2;
+}
+
+.purchase-ticket-customer span {
+    color: #69756e;
+    font-size: 0.82rem;
+}
+
+.purchase-ticket-products > div {
+    padding: 0.45rem 0;
+    border-bottom: 1px solid #eee8dc;
+    font-size: 0.86rem;
+}
+
+.purchase-ticket-products > div:last-child {
+    border-bottom: 0;
+}
+
+.purchase-ticket-products small {
+    color: #69756e;
+}
+
+.purchase-ticket-total {
+    align-items: baseline;
+    padding-top: 1.2rem;
+    color: #29483d;
+    font-size: 1.05rem;
+}
+
+.purchase-ticket-total strong {
+    font-size: 1.4rem;
+}
+
 .c2c-dashboard-shell {
     margin-top: 0.2rem;
     background: linear-gradient(135deg, #fffaf4 0%, #f7efe0 100%);

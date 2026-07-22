@@ -59,6 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientModalStatus = document.getElementById('clientModalStatus');
     const clientModalSave = document.getElementById('clientModalSave');
     const clientModalCancel = document.getElementById('clientModalCancel');
+    const promotionEditModal = document.getElementById('promotionEditModal');
+    const promotionEditModalBackdrop = document.getElementById('promotionEditModalBackdrop');
+    const promotionEditModalClose = document.getElementById('promotionEditModalClose');
+    const promotionEditForm = document.getElementById('promotionEditForm');
+    const promotionEditCancel = document.getElementById('promotionEditCancel');
     let itemToDelete = null;
     let editingPromoId = null;
     let currentOrder = null;
@@ -545,23 +550,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleEditPromotion(promoId) {
         const promo = promotions.find(p => p.id === promoId);
-        if (!promo || !promotionForm) return;
+        if (!promo || !promotionEditModal || !promotionEditForm) return;
 
         editingPromoId = promoId;
 
-        promotionForm.elements['name'].value = promo.name;
-        promotionForm.elements['type'].value = promo.type;
-        promotionForm.elements['target'].value = promo.target;
-        promotionForm.elements['discount'].value = promo.discount;
-        promotionForm.elements['start'].value = promo.start;
-        promotionForm.elements['end'].value = promo.end;
-        promotionForm.elements['notes'].value = promo.notes;
+        // Populate the modal form
+        promotionEditForm.elements['name'].value = promo.name;
+        promotionEditForm.elements['type'].value = promo.type;
+        promotionEditForm.elements['target'].value = promo.target;
+        promotionEditForm.elements['discount'].value = promo.discount;
+        promotionEditForm.elements['start'].value = promo.start;
+        promotionEditForm.elements['end'].value = promo.end;
+        promotionEditForm.elements['notes'].value = promo.notes;
 
-        promotionForm.querySelector('button[type="submit"]').textContent = 'Actualizar Promoción';
-        cancelPromoEdit.classList.remove('hidden');
-
-        promotionForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        showFeedback(`Editando la promoción: ${promo.name}`);
+        // Show the modal
+        promotionEditModal.classList.remove('hidden');
     }
 
     function handleDeletePromotion(promoId) {
@@ -585,7 +588,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
     
-            const promoData = {
+            const newPromo = {
+                id: Date.now(),
                 name: formData.get('name').toString().trim(),
                 type: formData.get('type').toString(),
                 target: formData.get('target').toString().trim(),
@@ -595,16 +599,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 notes: formData.get('notes').toString().trim()
             };
     
-            if (editingPromoId) {
-                promotions = promotions.map(p => p.id === editingPromoId ? { ...p, ...promoData, id: editingPromoId } : p);
-                showFeedback('Promoción actualizada correctamente.');
-            } else {
-                promotions.unshift({ id: Date.now(), ...promoData });
-                showFeedback('Promoción creada correctamente.');
-            }
+            promotions.unshift(newPromo);
+            showFeedback('Promoción creada correctamente.');
             
             renderPromotions();
-            resetPromotionForm();
+            promotionForm.reset();
         });
     }
 
@@ -663,6 +662,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Promotion Edit Modal Handlers
+    function closePromotionEditModal() {
+        if (!promotionEditModal) return;
+        promotionEditModal.classList.add('hidden');
+        editingPromoId = null;
+    }
+
+    promotionEditModalClose?.addEventListener('click', closePromotionEditModal);
+    promotionEditModalBackdrop?.addEventListener('click', closePromotionEditModal);
+    promotionEditCancel?.addEventListener('click', closePromotionEditModal);
+
+    promotionEditForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!editingPromoId) return;
+
+        const formData = new FormData(promotionEditForm);
+        const start = formData.get('start').toString();
+        const end = formData.get('end').toString();
+
+        if (new Date(start) > new Date(end)) {
+            showFeedback('La fecha de fin debe ser posterior a la de inicio.', 'error');
+            return;
+        }
+
+        const promoData = {
+            name: formData.get('name').toString().trim(),
+            type: formData.get('type').toString(),
+            target: formData.get('target').toString().trim(),
+            discount: Number(formData.get('discount')),
+            start, end, notes: formData.get('notes').toString().trim()
+        };
+
+        promotions = promotions.map(p => p.id === editingPromoId ? { ...p, ...promoData, id: editingPromoId } : p);
+        renderPromotions();
+        closePromotionEditModal();
+        showFeedback('Promoción actualizada correctamente.');
+    });
 
     if (clientsList) {
         clientsList.addEventListener('click', (event) => {

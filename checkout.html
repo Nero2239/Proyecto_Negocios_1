@@ -10,23 +10,256 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/equipo.css" />
+    <link rel="stylesheet" href="checkout.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
-<body class="bg-[#F9F6F0] text-[#2C302E] antialiased selection:bg-[#606C5A] selection:text-white">
-    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl bg-white/80 backdrop-blur-md border border-white/40 z-50 px-6 py-3 rounded-full flex justify-between items-center shadow-sm">
-        <a href="index.html" class="font-serif text-xl tracking-wide font-semibold text-[#2C302E]">Ruta Salvaje</a>
-        <a href="equipo.html" class="text-[#2C302E]/80 hover:text-[#606C5A] transition-colors font-semibold text-sm uppercase tracking-wider flex items-center gap-2"><i class="bi bi-arrow-left"></i> <span>Volver a la tienda</span></a>
+<body class="bg-[#F9F6F0] text-[#2C302E] antialiased selection:bg-[#606C5A] selection:text-white checkout-page">
+    <nav class="checkout-nav">
+        <a href="index.html" class="brand-mark">Ruta Salvaje</a>
+        <a href="equipo.html" class="store-link"><i class="bi bi-arrow-left"></i> <span>Volver a la tienda</span></a>
     </nav>
 
-    <main class="min-h-screen flex items-center justify-center py-20 px-6 lg:px-10">
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-stone-200 p-12 text-center">
-            <div class="text-6xl text-[#606C5A] mb-6">
-                <i class="bi bi-hourglass-split"></i>
+    <main class="min-h-screen flex items-center justify-center py-32 px-6 lg:px-10">
+        <div id="checkoutContainer" class="w-full max-w-6xl">
+            <!-- This will be hidden after payment -->
+            <div id="checkoutProcess">
+                <div class="text-center mb-12 text-white">
+                    <p class="eyebrow">Fogata encendida · compra segura</p>
+                    <h1>Finalizar compra</h1>
+                    <p>Completa los siguientes pasos para preparar tu próxima aventura.</p>
+                </div>
+
+                <!-- Steps Indicator -->
+                <div id="stepsIndicator" class="steps-indicator">
+                    <div class="step active" data-step="1">
+                        <div class="step-icon">1</div>
+                        <p>Dirección</p>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="2">
+                        <div class="step-icon">2</div>
+                        <p>Pago</p>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="3">
+                        <div class="step-icon">3</div>
+                        <p>Confirmar</p>
+                    </div>
+                </div>
+
+                <div class="checkout-grid mt-12">
+                    <!-- Steps Content -->
+                    <div id="checkoutSteps" class="checkout-form-container">
+                        <!-- Step 1: Address -->
+                        <div id="step-1" class="step-content">
+                            <h3 class="step-title">Dirección de Envío</h3>
+                            <form id="addressForm" class="space-y-4">
+                                <div class="form-group">
+                                    <label for="fullName">Nombre completo</label>
+                                    <input type="text" id="fullName" class="form-input" placeholder="Tu nombre y apellido" autocomplete="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Dirección</label>
+                                    <input type="text" id="address" class="form-input" placeholder="Calle, número, depto." autocomplete="street-address">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="form-group">
+                                        <label for="city">Ciudad</label>
+                                        <input type="text" id="city" class="form-input" placeholder="Tu ciudad" autocomplete="address-level2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zipCode">Código Postal</label>
+                                        <input type="text" id="zipCode" class="form-input" placeholder="C.P." inputmode="numeric" autocomplete="postal-code">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Step 2: Payment -->
+                        <div id="step-2" class="step-content hidden">
+                            <h3 class="step-title">Método de Pago</h3>
+                            <div id="paymentMethods" class="payment-methods-container">
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="card" checked>
+                                    <div class="payment-method-content">
+                                        <i class="bi bi-credit-card-2-front-fill"></i>
+                                        <span>Tarjeta</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="transfer">
+                                    <div class="payment-method-content">
+                                        <i class="bi bi-bank"></i>
+                                        <span>Transferencia</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="ewallet">
+                                    <div class="payment-method-content">
+                                        <i class="bi bi-wallet2"></i>
+                                        <span>E-wallet</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Payment Details -->
+                            <div id="paymentDetails" class="mt-6">
+                                <div id="card-details">
+                                    <form id="cardForm" class="space-y-4">
+                                        <div class="form-group">
+                                            <label for="cardName">Nombre en la tarjeta</label>
+                                            <input type="text" id="cardName" class="form-input" placeholder="Como aparece en la tarjeta" autocomplete="cc-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cardNumber">Número de tarjeta</label>
+                                            <input type="text" id="cardNumber" class="form-input" placeholder="0000 0000 0000 0000" inputmode="numeric" maxlength="19" autocomplete="cc-number">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="form-group">
+                                                <label for="cardExpiry">Vencimiento</label>
+                                                <input type="text" id="cardExpiry" class="form-input" placeholder="MM/AA" inputmode="numeric" maxlength="5" autocomplete="cc-exp">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cardCvv">CVV</label>
+                                                <input type="text" id="cardCvv" class="form-input" placeholder="123" inputmode="numeric" maxlength="4" autocomplete="cc-csc">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="transfer-details" class="payment-info-box hidden">
+                                    <p>Realiza la transferencia a la siguiente cuenta:</p>
+                                    <p><strong>Banco:</strong> Banco Aventura</p>
+                                    <p><strong>CBU/Alias:</strong> RUTA.SALVAJE.MP</p>
+                                    <p><strong>Titular:</strong> Ruta Salvaje S.A.</p>
+                                </div>
+                                <div id="ewallet-details" class="payment-info-box hidden">
+                                    <p>Tu saldo simulado es de <strong>$500.00</strong>.</p>
+                                    <p>Se descontará el total de tu compra de este saldo.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Confirmation -->
+                        <div id="step-3" class="step-content hidden">
+                            <h3 class="step-title">Confirmar Pedido</h3>
+                            <p>Revisa tu pedido. Al hacer clic en "Pagar", se procesará tu compra (simulación).</p>
+                            <div class="mt-6">
+                                <div class="confirmation-line"><strong>Dirección de envío</strong><span id="confirmAddress"></span></div>
+                                <div class="confirmation-line"><strong>Método de pago</strong><span id="confirmPaymentMethod"></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div id="checkoutSummary" class="order-summary-container">
+                        <!-- Content will be injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="checkout-navigation">
+                    <button id="prevStepBtn" class="btn btn-secondary hidden" type="button">Anterior</button>
+                    <button id="nextStepBtn" class="btn btn-primary" type="button">Siguiente</button>
+                    <button id="payBtn" class="btn btn-primary hidden" type="button">
+                        <span class="pay-text">Pagar</span>
+                        <span class="spinner hidden"></span>
+                    </button>
+                </div>
             </div>
-            <h1 class="font-serif text-4xl text-[#2C302E]">Próximamente</h1>
-            <p class="text-gray-700 mt-4 max-w-2xl mx-auto">La experiencia de pago y confirmación de pedidos estará disponible muy pronto. Mientras tanto, puedes seguir explorando nuestro equipo y preparar tu próxima aventura.</p>
-            <a href="equipo.html" class="btn btn-primary mt-8 inline-flex">Seguir comprando</a>
+
+            <!-- Order Confirmation View -->
+            <div id="orderConfirmation" class="hidden">
+                <div class="confirmation-card">
+                    <div class="approval-icon">
+                        <i class="bi bi-patch-check-fill"></i>
+                    </div>
+                    <p class="eyebrow">Comprobante de compra</p>
+                    <h1>¡Pago aprobado!</h1>
+                    <p>Tu pedido ha sido confirmado. Gracias por elegir el camino.</p>
+                    <div id="receipt" class="receipt" aria-label="Factura o comprobante de compra">
+                        <div class="receipt-header">
+                            <div>
+                                <p class="receipt-kicker">Comprobante de pago</p>
+                                <h2>Ruta Salvaje</h2>
+                                <p>Equipo para salir del mapa</p>
+                            </div>
+                            <i class="bi bi-tree-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="receipt-meta">
+                            <div><span>Folio</span><strong id="orderNumber"></strong></div>
+                            <div><span>Fecha</span><strong id="orderDate"></strong></div>
+                        </div>
+                        <div class="receipt-customer">
+                            <p class="receipt-section-title">Datos del cliente</p>
+                            <div><strong id="receiptCustomerName"></strong><span id="receiptCustomerAddress"></span></div>
+                        </div>
+                        <div class="receipt-products">
+                            <p class="receipt-section-title">Productos</p>
+                            <div class="receipt-product-head"><span>Descripción</span><span>Importe</span></div>
+                            <div id="confirmationSummary"></div>
+                        </div>
+                        <div class="receipt-total">
+                            <span>Total pagado</span>
+                            <strong id="receiptTotal"></strong>
+                        </div>
+                        <p class="receipt-payment">Método de pago: <strong id="receiptPaymentMethod"></strong></p>
+                    </div>
+                    <p class="receipt-note">Esta factura es un comprobante generado para esta simulación.</p>
+                    <button id="downloadReceiptBtn" class="btn btn-secondary" type="button"><i class="bi bi-download"></i> Descargar (simulado)</button>
+                    <div class="confirmation-actions">
+                        <a href="index.html" class="btn btn-primary">Volver al inicio</a>
+                    </div>
+                    <button id="requestInvoiceBtn" class="invoice-link" type="button"><i class="bi bi-receipt"></i> Solicitar factura</button>
+                </div>
+            </div>
         </div>
     </main>
+
+    <div id="invoiceModal" class="invoice-modal hidden" role="dialog" aria-modal="true" aria-labelledby="invoiceModalTitle">
+        <div class="invoice-modal-backdrop" data-close-invoice></div>
+        <section class="invoice-modal-panel">
+            <button id="closeInvoiceBtn" class="invoice-close" type="button" aria-label="Cerrar facturación"><i class="bi bi-x-lg"></i></button>
+            <div id="invoiceFormView">
+                <p class="eyebrow">Datos fiscales</p>
+                <h2 id="invoiceModalTitle">Solicitar factura</h2>
+                <p class="invoice-intro">Completa los datos para generar tu factura simulada.</p>
+                <form id="invoiceForm" class="invoice-form">
+                    <div class="invoice-field">
+                        <label for="invoiceName">Nombre o razón social</label>
+                        <input id="invoiceName" class="form-input" type="text" placeholder="Ej. Ana López / Montaña S.A.">
+                    </div>
+                    <div class="invoice-field">
+                        <label for="invoiceTaxId">RFC / Identificación fiscal</label>
+                        <input id="invoiceTaxId" class="form-input" type="text" placeholder="Ej. XAXX010101000">
+                    </div>
+                    <div class="invoice-field">
+                        <label for="invoiceTaxRegime">Régimen fiscal</label>
+                        <input id="invoiceTaxRegime" class="form-input" type="text" placeholder="Ej. Régimen simplificado de confianza">
+                    </div>
+                    <div class="invoice-field">
+                        <label for="invoiceEmail">Correo electrónico</label>
+                        <input id="invoiceEmail" class="form-input" type="email" placeholder="tu-correo@ejemplo.com">
+                    </div>
+                    <div class="invoice-field">
+                        <label for="invoiceUse">Uso de factura</label>
+                        <select id="invoiceUse" class="form-input">
+                            <option value="Adquisición de mercancías">Adquisición de mercancías</option>
+                            <option value="Gastos en general">Gastos en general</option>
+                            <option value="Por definir">Por definir</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-file-earmark-check"></i> Generar factura</button>
+                </form>
+            </div>
+            <div id="invoiceResultView" class="hidden">
+                <p class="eyebrow">Factura generada</p>
+                <h2>Comprobante fiscal simulado</h2>
+                <div id="generatedInvoice" class="generated-invoice"></div>
+                <button id="invoiceDownloadBtn" class="btn btn-secondary" type="button"><i class="bi bi-download"></i> Descargar factura (simulado)</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="checkout.js"></script>
 </body>
 </html>
