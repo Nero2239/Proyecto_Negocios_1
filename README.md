@@ -49,7 +49,7 @@ Si deseas una experiencia más cercana a un entorno de producción, puedes usar 
 
 El proyecto está organizado de manera modular para facilitar su mantenimiento.
 
-```
+```text
 Ruta Salvaje/
 ├── 📄 index.html             # Página de inicio
 ├── 📄 equipo.html            # Catálogo de productos y tienda
@@ -93,6 +93,162 @@ Ruta Salvaje/
 - **Nosotros**: Presenta la misión, visión y valores de la empresa.
 - **Contacto**: Incluye un formulario funcional (simulado) que muestra un mensaje de éxito al enviarse.
 - **Promociones y Campaña**: Páginas de marketing para atraer al cliente con ofertas y contenido de valor.
+
+---
+
+## Flujo de Usuario (Simulado)
+
+```
+                             INICIO
+                                │
+                                ▼
+                   Usuario entra al sitio web
+                                │
+                                ▼
+                        Página principal
+                                │
+      ┌─────────────────────────┼─────────────────────────┐
+      ▼                         ▼                         ▼
+ Ver catálogo             Ver promociones         Iniciar sesión
+      │                         │                         │
+      └───────────────┬─────────┴───────────────┬─────────┘
+                      ▼                         ▼
+              Seleccionar producto      Acceder al perfil
+                      │
+                      ▼
+            Ver detalles del producto
+                      │
+                      ▼
+             Seleccionar cantidad
+                      │
+                      ▼
+          ¿Agregar producto al carrito?
+                 ┌──────┴──────┐
+               Sí              No
+                │               │
+                ▼               ▼
+      Producto agregado     Regresar al
+        al carrito          catálogo
+                │
+                ▼
+      ¿Seguir comprando?
+         ┌─────┴─────┐
+        Sí           No
+         │            │
+         ▼            ▼
+ Volver al catálogo   Ver carrito
+                           │
+                           ▼
+                 Modificar cantidades
+                           │
+                           ▼
+               ¿Eliminar producto?
+                  ┌────┴────┐
+                 Sí         No
+                  │          │
+                  ▼          ▼
+         Actualizar carrito  │
+                  └────┬─────┘
+                       ▼
+               Calcular subtotal
+                       │
+                       ▼
+                Ir a pagar
+                       │
+                       ▼
+          Pantalla "Próximamente"
+                       │
+                       ▼
+                      FIN
+```
+
+---
+
+## Diagramas de Flujo Adicionales
+
+### Flujo de Navegación del Usuario Registrado
+
+Este diagrama detalla la experiencia de un usuario que ha iniciado sesión, desde el acceso a su perfil hasta la interacción con las funcionalidades C2C (venta entre usuarios).
+
+```
+                       INICIO (Click en "Iniciar Sesión")
+                                  │
+                                  ▼
+                           Página de Login
+                                  │
+                                  ▼
+                       Ingresar Credenciales y Enviar
+                                  │
+                                  ▼
+                         ¿Credenciales Válidas? (Simulado)
+                            ┌─────┴─────┐
+                          No            Sí
+                           │             │
+                           ▼             ▼
+                     Mostrar Error   Guardar Sesión en `localStorage`
+                                         │
+                                         ▼
+                                Redirigir a Perfil/Inicio
+                                         │
+                                         ▼
+                           Click en "Mi Perfil" / Icono de Usuario
+                                         │
+                                         ▼
+                                  Panel de Usuario
+                                         │
+      ┌──────────────────────────────────┼──────────────────────────────────┐
+      ▼                                  ▼                                  ▼
+Ver Historial                       Panel de Vendedor (C2C)             Dejar Comentario
+  de Compras                               │                                  │
+      │                                  │                                  ▼
+      ▼                                  │                          Publicar en `campana.html`
+Ver lista de                             │
+compras pasadas                          │
+                                         ▼
+                           ┌─────────────┴─────────────┐
+                           ▼                           ▼
+                 Gestionar Publicaciones         Participar en Subasta
+                           │                           │
+         ┌─────────────────┼─────────────────┐         ▼
+         ▼                 ▼                 ▼     Ver temporizador
+   Publicar Nuevo    Editar Pub.       Eliminar    y puja actual
+      Producto         Existente       Publicación       │
+                                                       ▼
+                                                   Realizar Puja
+```
+
+### Flujo de Navegación del Administrador
+
+Este diagrama muestra el flujo de acciones que un administrador puede realizar dentro del panel de control simulado para gestionar el contenido y la actividad del sitio.
+
+```
+                  INICIO (Navega a /admin.html)
+                             │
+                             ▼
+              Verificar acceso de admin (simulado)
+                             │
+           ┌─────────────────┴─────────────────┐
+      Acceso Denegado                      Acceso Permitido
+           │                                  │
+           ▼                                  ▼
+Redirigir a Login/Inicio               Mostrar Panel de Administración
+                                              │
+           ┌──────────────────────────────────┴──────────────────────────────────┐
+           ▼                                  ▼                                  ▼
+    Gestionar Productos                Gestionar Pedidos                Gestionar Usuarios
+           │                                  │                                  │
+┌──────────┴──────────┐           ┌───────────┴───────────┐           ┌──────────┴──────────┐
+▼          ▼          ▼           ▼                       ▼           ▼                     ▼
+Ver Lista  Agregar    Editar/     Ver Lista de Pedidos    Cambiar     Ver Lista de          Bloquear/
+de Prod.   Producto   Eliminar                            Estado      Usuarios              Desbloquear
+           │          Prod.                                                                Usuario
+           ▼
+Formulario para nuevo
+     producto
+           │
+           ▼
+Guardar en `localStorage` (simulado)
+```
 
 ---
 
